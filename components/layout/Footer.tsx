@@ -10,7 +10,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-zinc-900 bg-zinc-950/30 py-12 text-zinc-500" aria-label="Footer Navigation">
+    <footer className="w-full border-t border-zinc-900 bg-zinc-950/30 py-12 text-zinc-400" aria-label="Footer Navigation">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           
@@ -44,7 +44,7 @@ export function Footer() {
             Built with Discipline.<br />
             Guided by Faith.
           </p>
-          <p className="font-sans text-zinc-500 text-sm font-medium pt-1">
+          <p className="font-sans text-zinc-400 text-sm font-medium pt-1">
             श्री स्वामी समर्थ
           </p>
         </div>

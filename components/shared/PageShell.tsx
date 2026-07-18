@@ -16,7 +16,7 @@ export function PageShell({ title, description, actions, breadcrumbs, children }
   return (
     <Container className="py-12 space-y-8">
       {/* Top Breadcrumb Navigation */}
-      {breadcrumbs && <div className="text-zinc-500 font-mono text-xs">{breadcrumbs}</div>}
+      {breadcrumbs && <div className="text-zinc-400 font-mono text-xs">{breadcrumbs}</div>}
 
       {/* Page Header segment */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
@@ -25,7 +25,7 @@ export function PageShell({ title, description, actions, breadcrumbs, children }
             {title}
           </h1>
           {description && (
-            <p className="text-sm sm:text-base text-zinc-500 max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
               {description}
             </p>
           )}

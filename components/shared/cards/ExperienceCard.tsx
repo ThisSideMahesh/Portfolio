@@ -22,7 +22,7 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
             <Badge variant="accent">
               {startDate} — {isCurrent ? 'Present' : endDate}
             </Badge>
-            <span className="text-xs text-zinc-500 font-mono">{location}</span>
+            <span className="text-xs text-zinc-400 font-mono">{location}</span>
           </div>
         </div>
       </CardHeader>

@@ -21,7 +21,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
             <h3 className="text-lg font-bold text-zinc-100">{title}</h3>
-            {subtitle && <p className="text-xs text-zinc-500 font-medium font-mono">{subtitle}</p>}
+            {subtitle && <p className="text-xs text-zinc-400 font-medium font-mono">{subtitle}</p>}
           </div>
           <Badge variant="default" className="uppercase">
             {fileType}
@@ -34,7 +34,7 @@ export function ResourceCard({ resource }: ResourceCardProps) {
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">
-        <span className="text-xs text-zinc-500 font-mono">
+        <span className="text-xs text-zinc-400 font-mono">
           {fileSize || 'Unknown Size'}
         </span>
         <Link 

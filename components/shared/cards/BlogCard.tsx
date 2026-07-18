@@ -19,7 +19,7 @@ export function BlogCard({ blog }: BlogCardProps) {
           <Link href={`/blog/${slug}`} className="hover:text-amber-500 transition-colors">
             <h3 className="text-lg font-bold text-zinc-100">{title}</h3>
           </Link>
-          {subtitle && <p className="text-xs text-zinc-500 font-medium font-mono">{subtitle}</p>}
+          {subtitle && <p className="text-xs text-zinc-400 font-medium font-mono">{subtitle}</p>}
         </div>
       </CardHeader>
       
@@ -34,14 +34,14 @@ export function BlogCard({ blog }: BlogCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="flex items-center justify-between text-xs text-zinc-500 border-t border-zinc-900/30">
+      <CardFooter className="flex items-center justify-between text-xs text-zinc-400 border-t border-zinc-900/30">
         <div className="flex items-center gap-1.5">
-          <Calendar className="w-3.5 h-3.5 text-zinc-600" />
+          <Calendar className="w-3.5 h-3.5 text-zinc-400" />
           <span>{publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft'}</span>
         </div>
         {readingTime && (
           <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-zinc-600" />
+            <Clock className="w-3.5 h-3.5 text-zinc-400" />
             <span>{readingTime} min read</span>
           </div>
         )}

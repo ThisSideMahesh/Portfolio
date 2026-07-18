@@ -22,7 +22,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <Link href={`/projects/${slug}`} className="hover:text-amber-500 transition-colors">
             <h3 className="text-lg font-bold text-zinc-100">{title}</h3>
           </Link>
-          {subtitle && <p className="text-xs text-zinc-500 font-medium font-mono">{subtitle}</p>}
+          {subtitle && <p className="text-xs text-zinc-400 font-medium font-mono">{subtitle}</p>}
         </div>
       </CardHeader>
       
