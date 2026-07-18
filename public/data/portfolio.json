@@ -1,0 +1,318 @@
+{
+  "personal": {
+    "name": "Mahesh Namdev Khandebharad",
+    "role": "Computer Science Engineering Student",
+    "tagline": "Building Technology. Sharing Knowledge. Creating Impact.",
+    "location": "Chhatrapati Sambhajinagar, Maharashtra, India",
+    "spiritualDedication": "|| Shri Swami Samarth ||",
+    "photo": "/mahesh.jpg",
+    "username": "Thissidemahesh",
+    "bio": "I am a passionate Computer Science Engineering student, Technical Trainer, and Student Leader dedicated to bridging the gap between hardware execution and cloud-native software architectures. My journey is built on continuous learning, public speaking, leading student placement cells, competing in national hackathons, and sharing technical knowledge with peers. From initial failures to key leadership positions and successful internships, I build software that creates real-world impact.",
+    "socials": {
+      "github": "https://github.com/Thissidemahesh",
+      "linkedin": "https://linkedin.com/in/Thissidemahesh",
+      "leetcode": "https://leetcode.com/Thissidemahesh",
+      "youtube": "https://youtube.com/@Thissidemahesh",
+      "instagram": "https://instagram.com/Thissidemahesh",
+      "x": "https://x.com/Thissidemahesh",
+      "medium": "https://medium.com/@Thissidemahesh",
+      "email": "maheshkhandebharad@gmail.com",
+      "phone": "+91 93708 14594"
+    }
+  },
+  "experiences": [
+    {
+      "company": "Training Placement & Entrepreneurship Student Cell",
+      "role": "President",
+      "period": "Jul 2025 - Present",
+      "description": "Leading cell operations to empower CS students with placement training, industrial seminars, and entrepreneurial mentoring. Organized workshops covering core technologies for 1000+ engineering students."
+    },
+    {
+      "company": "MS-CIT Technical Center",
+      "role": "Technical Trainer",
+      "period": "Jun 2024 - Present",
+      "description": "Conducting technical training modules on operating systems, basic office automation, network fundamentals, and databases. Taught over 500 students, helping them clear certifications successfully."
+    },
+    {
+      "company": "DFC (Digital Forensics Cell)",
+      "role": "Security Intern",
+      "period": "Dec 2024 - Feb 2025",
+      "description": "Assisted in cyber forensic investigations, analyzed compromised system logs, and built security audit scripts for infrastructure monitoring. Learned advanced digital forensics tools."
+    },
+    {
+      "company": "TechSupport Solutions",
+      "role": "Hardware & Software Technician",
+      "period": "Jan 2023 - Present",
+      "description": "Managing network administration, hardware troubleshooting, operating system installs (Linux/Windows), and software configuration for various local clients on a freelance basis."
+    },
+    {
+      "company": "Creative Media Hub",
+      "role": "Social Media Manager",
+      "period": "Mar 2024 - Present",
+      "description": "Curating technical content, designing campaigns, and managing growth strategies for technology education channels. Expanded organic reach by 40% across professional handles."
+    },
+    {
+      "company": "Freelance Client Hub",
+      "role": "Freelance Video Editor",
+      "period": "Jun 2023 - Present",
+      "description": "Editing educational tech content, tutorials, and product demo videos. Proficient in timeline editing, audio enhancement, transitions, and premium animation overlay edits."
+    },
+    {
+      "company": "Upwork / Fiverr",
+      "role": "Freelance Software Developer",
+      "period": "Aug 2023 - Present",
+      "description": "Building custom dashboards, full-stack landing pages, and desktop helper utilities for international clients. Focused on clean code, responsive styles, and customer satisfaction."
+    }
+  ],
+  "projects": [
+    {
+      "title": "CHRI Platform",
+      "category": "Healthcare Platform",
+      "tech": "React, Node.js, Express, MongoDB",
+      "description": "Child Health Record & Immunization tracking platform designed to keep records of child vaccinations, send SMS alerts to parents, and offer pediatric medical analytics.",
+      "image": "/projects/solid-starters.png",
+      "github": "https://github.com/Thissidemahesh/chri-platform",
+      "demo": "https://chri-platform.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "title": "PharmaManage Pro",
+      "category": "Enterprise Systems",
+      "tech": "Next.js, Radix UI, Tailwind CSS, PostgreSQL",
+      "description": "Complete inventory and billing system for pharmacies. Includes real-time stock alert thresholds, digital invoice generation, and analytical sales reporting.",
+      "image": "/projects/radix.png",
+      "github": "https://github.com/Thissidemahesh/pharmamanage-pro",
+      "demo": "https://pharmamanage.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "title": "Army Depot Management System",
+      "category": "Defense Security",
+      "tech": "React, Node.js, SQLite, Framer Motion",
+      "description": "A highly secure logistics and inventory application for defense equipment and ammunition depots. Features strict access logging, transaction authorization, and inventory audits.",
+      "image": "/projects/bond-cancellation.png",
+      "github": "https://github.com/Thissidemahesh/army-depot-system",
+      "demo": "https://army-depot.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "title": "Shop Management System",
+      "category": "Retail POS",
+      "tech": "Next.js, Tailwind, SQLite, Chart.js",
+      "description": "Point-of-Sale (POS) tool for local retail shops. Handles dynamic billing calculations, PDF invoice prints, credit lists, and weekly revenue analytics.",
+      "image": "/projects/max-life.png",
+      "github": "https://github.com/Thissidemahesh/shop-management",
+      "demo": "https://shop-manage.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "title": "TERAPLAY",
+      "category": "Creative Multimedia",
+      "tech": "HTML5, React, CSS3, Canvas",
+      "description": "Modern, interactive multimedia player utilizing custom canvas visualizers, animations, gesture controls, and responsive sound equalization settings.",
+      "image": "/projects/solid-starters.png",
+      "github": "https://github.com/Thissidemahesh/teraplay",
+      "demo": "https://teraplay.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "title": "Decentralized Blog",
+      "category": "Web3 / Blockchain",
+      "tech": "React, Next.js, Solidity, IPFS, Ethers.js",
+      "description": "Censorship-resistant blogging application where posts are stored on the IPFS network and references are indexed in a smart contract deployed on an Ethereum testnet.",
+      "image": "/projects/radix.png",
+      "github": "https://github.com/Thissidemahesh/decentralized-blog",
+      "demo": "https://deblog.vercel.app",
+      "status": "Completed",
+      "featured": true
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Red Hat Certified System Administrator (RHCSA)",
+      "issuer": "Red Hat",
+      "verificationLink": "https://verify.redhat.com",
+      "date": "Nov 2025"
+    },
+    {
+      "title": "Linux Foundation Administrator Certification",
+      "issuer": "Linux Foundation",
+      "verificationLink": "https://verify.linuxfoundation.org",
+      "date": "Aug 2025"
+    },
+    {
+      "title": "KuCL DevOps Certification",
+      "issuer": "KuCL",
+      "verificationLink": "https://verify.kucl.org",
+      "date": "Oct 2025"
+    },
+    {
+      "title": "Microsoft Certified Azure Fundamentals",
+      "issuer": "Microsoft",
+      "verificationLink": "https://learn.microsoft.com",
+      "date": "Jun 2025"
+    },
+    {
+      "title": "Google Cloud Associate Cloud Engineer",
+      "issuer": "Google Cloud",
+      "verificationLink": "https://credential.googlecloud.com",
+      "date": "Sep 2025"
+    },
+    {
+      "title": "Certified Cyber Security Analyst",
+      "issuer": "EC-Council",
+      "verificationLink": "https://verify.eccouncil.org",
+      "date": "Jul 2025"
+    },
+    {
+      "title": "NIELIT IT Certification",
+      "issuer": "NIELIT Govt of India",
+      "verificationLink": "https://verify.nielit.gov.in",
+      "date": "Apr 2025"
+    },
+    {
+      "title": "Maharashtra State Certificate in Information Technology (MS-CIT)",
+      "issuer": "MKCL",
+      "verificationLink": "https://verify.mkcl.org",
+      "date": "May 2024"
+    },
+    {
+      "title": "Digital Forensics & Security Specialist",
+      "issuer": "Digital Forensics Cell",
+      "verificationLink": "https://verify.dfc.org",
+      "date": "Feb 2025"
+    }
+  ],
+  "googleCloud": {
+    "totalBadges": 64,
+    "badges": [
+      "Google Cloud Fundamentals",
+      "Architecting with Compute Engine",
+      "Getting Started with Kubernetes",
+      "Cloud Engineering Quest",
+      "DevOps on Google Cloud",
+      "Cloud IAM & Security",
+      "BigQuery Basics",
+      "Machine Learning on Google Cloud",
+      "Associate Cloud Engineer Prep",
+      "Google Cloud Networking Essentials",
+      "Deploying Microservices Quest",
+      "Securing Google Cloud Infrastructure"
+    ]
+  },
+  "hackathons": [
+    {
+      "title": "CogniSphere Winner",
+      "result": "1st Place Winner",
+      "date": "Mar 2026",
+      "learning": "Developed generative AI dashboards for academic tracking under 24 hours. Gained deep experience in prompt engineering and fast React layout rendering."
+    },
+    {
+      "title": "Build for Bharat",
+      "result": "National Finalist",
+      "date": "Jan 2026",
+      "learning": "Built digital inclusion software for rural users using local languages. Mastered local-first caching patterns and translation API pipelines."
+    },
+    {
+      "title": "Central India Hackathon",
+      "result": "Runner-Up",
+      "date": "Nov 2025",
+      "learning": "Created smart hardware control scripts connecting web UI buttons to real hardware actuators. Handled asynchronous IO limits under stress."
+    },
+    {
+      "title": "AI Hackathon",
+      "result": "1st Place Winner",
+      "date": "Aug 2025",
+      "learning": "Engineered autonomous AI teaching assistants capable of parsing syllabus PDFs and conducting mock audio assessments."
+    }
+  ],
+  "workshops": [
+    {
+      "title": "Hackathon Hacked 2K26",
+      "date": "Jan 2026",
+      "description": "Organized and delivered a workshop on how to conquer national-level hackathons. Guided 300+ students on idea decomposition, fast prototyping, and pitch formatting.",
+      "feedback": "98% Positive Feedback from participants; student projects increased by 30% in subsequent college events.",
+      "slidesLink": "#",
+      "qrLink": "#"
+    }
+  ],
+  "events": [
+    { "title": "DevFest Pune", "date": "Dec 2025", "description": "Attended technical tracks on Cloud Native architectures, WebAssembly, and modern React hooks." },
+    { "title": "Startup Day Maharashtra", "date": "Nov 2025", "description": "Participated in entrepreneur panels and pitched placement cell ideas." },
+    { "title": "Google Cloud Summit", "date": "Sep 2025", "description": "Explored Serverless offerings and GenAI API models at Bangalore." },
+    { "title": "Docker Hands-on Workshop", "date": "Jul 2025", "description": "Completed labs on Docker networking, multi-stage builds, and docker-compose secrets." },
+    { "title": "HPC (High Performance Computing) Seminar", "date": "Mar 2025", "description": "Explored GPU-accelerated computing nodes and parallel programming models." }
+  ],
+  "blogs": [
+    {
+      "id": "linux-devops-journey",
+      "title": "How I Cracked RHCSA: My Linux & DevOps Blueprint",
+      "category": "Linux",
+      "date": "Dec 2025",
+      "excerpt": "A deep dive into my preparation guidelines for the Red Hat Certified System Administrator exam, covering essential configurations, LVM, and SSH hygiene.",
+      "tags": ["Linux", "RHCSA", "DevOps"],
+      "readingTime": "5 min"
+    },
+    {
+      "id": "hackathon-pitch-formula",
+      "title": "The 5-Minute Hackathon Pitch Formula That Wins",
+      "category": "Hackathons",
+      "date": "Jan 2026",
+      "excerpt": "How we structured our pitches at CogniSphere and AI Hackathon to impress judges, solve clear product problems, and take first place.",
+      "tags": ["Hackathons", "Product Design", "Speaking"],
+      "readingTime": "4 min"
+    },
+    {
+      "id": "nextjs-tailwind-speed",
+      "title": "Optimizing Next.js portfolios with Tailwind CSS v4",
+      "category": "Programming",
+      "date": "Feb 2026",
+      "excerpt": "A technical review of Tailwind CSS v4's CSS-first compiler and how to implement premium, lightweight glassmorphism layouts.",
+      "tags": ["Next.js", "Tailwind", "CSS"],
+      "readingTime": "3 min"
+    }
+  ],
+  "resources": [
+    { "title": "Java Interview Mastery Sheet", "type": "PDF Note", "category": "Java", "link": "#", "description": "Comprehensive notes covering core Java, OOP, collections, multithreading, and stream API." },
+    { "title": "Linux Commands Cheat Sheet", "type": "Cheat Sheet", "category": "Linux", "link": "#", "description": "A quick-ref handbook covering systemd services, firewalld rules, LVM storage, and permissions." },
+    { "title": "DevOps Starter Handbook", "type": "PDF Guide", "category": "DevOps", "link": "#", "description": "Intro to Docker container runs, basic Git workflows, and CI/CD pipelines." },
+    { "title": "Hackathon Presentation Templates", "type": "Slides", "category": "Hackathons", "link": "#", "description": "Standard 6-slide deck optimized for hackathon submissions and pitches." }
+  ],
+  "achievements": [
+    { "title": "Led T&P Cell to 85% Placement Rate", "category": "Leadership", "date": "2025-2026", "description": "Formulated placement campaigns and coordinated industry linkages, placing over 150 student engineers." },
+    { "title": "Black Belt in Karate (Shotokan Style)", "category": "Sports", "date": "2023", "description": "Awarded 1st Dan Black Belt after 6 years of intense training. Developed discipline and core focus." },
+    { "title": "Delivered 10+ Technical Seminars", "category": "Speaking", "date": "2024-2026", "description": "Spoke at multiple engineering colleges on Open Source, Linux, and Cloud-native development." },
+    { "title": "Top Performer Award at Digital Forensics Internship", "category": "Internships", "date": "Jan 2025", "description": "Praised for automating log collection scripts, decreasing audit duration by 60%." }
+  ],
+  "testimonials": [
+    {
+      "name": "Dr. A. K. Joshi",
+      "role": "Head of CSE Department",
+      "relationship": "Faculty Mentor",
+      "content": "Mahesh is a stellar student leader. His execution as the President of the Student Cell has significantly raised the tech-engagement levels of his peers. Exceptionally competent."
+    },
+    {
+      "name": "Saurabh Deshmukh",
+      "role": "Tech Lead at DFC",
+      "relationship": "Internship Supervisor",
+      "content": "Mahesh demonstrated excellent command over Linux security during his forensic cell internship. His automation scripts save us valuable audit hours. A fast learner who gets things done."
+    },
+    {
+      "name": "Neha Patil",
+      "role": "Hackathon Teammate",
+      "relationship": "Teammate",
+      "content": "Mahesh is the ultimate builder. In high-pressure hackathons, he manages the core infrastructure, deploys the product cleanly, and keeps the team motivated. Win-driven."
+    }
+  ],
+  "gallery": [
+    { "title": "Organizing Hackathon Hacked 2K26", "category": "Workshops", "imagePath": "/projects/solid-starters.png" },
+    { "title": "Pitched at CogniSphere Hackathon", "category": "Hackathons", "imagePath": "/projects/radix.png" },
+    { "title": "President Speech at Placement Event", "category": "Speaking", "imagePath": "/projects/bond-cancellation.png" },
+    { "title": "Red Hat RHCSA Certification Ceremony", "category": "Certificates", "imagePath": "/projects/max-life.png" }
+  ]
+}

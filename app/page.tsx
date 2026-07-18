@@ -1,16 +1,26 @@
-import ScrollyCanvas from "@/components/ScrollyCanvas";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
+import React from 'react';
+import { getHomePageModel } from '@/features/home/service';
+import { HomePage } from '@/features/home/HomePage';
+import { getPageMetadata, getEntityJsonLd } from '@/services/seo';
+import { Metadata } from 'next';
 
-export default function Home() {
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata();
+}
+
+export default async function Page() {
+  const model = await getHomePageModel();
+  const jsonLd = getEntityJsonLd('Person');
+
   return (
-    <main className="bg-[#121212] min-h-screen">
-      <ScrollyCanvas />
-      <Experience />
-      <Projects />
-      <footer className="py-12 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Rajesh Chityal.
-      </footer>
-    </main>
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <HomePage model={model} />
+    </>
   );
 }
