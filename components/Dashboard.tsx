@@ -185,7 +185,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                   <Play size={16} fill="currentColor" />
                 </div>
                 <div>
-                  <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-wider">Now Playing</p>
+                  <p className="text-[10px] text-zinc-300 font-mono uppercase tracking-wider">Now Playing</p>
                   <p className="text-xs font-bold text-white tracking-tight">Swami Samarth Jap</p>
                 </div>
               </div>
@@ -207,11 +207,11 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
             {/* Coding Stats Summary */}
             <div className="grid grid-cols-2 gap-4 text-center">
               <div className="p-3 bg-zinc-900/40 rounded-2xl border border-white/5">
-                <p className="text-[10px] text-zinc-500 font-mono uppercase">GitHub commits</p>
+                <p className="text-[10px] text-zinc-300 font-mono uppercase">GitHub commits</p>
                 <p className="text-lg font-bold text-white mt-1">450+ YTD</p>
               </div>
               <div className="p-3 bg-zinc-900/40 rounded-2xl border border-white/5">
-                <p className="text-[10px] text-zinc-500 font-mono uppercase">Visitor Counter</p>
+                <p className="text-[10px] text-zinc-300 font-mono uppercase">Visitor Counter</p>
                 <p className="text-lg font-bold text-amber-500 mt-1">{visitorCount}</p>
               </div>
             </div>
@@ -269,7 +269,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                   {/* Timeline bullet dot */}
                   <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-2.5 h-2.5 bg-amber-500 rounded-full ring-4 ring-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
                   
-                  <div className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">{exp.period}</div>
+                  <div className="text-[10px] text-zinc-300 font-mono uppercase tracking-widest">{exp.period}</div>
                   <h3 className="text-xl font-bold text-white mt-1">{exp.role}</h3>
                   <h4 className="text-xs text-amber-500 font-mono">{exp.company}</h4>
                   <p className="text-zinc-400 text-xs md:text-sm mt-3 leading-relaxed max-w-2xl">{exp.description}</p>
@@ -314,14 +314,14 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                       <span className="px-2 py-0.5 text-[9px] font-mono tracking-wider text-[#020202] bg-amber-500 rounded uppercase">
                         {project.category}
                       </span>
-                      <span className="text-[10px] text-zinc-500 font-mono">{project.status}</span>
+                      <span className="text-[10px] text-zinc-300 font-mono">{project.status}</span>
                     </div>
                     <h3 className="text-xl font-bold text-white mt-4">{project.title}</h3>
                     <p className="text-zinc-400 text-xs mt-2 leading-relaxed line-clamp-3">{project.description}</p>
                   </div>
                   
                   <div>
-                    <p className="text-[10px] font-mono text-zinc-500 mb-4">{project.tech}</p>
+                    <p className="text-[10px] font-mono text-zinc-300 mb-4">{project.tech}</p>
                     <div className="flex gap-4">
                       <a href={project.github} target="_blank" className="text-zinc-300 hover:text-white flex items-center gap-1.5 text-xs font-medium cursor-pointer">
                         <GithubIcon size={14} /> Code
@@ -353,7 +353,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                 >
                   <div>
                     <h3 className="text-xs font-bold text-white line-clamp-2">{cert.title}</h3>
-                    <p className="text-[10px] text-zinc-500 font-mono mt-1">{cert.issuer}</p>
+                    <p className="text-[10px] text-zinc-300 font-mono mt-1">{cert.issuer}</p>
                   </div>
                   <div className="flex items-center justify-between text-[10px]">
                     <span className="text-zinc-400">{cert.date}</span>
@@ -431,7 +431,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                 <div key={index} className="space-y-4">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <h3 className="text-xl font-bold text-white">{w.title}</h3>
-                    <span className="text-xs text-zinc-500 font-mono">{w.date}</span>
+                    <span className="text-xs text-zinc-300 font-mono">{w.date}</span>
                   </div>
                   <p className="text-zinc-300 text-xs md:text-sm leading-relaxed">
                     {w.description}
@@ -460,7 +460,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                 <span className="text-xs font-mono tracking-widest uppercase">MDX Articles</span>
               </div>
               <div className="relative w-48 md:w-64">
-                <Search className="absolute left-3 top-2.5 text-zinc-500" size={14} />
+                <Search className="absolute left-3 top-2.5 text-zinc-300" size={14} />
                 <input
                   type="text"
                   value={blogSearch}
@@ -493,7 +493,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
             <div className="space-y-4">
               {filteredBlogs.map((blog: any, index: number) => (
                 <div key={index} className="p-5 glass-card rounded-2xl border border-white/5 space-y-3">
-                  <div className="flex items-center justify-between text-[10px] text-zinc-500 font-mono">
+                  <div className="flex items-center justify-between text-[10px] text-zinc-300 font-mono">
                     <span className="px-2 py-0.5 bg-zinc-800 text-zinc-300 rounded uppercase">{blog.category}</span>
                     <span>{blog.date} • {blog.readingTime}</span>
                   </div>
@@ -547,7 +547,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                   <div>
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-1 w-full">
                       <h3 className="text-sm font-bold text-white">{ach.title}</h3>
-                      <span className="text-[10px] text-zinc-500 font-mono">{ach.date}</span>
+                      <span className="text-[10px] text-zinc-300 font-mono">{ach.date}</span>
                     </div>
                     <p className="text-zinc-400 text-xs mt-1.5 leading-relaxed">{ach.description}</p>
                   </div>
@@ -572,7 +572,7 @@ export default function Dashboard({ portfolioData }: { portfolioData: any }) {
                   </p>
                   <div className="mt-4">
                     <h4 className="text-xs font-bold text-white">{test.name}</h4>
-                    <p className="text-[10px] text-zinc-500 font-mono mt-0.5">{test.role}</p>
+                    <p className="text-[10px] text-zinc-300 font-mono mt-0.5">{test.role}</p>
                   </div>
                 </div>
               ))}

@@ -37,7 +37,7 @@ export function BlogCard({ blog }: BlogCardProps) {
       <CardFooter className="flex items-center justify-between text-xs text-zinc-400 border-t border-zinc-900/30">
         <div className="flex items-center gap-1.5">
           <Calendar className="w-3.5 h-3.5 text-zinc-400" />
-          <span>{publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft'}</span>
+          <span suppressHydrationWarning>{publishedAt ? new Date(publishedAt).toISOString().split('T')[0] : 'Draft'}</span>
         </div>
         {readingTime && (
           <div className="flex items-center gap-1.5">

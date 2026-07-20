@@ -17,7 +17,7 @@ export function Footer() {
           {/* Brand Legal & Copyright */}
           <div className="flex flex-col gap-1 text-center md:text-left">
             <span className="font-semibold text-zinc-300">{AppConfig.legalName}</span>
-            <span className="text-xs">
+            <span className="text-xs" suppressHydrationWarning>
               © {currentYear} {AppConfig.name}. All rights reserved. Version {AppConfig.version}
             </span>
           </div>

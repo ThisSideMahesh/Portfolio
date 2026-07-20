@@ -30,7 +30,7 @@ export function BlogDetailPage({ model }: BlogDetailPageProps) {
     <div className="flex items-center gap-4 text-xs text-zinc-500 font-mono">
       <div className="flex items-center gap-1.5">
         <Calendar className="w-4 h-4 text-zinc-600" />
-        <span>{publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft'}</span>
+        <span suppressHydrationWarning>{publishedAt ? new Date(publishedAt).toISOString().split('T')[0] : 'Draft'}</span>
       </div>
       <div className="flex items-center gap-1.5">
         <Clock className="w-4 h-4 text-zinc-600" />
