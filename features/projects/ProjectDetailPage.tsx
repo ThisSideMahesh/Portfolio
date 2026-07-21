@@ -54,15 +54,15 @@ export function ProjectDetailPage({ model }: ProjectDetailPageProps) {
           <h3 className="text-sm font-bold text-zinc-200 uppercase tracking-widest font-mono">Project Info</h3>
           <div className="space-y-3 text-xs sm:text-sm text-zinc-400">
             <div className="flex justify-between">
-              <span className="text-zinc-500">Status</span>
+              <span className="text-zinc-400">Status</span>
               <span className="text-zinc-200">Published</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-zinc-500">Author</span>
+              <span className="text-zinc-400">Author</span>
               <span className="text-zinc-200">{author}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-zinc-500">Version</span>
+              <span className="text-zinc-400">Version</span>
               <span className="text-zinc-200">{version}</span>
             </div>
           </div>

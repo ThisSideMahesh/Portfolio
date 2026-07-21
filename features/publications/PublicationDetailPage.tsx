@@ -64,15 +64,15 @@ export function PublicationDetailPage({ model }: PublicationDetailPageProps) {
           </div>
           <div className="space-y-3 text-xs sm:text-sm text-zinc-400">
             <div className="flex justify-between">
-              <span className="text-zinc-500">Language</span>
+              <span className="text-zinc-400">Language</span>
               <span className="text-zinc-200">{language === 'en' ? 'English' : language}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-zinc-500">License</span>
+              <span className="text-zinc-400">License</span>
               <span className="text-zinc-200">{license}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-zinc-500">Version</span>
+              <span className="text-zinc-400">Version</span>
               <span className="text-zinc-200">{version}</span>
             </div>
           </div>

@@ -27,7 +27,7 @@ export function BlogDetailPage({ model }: BlogDetailPageProps) {
   );
 
   const actions = (
-    <div className="flex items-center gap-4 text-xs text-zinc-500 font-mono">
+    <div className="flex items-center gap-4 text-xs text-zinc-400 font-mono">
       <div className="flex items-center gap-1.5">
         <Calendar className="w-4 h-4 text-zinc-600" />
         <span suppressHydrationWarning>{publishedAt ? new Date(publishedAt).toISOString().split('T')[0] : 'Draft'}</span>

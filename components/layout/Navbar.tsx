@@ -85,7 +85,7 @@ export function Navbar() {
               href={NavigationConfig.resumeUrl}
               className="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-zinc-950 font-semibold text-xs transition-all"
             >
-              Resume
+              {NavigationConfig.resumeLabel}
             </Link>
           </div>
 
@@ -146,7 +146,7 @@ export function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2.5 rounded-lg bg-amber-500 text-zinc-950 font-semibold text-sm"
             >
-              Download Resume
+              Download {NavigationConfig.resumeLabel}
             </Link>
           </div>
         </div>

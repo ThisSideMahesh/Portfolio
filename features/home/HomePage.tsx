@@ -34,7 +34,7 @@ export function HomePage({ model }: HomePageProps) {
           <div className="flex justify-between items-end">
             <div className="space-y-1">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">Featured Work</h2>
-              <p className="text-sm text-zinc-500">Selected engineering and full-stack solutions.</p>
+              <p className="text-sm text-zinc-400">Selected engineering and full-stack solutions.</p>
             </div>
             <button
               onClick={() => router.push('/projects')}
@@ -56,7 +56,7 @@ export function HomePage({ model }: HomePageProps) {
         <Container className="max-w-4xl space-y-8">
           <div className="space-y-1">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">Professional Journey</h2>
-            <p className="text-sm text-zinc-500">A timeline of student cell coordinates, training workshops, and engineering roles.</p>
+            <p className="text-sm text-zinc-400">A timeline of student cell coordinates, training workshops, and engineering roles.</p>
           </div>
           <Timeline<Experience>
             items={experiences}
@@ -71,7 +71,7 @@ export function HomePage({ model }: HomePageProps) {
           <div className="flex justify-between items-end">
             <div className="space-y-1">
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">Recent Publications</h2>
-              <p className="text-sm text-zinc-500">Articles, tutorials, and guides about Linux administration and automation.</p>
+              <p className="text-sm text-zinc-400">Articles, tutorials, and guides about Linux administration and automation.</p>
             </div>
             <button
               onClick={() => router.push('/blog')}

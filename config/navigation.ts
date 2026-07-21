@@ -20,5 +20,8 @@ export const NavigationConfig = {
     { title: "Speaking", path: "/speaking" },
     { title: "Contact", path: "/contact" }
   ] as NavItem[],
-  resumeUrl: "/assets/resume.pdf"
+  resumeUrl: "/assets/resume.pdf",
+  softwareCvUrl: "/assets/Mahesh_Software_CV.pdf",
+  teachingCvUrl: "/assets/Mahesh_Teaching_CV.pdf",
+  resumeLabel: "CV & Resume"
 };
