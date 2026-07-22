@@ -1,4 +1,5 @@
 import { SiteConfig } from '@/config/site';
+import { SocialConfig } from '@/config/social';
 
 export const JsonLdUtils = {
   person: () => ({
@@ -6,11 +7,13 @@ export const JsonLdUtils = {
     '@type': 'Person',
     name: SiteConfig.author,
     url: SiteConfig.url,
-    jobTitle: 'Software Engineer & Technical Trainer',
+    jobTitle: 'Computer Science Engineering Student, IT Support & Technical Trainer',
     description: SiteConfig.description,
     sameAs: [
-      'https://github.com/thissidemahesh',
-      'https://linkedin.com/in/thissidemahesh'
+      SocialConfig.github,
+      SocialConfig.linkedin,
+      SocialConfig.instagram,
+      SocialConfig.twitter
     ]
   }),
 

@@ -19,7 +19,11 @@ export async function generateSitemapUrls(): Promise<MetadataRoute.Sitemap> {
     '/publications',
     '/blog',
     '/resources',
-    '/contact'
+    '/contact',
+    '/leadership',
+    '/speaking',
+    '/teaching',
+    '/changelog'
   ];
 
   const sitemap: MetadataRoute.Sitemap = [];

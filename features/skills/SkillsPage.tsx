@@ -9,27 +9,43 @@ import { Grid } from '@/components/layout/Grid';
 export function SkillsPage() {
   const skillGroups = [
     {
-      title: 'Languages & Core',
-      skills: ['TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Bash Scripting', 'SQL']
+      title: 'Programming Languages',
+      skills: ['C', 'C++', 'Java', 'Python', 'JavaScript']
     },
     {
-      title: 'Frameworks & Runtimes',
-      skills: ['React', 'Next.js', 'Node.js', 'Express', 'TailwindCSS']
+      title: 'Operating Systems',
+      skills: ['Windows', 'Linux (RHCSA)', 'macOS']
     },
     {
-      title: 'Database & Storage',
-      skills: ['PostgreSQL', 'MongoDB', 'Redis', 'SQLite']
+      title: 'Web Technologies',
+      skills: ['HTML', 'CSS', 'React', 'Node.js', 'Express.js']
     },
     {
-      title: 'Systems & DevOps',
-      skills: ['Linux Admin (RHEL/Debian)', 'Git', 'GitHub', 'Docker', 'Ansible']
+      title: 'Databases',
+      skills: ['PostgreSQL', 'MySQL', 'Firebase']
+    },
+    {
+      title: 'Cloud & DevOps',
+      skills: ['Linux System Administration', 'Docker', 'Cyber Security Fundamentals', 'Cloud & DevOps Fundamentals', 'Google Cloud (64+ Badges)']
+    },
+    {
+      title: 'Tools & Utilities',
+      skills: ['Git', 'GitHub', 'VS Code', 'Docker', 'Microsoft Office', 'Google Workspace', 'Canva', 'Figma']
+    },
+    {
+      title: 'Core Competencies',
+      skills: ['IT Support', 'Hardware & Software Troubleshooting', 'Networking Basics', 'Technical Training', 'Looping Prompting', 'LaTeX Code']
+    },
+    {
+      title: 'Teaching Competencies',
+      skills: ['Classroom Management', 'Student Mentoring', 'Technical Training', 'Curriculum Delivery', 'Practical Lab Management', 'Assessment & Evaluation', 'Public Speaking', 'Educational Technology']
     }
   ];
 
   return (
     <PageShell
-      title="Skills & Technologies"
-      description="A structured inventory of technical skills across software engineering, systems hosting, and automation."
+      title="Technical & Teaching Skills"
+      description="Categorized technical proficiencies, tools, systems administration, and teaching competencies extracted from CV credentials."
     >
       <Grid columns={2} gap="md">
         {skillGroups.map(group => (

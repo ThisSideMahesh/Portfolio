@@ -31,7 +31,7 @@ export function UsesPage() {
             {hardware.map(h => (
               <div key={h.item} className="space-y-1">
                 <div className="font-semibold text-zinc-200">{h.item}</div>
-                <div className="text-xs text-zinc-500 font-mono">{h.spec}</div>
+                <div className="text-xs text-zinc-400 font-mono">{h.spec}</div>
               </div>
             ))}
           </CardContent>
@@ -45,7 +45,7 @@ export function UsesPage() {
             {software.map(s => (
               <div key={s.item} className="space-y-1">
                 <div className="font-semibold text-zinc-200">{s.item}</div>
-                <div className="text-xs text-zinc-500 font-mono">{s.spec}</div>
+                <div className="text-xs text-zinc-400 font-mono">{s.spec}</div>
               </div>
             ))}
           </CardContent>

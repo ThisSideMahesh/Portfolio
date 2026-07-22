@@ -107,7 +107,7 @@ export function ContactPage() {
               </div>
               <div className="flex items-center gap-3">
                 <Landmark className="w-4 h-4 text-amber-500 shrink-0" />
-                <span className="text-zinc-300">Pune, Maharashtra, India</span>
+                <span className="text-zinc-300">Jalna, MH, India</span>
               </div>
             </CardContent>
           </Card>

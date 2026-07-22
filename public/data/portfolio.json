@@ -2,317 +2,429 @@
   "personal": {
     "name": "Mahesh Namdev Khandebharad",
     "role": "Computer Science Engineering Student",
-    "tagline": "Building Technology. Sharing Knowledge. Creating Impact.",
-    "location": "Chhatrapati Sambhajinagar, Maharashtra, India",
+    "tagline": "Building Software. Teaching Technology. Leading Communities.",
+    "location": "Jalna, MH, India",
     "spiritualDedication": "|| Shri Swami Samarth ||",
     "photo": "/mahesh.jpg",
-    "username": "Thissidemahesh",
-    "bio": "I am a passionate Computer Science Engineering student, Technical Trainer, and Student Leader dedicated to bridging the gap between hardware execution and cloud-native software architectures. My journey is built on continuous learning, public speaking, leading student placement cells, competing in national hackathons, and sharing technical knowledge with peers. From initial failures to key leadership positions and successful internships, I build software that creates real-world impact.",
+    "username": "ThisSideMahesh",
+    "bio": "Computer Science Engineering Student with hands-on experience in IT Support, Linux System Administration, Full-Stack Web Development, and Technical Troubleshooting. Experienced in building scalable web applications, diagnosing hardware/software issues, and working with Cloud & DevOps fundamentals. Proven ability to adapt quickly through internships, freelance projects, and hackathons. Strong problem-solving, leadership, and communication skills with a passion for learning emerging technologies and delivering practical technology solutions.",
     "socials": {
-      "github": "https://github.com/Thissidemahesh",
-      "linkedin": "https://linkedin.com/in/Thissidemahesh",
-      "leetcode": "https://leetcode.com/Thissidemahesh",
-      "youtube": "https://youtube.com/@Thissidemahesh",
-      "instagram": "https://instagram.com/Thissidemahesh",
-      "x": "https://x.com/Thissidemahesh",
-      "medium": "https://medium.com/@Thissidemahesh",
-      "email": "maheshkhandebharad@gmail.com",
-      "phone": "+91 93708 14594"
+      "github": "https://github.com/ThisSideMahesh",
+      "linkedin": "https://linkedin.com/in/MaheshKhandebharad",
+      "instagram": "https://instagram.com/thisside_Mahesh",
+      "x": "https://x.com/ThissideMahesh",
+      "email": "thissidemahesh@gmail.com",
+      "phone": "+91 9373293341"
     }
   },
+  "education": [
+    {
+      "degree": "B.Tech Computer Science Engineering",
+      "institution": "MIT CSN",
+      "period": "2023 – 2027",
+      "score": "CGPA 7.14 (Till 6th Semester)"
+    },
+    {
+      "degree": "H.S.C. Science (PCM)",
+      "institution": "Jijau Junior College, Jalna",
+      "period": "2021 – 2023",
+      "score": "71.33%"
+    },
+    {
+      "degree": "S.S.C.",
+      "institution": "Shri M.S. Jain English School, Jalna",
+      "period": "2020 – 2021",
+      "score": "79.4%"
+    }
+  ],
   "experiences": [
     {
-      "company": "Training Placement & Entrepreneurship Student Cell",
-      "role": "President",
-      "period": "Jul 2025 - Present",
-      "description": "Leading cell operations to empower CS students with placement training, industrial seminars, and entrepreneurial mentoring. Organized workshops covering core technologies for 1000+ engineering students."
+      "id": "exp-1",
+      "slug": "sales-marketing-dfc",
+      "company": "Dnyandeep Foundation Centre (DFC), Chhatrapati Sambhajinagar",
+      "role": "Sales & Marketing Intern",
+      "location": "Chhatrapati Sambhajinagar, India",
+      "startDate": "June 2026",
+      "endDate": "Present",
+      "isCurrent": true,
+      "achievements": [
+        "Counselled students and parents regarding admissions across multiple academic programs.",
+        "Generated 125+ qualified admission leads across 5 DFC centres (Selu, Ambad, Deulgaon Raja, Sillod, Online).",
+        "Coordinated with senior management and centre heads for admissions, examinations, and operational activities.",
+        "Assisted in examination invigilation and administrative coordination."
+      ]
     },
     {
-      "company": "MS-CIT Technical Center",
-      "role": "Technical Trainer",
-      "period": "Jun 2024 - Present",
-      "description": "Conducting technical training modules on operating systems, basic office automation, network fundamentals, and databases. Taught over 500 students, helping them clear certifications successfully."
+      "id": "exp-2",
+      "slug": "hardware-tech-ntw-2",
+      "company": "New Technical World, Jalna",
+      "role": "Hardware & Software Technician Intern",
+      "location": "Jalna, India",
+      "startDate": "Nov 2025",
+      "endDate": "Dec 2025",
+      "isCurrent": false,
+      "achievements": [
+        "Diagnosed and resolved desktop, laptop, printer, and networking issues.",
+        "Installed, configured, and maintained Windows operating systems and essential software.",
+        "Performed preventive maintenance and hardware replacement to improve system reliability.",
+        "Assisted customers with technical troubleshooting and support."
+      ]
     },
     {
-      "company": "DFC (Digital Forensics Cell)",
-      "role": "Security Intern",
-      "period": "Dec 2024 - Feb 2025",
-      "description": "Assisted in cyber forensic investigations, analyzed compromised system logs, and built security audit scripts for infrastructure monitoring. Learned advanced digital forensics tools."
-    },
-    {
-      "company": "TechSupport Solutions",
-      "role": "Hardware & Software Technician",
-      "period": "Jan 2023 - Present",
-      "description": "Managing network administration, hardware troubleshooting, operating system installs (Linux/Windows), and software configuration for various local clients on a freelance basis."
-    },
-    {
-      "company": "Creative Media Hub",
-      "role": "Social Media Manager",
-      "period": "Mar 2024 - Present",
-      "description": "Curating technical content, designing campaigns, and managing growth strategies for technology education channels. Expanded organic reach by 40% across professional handles."
-    },
-    {
-      "company": "Freelance Client Hub",
+      "id": "exp-3",
+      "slug": "video-editor-uhv",
+      "company": "Universal Human Values (UHV) Cell, MIT CSN",
       "role": "Freelance Video Editor",
-      "period": "Jun 2023 - Present",
-      "description": "Editing educational tech content, tutorials, and product demo videos. Proficient in timeline editing, audio enhancement, transitions, and premium animation overlay edits."
+      "location": "MIT CSN, India",
+      "startDate": "Oct 2025",
+      "endDate": "Oct 2025",
+      "isCurrent": false,
+      "achievements": [
+        "Produced and edited promotional and event videos for the UHV Cell.",
+        "Delivered high-quality edited content within a short project timeline."
+      ]
     },
     {
-      "company": "Upwork / Fiverr",
-      "role": "Freelance Software Developer",
-      "period": "Aug 2023 - Present",
-      "description": "Building custom dashboards, full-stack landing pages, and desktop helper utilities for international clients. Focused on clean code, responsive styles, and customer satisfaction."
+      "id": "exp-4",
+      "slug": "social-media-ame",
+      "company": "Athlete Meets Explorer (Remote)",
+      "role": "Social Media Manager Intern",
+      "location": "Remote",
+      "startDate": "Aug 2025",
+      "endDate": "Present",
+      "isCurrent": true,
+      "achievements": [
+        "Managed LinkedIn, Instagram, and YouTube content strategy.",
+        "Achieved 15,000+ engagements through SEO-driven content and platform optimization in one month.",
+        "Analyzed social media performance using analytics to improve reach and audience engagement.",
+        "Planned and executed content calendars aligned with brand objectives."
+      ]
+    },
+    {
+      "id": "exp-5",
+      "slug": "hardware-tech-ntw-1",
+      "company": "New Technical World, Jalna",
+      "role": "Hardware & Software Technician Intern",
+      "location": "Jalna, India",
+      "startDate": "Jun 2025",
+      "endDate": "Jun 2025",
+      "isCurrent": false,
+      "achievements": [
+        "Supported day-to-day hardware servicing and software installation.",
+        "Gained practical exposure to computer assembly, OS installation, and system maintenance.",
+        "Assisted senior technicians in troubleshooting customer issues."
+      ]
+    },
+    {
+      "id": "exp-6",
+      "slug": "mscit-trainer-vighnaharta",
+      "company": "Vighnaharta E-Payment Data Centre, Chhatrapati Sambhajinagar",
+      "role": "MS-CIT Trainer",
+      "location": "Chhatrapati Sambhajinagar, India",
+      "startDate": "Nov 2024",
+      "endDate": "Jan 2025",
+      "isCurrent": false,
+      "achievements": [
+        "Delivered structured classroom and practical training on MS-CIT curriculum to 25+ students (computer fundamentals, MS Office, digital literacy).",
+        "Conducted practical sessions, assessments, and one-to-one doubt-solving.",
+        "Assisted students in preparing for practical examinations through hands-on learning and regular guidance."
+      ]
+    }
+  ],
+  "leadership": [
+    {
+      "id": "lead-1",
+      "slug": "president-cell",
+      "organization": "Training, Placement & Entrepreneurship Cell, MIT CSN",
+      "role": "President",
+      "period": "Nov 2025 – Present",
+      "description": "Led a cross-functional student team and oversaw all placement, training, and event operations for the institute. Coordinated directly with company HR and institute leadership to ensure smooth execution of recruitment drives."
+    },
+    {
+      "id": "lead-2",
+      "slug": "student-coordinator-cell",
+      "organization": "T,P&E Cell, MIT CSN",
+      "role": "Student Coordinator",
+      "period": "Aug 2025 – Nov 2025",
+      "description": "Managed the official Instagram handle, driving 100% organic growth (scaling 93 → 326 followers in 30 days). Increased monthly reach from 1.2K → 25,000+ views and generated 578+ interactions using SEO-driven keywords and hashtags."
+    },
+    {
+      "id": "lead-3",
+      "slug": "alumni-captain-cse",
+      "organization": "CSE Department, MIT CSN",
+      "role": "AlumniOS Bridge Captain",
+      "period": "Jul 2025 – Present",
+      "description": "Acted as primary liaison between CSE department students, faculty, and alumni. Managed AlumniOS engagement by coordinating outreach, onboarding alumni, and driving student-alumni interactions for career guidance."
     }
   ],
   "projects": [
     {
-      "title": "CHRI Platform",
-      "category": "Healthcare Platform",
-      "tech": "React, Node.js, Express, MongoDB",
-      "description": "Child Health Record & Immunization tracking platform designed to keep records of child vaccinations, send SMS alerts to parents, and offer pediatric medical analytics.",
-      "image": "/projects/solid-starters.png",
-      "github": "https://github.com/Thissidemahesh/chri-platform",
-      "demo": "https://chri-platform.vercel.app",
-      "status": "Completed",
-      "featured": true
-    },
-    {
-      "title": "PharmaManage Pro",
-      "category": "Enterprise Systems",
-      "tech": "Next.js, Radix UI, Tailwind CSS, PostgreSQL",
-      "description": "Complete inventory and billing system for pharmacies. Includes real-time stock alert thresholds, digital invoice generation, and analytical sales reporting.",
-      "image": "/projects/radix.png",
-      "github": "https://github.com/Thissidemahesh/pharmamanage-pro",
-      "demo": "https://pharmamanage.vercel.app",
-      "status": "Completed",
-      "featured": true
-    },
-    {
-      "title": "Army Depot Management System",
-      "category": "Defense Security",
-      "tech": "React, Node.js, SQLite, Framer Motion",
-      "description": "A highly secure logistics and inventory application for defense equipment and ammunition depots. Features strict access logging, transaction authorization, and inventory audits.",
-      "image": "/projects/bond-cancellation.png",
-      "github": "https://github.com/Thissidemahesh/army-depot-system",
-      "demo": "https://army-depot.vercel.app",
-      "status": "Completed",
-      "featured": true
-    },
-    {
-      "title": "Shop Management System",
-      "category": "Retail POS",
-      "tech": "Next.js, Tailwind, SQLite, Chart.js",
-      "description": "Point-of-Sale (POS) tool for local retail shops. Handles dynamic billing calculations, PDF invoice prints, credit lists, and weekly revenue analytics.",
-      "image": "/projects/max-life.png",
-      "github": "https://github.com/Thissidemahesh/shop-management",
-      "demo": "https://shop-manage.vercel.app",
-      "status": "Completed",
-      "featured": true
-    },
-    {
+      "id": "proj-1",
+      "slug": "teraplay",
       "title": "TERAPLAY",
-      "category": "Creative Multimedia",
-      "tech": "HTML5, React, CSS3, Canvas",
-      "description": "Modern, interactive multimedia player utilizing custom canvas visualizers, animations, gesture controls, and responsive sound equalization settings.",
-      "image": "/projects/solid-starters.png",
-      "github": "https://github.com/Thissidemahesh/teraplay",
+      "subtitle": "Video Streaming & Downloader",
+      "description": "Developed web app to stream and download videos using secure backend API handling. Built endpoints for URL parsing, file metadata extraction, and direct download link generation. Optimized performance for smooth playback and responsive UI across devices.",
+      "summary": "Video streaming and downloader application with secure backend API handling.",
+      "tags": ["Node.js", "Express", "JavaScript", "Vibe Coded"],
+      "categories": ["Full-Stack", "Web Development"],
+      "github": "https://github.com/ThisSideMahesh/teraplay",
       "demo": "https://teraplay.vercel.app",
       "status": "Completed",
       "featured": true
     },
     {
+      "id": "proj-2",
+      "slug": "pharmamanage-pro",
+      "title": "PharmaManage Pro",
+      "subtitle": "Pharmacy Management System",
+      "description": "Built production-grade system for inventory, billing, and inter-pharmacy collaboration with interactive 2D store map. Implemented RBAC (JWT authentication), automated expiry/stock alerts, and real-time analytics dashboards. Designed scalable backend APIs and optimized database handling.",
+      "summary": "Production-grade pharmacy management system featuring inventory control, billing automation, 2D store mapping, RBAC JWT security.",
+      "tags": ["React", "Node.js", "Express", "PostgreSQL", "Chart.js"],
+      "categories": ["Full-Stack", "Enterprise Systems"],
+      "github": "https://github.com/ThisSideMahesh/pharmamanage-pro",
+      "demo": "https://pharmamanage.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "id": "proj-3",
+      "slug": "decentralized-blog",
       "title": "Decentralized Blog",
-      "category": "Web3 / Blockchain",
-      "tech": "React, Next.js, Solidity, IPFS, Ethers.js",
-      "description": "Censorship-resistant blogging application where posts are stored on the IPFS network and references are indexed in a smart contract deployed on an Ethereum testnet.",
-      "image": "/projects/radix.png",
-      "github": "https://github.com/Thissidemahesh/decentralized-blog",
+      "subtitle": "Blockchain Application",
+      "description": "Built decentralized blogging platform enabling on-chain content publishing and immutable storage. Designed smart contracts for secure data handling and censorship-resistant publishing.",
+      "summary": "Decentralized blogging platform enabling on-chain content publishing and immutable storage with smart contracts.",
+      "tags": ["Clarity", "Stacks Blockchain", "Web3"],
+      "categories": ["Blockchain", "Smart Contracts"],
+      "github": "https://github.com/ThisSideMahesh/decentralized-blog",
       "demo": "https://deblog.vercel.app",
       "status": "Completed",
+      "featured": true
+    },
+    {
+      "id": "proj-4",
+      "slug": "chri-platform",
+      "title": "Offline CHRI Platform",
+      "subtitle": "Clinical Handoff Risk Intelligence",
+      "description": "Developed offline-first clinical decision support system for safer patient handoffs. Implemented OCR-based medical report scanning and a rule-based risk assessment engine. Worked collaboratively in a multidisciplinary team during a national-level AI hackathon.",
+      "summary": "Offline-first clinical decision support system for safer patient handoffs using OCR and rule-based risk engine.",
+      "tags": ["React", "FastAPI", "OCR", "Python"],
+      "categories": ["AI", "Healthcare Tech", "Hackathon"],
+      "github": "https://github.com/ThisSideMahesh/chri-platform",
+      "demo": "https://chri-platform.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "id": "proj-5",
+      "slug": "shop-management",
+      "title": "Shop Management System",
+      "subtitle": "POS and Inventory Management",
+      "description": "Designed and deployed a complete shop management system for a local business. Developed modules for inventory, billing, customer management, and reporting. Delivered a customized solution based on client requirements.",
+      "summary": "Custom shop management application featuring POS, billing, and inventory tracking.",
+      "tags": ["React", "Node.js", "Express", "SQLite"],
+      "categories": ["Full-Stack", "Retail Tech"],
+      "github": "https://github.com/ThisSideMahesh/shop-management",
+      "demo": "https://shop-manage.vercel.app",
+      "status": "Completed",
+      "featured": true
+    },
+    {
+      "id": "proj-6",
+      "slug": "army-depot-system",
+      "title": "Army Depot Management System",
+      "subtitle": "Depot Logistics & Auditing",
+      "description": "Developing a digital management solution for a local Army depot. Building secure modules for record management and operational workflow. Collaborating directly with stakeholders to understand and implement requirements.",
+      "summary": "Digital management solution for local Army depot logistics and operations.",
+      "tags": ["Web-Based Management System", "Logistics", "Auditing"],
+      "categories": ["Full-Stack", "Defense Tech"],
+      "github": "https://github.com/ThisSideMahesh/army-depot-system",
+      "demo": "https://army-depot.vercel.app",
+      "status": "Ongoing",
+      "featured": true
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-1",
+      "slug": "rhcsa-preparation-guide",
+      "title": "RHCSA Preparation & Automation Guide",
+      "subtitle": "How to Pass Red Hat Linux Certification",
+      "description": "A comprehensive deep dive into preparing for the RHCSA EX200 exam, including core commands, storage administration, LVM operations, and systemd automation tricks.",
+      "summary": "Master Red Hat System Administration commands and automate configurations with Bash and Ansible.",
+      "tags": ["Linux", "RHCSA", "Bash", "Automation"],
+      "categories": ["Systems Administration", "Tutorials"],
+      "publishedAt": "2026-07-17T18:00:00Z",
+      "featured": true
+    }
+  ],
+  "publications": [
+    {
+      "id": "pub-1",
+      "slug": "linux-handbook",
+      "title": "The Linux Administrator's Handbook",
+      "subtitle": "Practical guides to Linux administration and services hosting",
+      "description": "An enterprise-grade training guide to hosting, managing, and maintaining Red Hat and Debian servers.",
+      "summary": "A training manual designed for students and junior engineers starting in DevOps.",
+      "tags": ["Linux", "DevOps", "SysAdmin"],
+      "categories": ["Books", "Guides"],
+      "publicationType": "Book",
+      "downloadUrl": "/assets/Mahesh_Software_CV.pdf",
+      "featured": true
+    }
+  ],
+  "resources": [
+    {
+      "id": "res-1",
+      "slug": "git-cheatsheet",
+      "title": "Git & GitHub Command Cheatsheet",
+      "subtitle": "Essential Git workflows for collaborative development",
+      "description": "A clean, print-friendly cheat sheet for developers starting out with Git, covering clone, branch, merge, and remote conflicts resolution.",
+      "summary": "Cheat sheet covering Git clone, branch, merge, and merge conflict resolutions.",
+      "tags": ["Git", "GitHub", "CheatSheet"],
+      "categories": ["Reference Guides"],
+      "downloadUrl": "/assets/Mahesh_Software_CV.pdf",
+      "fileType": "pdf",
+      "fileSize": "145 KB",
       "featured": true
     }
   ],
   "certifications": [
     {
       "title": "Red Hat Certified System Administrator (RHCSA)",
-      "issuer": "Red Hat",
-      "verificationLink": "https://verify.redhat.com",
-      "date": "Nov 2025"
+      "issuer": "Unnati Development and Training Centre Pvt. Ltd.",
+      "date": "2025"
     },
     {
-      "title": "Linux Foundation Administrator Certification",
-      "issuer": "Linux Foundation",
-      "verificationLink": "https://verify.linuxfoundation.org",
-      "date": "Aug 2025"
+      "title": "Certified Linux Administrator",
+      "issuer": "Linux Academy Australia (via Unnati)",
+      "date": "2025"
     },
     {
-      "title": "KuCL DevOps Certification",
-      "issuer": "KuCL",
-      "verificationLink": "https://verify.kucl.org",
-      "date": "Oct 2025"
+      "title": "KuCL (DevOps) Certification",
+      "issuer": "Unnati Development and Training Centre Pvt. Ltd.",
+      "date": "2025"
     },
     {
-      "title": "Microsoft Certified Azure Fundamentals",
-      "issuer": "Microsoft",
-      "verificationLink": "https://learn.microsoft.com",
-      "date": "Jun 2025"
+      "title": "Introduction to Vibe Coding",
+      "issuer": "Microsoft Learn",
+      "date": "2025"
     },
     {
-      "title": "Google Cloud Associate Cloud Engineer",
+      "title": "Certificate Course in Programming (C & C++)",
+      "issuer": "Disha Computer Institute (Scored 97.5%)",
+      "date": "2024"
+    },
+    {
+      "title": "MS-CIT Certification",
+      "issuer": "Maharashtra State Board (Scored 90/100)",
+      "date": "2024"
+    },
+    {
+      "title": "Cyber Security Foundation",
+      "issuer": "Cybersanskar.Com",
+      "date": "2025"
+    },
+    {
+      "title": "Mastering Advanced Digital Forensics Techniques",
+      "issuer": "Belkasoft",
+      "date": "2025"
+    },
+    {
+      "title": "Basics of Social Media and Digital Marketing",
+      "issuer": "NIELIT Aurangabad (FutureSkills PRIME)",
+      "date": "2025"
+    },
+    {
+      "title": "Google Cloud Skills Boost (64+ Badges)",
       "issuer": "Google Cloud",
-      "verificationLink": "https://credential.googlecloud.com",
-      "date": "Sep 2025"
-    },
-    {
-      "title": "Certified Cyber Security Analyst",
-      "issuer": "EC-Council",
-      "verificationLink": "https://verify.eccouncil.org",
-      "date": "Jul 2025"
-    },
-    {
-      "title": "NIELIT IT Certification",
-      "issuer": "NIELIT Govt of India",
-      "verificationLink": "https://verify.nielit.gov.in",
-      "date": "Apr 2025"
-    },
-    {
-      "title": "Maharashtra State Certificate in Information Technology (MS-CIT)",
-      "issuer": "MKCL",
-      "verificationLink": "https://verify.mkcl.org",
-      "date": "May 2024"
-    },
-    {
-      "title": "Digital Forensics & Security Specialist",
-      "issuer": "Digital Forensics Cell",
-      "verificationLink": "https://verify.dfc.org",
-      "date": "Feb 2025"
+      "date": "2025"
     }
-  ],
-  "googleCloud": {
-    "totalBadges": 64,
-    "badges": [
-      "Google Cloud Fundamentals",
-      "Architecting with Compute Engine",
-      "Getting Started with Kubernetes",
-      "Cloud Engineering Quest",
-      "DevOps on Google Cloud",
-      "Cloud IAM & Security",
-      "BigQuery Basics",
-      "Machine Learning on Google Cloud",
-      "Associate Cloud Engineer Prep",
-      "Google Cloud Networking Essentials",
-      "Deploying Microservices Quest",
-      "Securing Google Cloud Infrastructure"
-    ]
-  },
-  "hackathons": [
-    {
-      "title": "CogniSphere Winner",
-      "result": "1st Place Winner",
-      "date": "Mar 2026",
-      "learning": "Developed generative AI dashboards for academic tracking under 24 hours. Gained deep experience in prompt engineering and fast React layout rendering."
-    },
-    {
-      "title": "Build for Bharat",
-      "result": "National Finalist",
-      "date": "Jan 2026",
-      "learning": "Built digital inclusion software for rural users using local languages. Mastered local-first caching patterns and translation API pipelines."
-    },
-    {
-      "title": "Central India Hackathon",
-      "result": "Runner-Up",
-      "date": "Nov 2025",
-      "learning": "Created smart hardware control scripts connecting web UI buttons to real hardware actuators. Handled asynchronous IO limits under stress."
-    },
-    {
-      "title": "AI Hackathon",
-      "result": "1st Place Winner",
-      "date": "Aug 2025",
-      "learning": "Engineered autonomous AI teaching assistants capable of parsing syllabus PDFs and conducting mock audio assessments."
-    }
-  ],
-  "workshops": [
-    {
-      "title": "Hackathon Hacked 2K26",
-      "date": "Jan 2026",
-      "description": "Organized and delivered a workshop on how to conquer national-level hackathons. Guided 300+ students on idea decomposition, fast prototyping, and pitch formatting.",
-      "feedback": "98% Positive Feedback from participants; student projects increased by 30% in subsequent college events.",
-      "slidesLink": "#",
-      "qrLink": "#"
-    }
-  ],
-  "events": [
-    { "title": "DevFest Pune", "date": "Dec 2025", "description": "Attended technical tracks on Cloud Native architectures, WebAssembly, and modern React hooks." },
-    { "title": "Startup Day Maharashtra", "date": "Nov 2025", "description": "Participated in entrepreneur panels and pitched placement cell ideas." },
-    { "title": "Google Cloud Summit", "date": "Sep 2025", "description": "Explored Serverless offerings and GenAI API models at Bangalore." },
-    { "title": "Docker Hands-on Workshop", "date": "Jul 2025", "description": "Completed labs on Docker networking, multi-stage builds, and docker-compose secrets." },
-    { "title": "HPC (High Performance Computing) Seminar", "date": "Mar 2025", "description": "Explored GPU-accelerated computing nodes and parallel programming models." }
-  ],
-  "blogs": [
-    {
-      "id": "linux-devops-journey",
-      "title": "How I Cracked RHCSA: My Linux & DevOps Blueprint",
-      "category": "Linux",
-      "date": "Dec 2025",
-      "excerpt": "A deep dive into my preparation guidelines for the Red Hat Certified System Administrator exam, covering essential configurations, LVM, and SSH hygiene.",
-      "tags": ["Linux", "RHCSA", "DevOps"],
-      "readingTime": "5 min"
-    },
-    {
-      "id": "hackathon-pitch-formula",
-      "title": "The 5-Minute Hackathon Pitch Formula That Wins",
-      "category": "Hackathons",
-      "date": "Jan 2026",
-      "excerpt": "How we structured our pitches at CogniSphere and AI Hackathon to impress judges, solve clear product problems, and take first place.",
-      "tags": ["Hackathons", "Product Design", "Speaking"],
-      "readingTime": "4 min"
-    },
-    {
-      "id": "nextjs-tailwind-speed",
-      "title": "Optimizing Next.js portfolios with Tailwind CSS v4",
-      "category": "Programming",
-      "date": "Feb 2026",
-      "excerpt": "A technical review of Tailwind CSS v4's CSS-first compiler and how to implement premium, lightweight glassmorphism layouts.",
-      "tags": ["Next.js", "Tailwind", "CSS"],
-      "readingTime": "3 min"
-    }
-  ],
-  "resources": [
-    { "title": "Java Interview Mastery Sheet", "type": "PDF Note", "category": "Java", "link": "#", "description": "Comprehensive notes covering core Java, OOP, collections, multithreading, and stream API." },
-    { "title": "Linux Commands Cheat Sheet", "type": "Cheat Sheet", "category": "Linux", "link": "#", "description": "A quick-ref handbook covering systemd services, firewalld rules, LVM storage, and permissions." },
-    { "title": "DevOps Starter Handbook", "type": "PDF Guide", "category": "DevOps", "link": "#", "description": "Intro to Docker container runs, basic Git workflows, and CI/CD pipelines." },
-    { "title": "Hackathon Presentation Templates", "type": "Slides", "category": "Hackathons", "link": "#", "description": "Standard 6-slide deck optimized for hackathon submissions and pitches." }
   ],
   "achievements": [
-    { "title": "Led T&P Cell to 85% Placement Rate", "category": "Leadership", "date": "2025-2026", "description": "Formulated placement campaigns and coordinated industry linkages, placing over 150 student engineers." },
-    { "title": "Black Belt in Karate (Shotokan Style)", "category": "Sports", "date": "2023", "description": "Awarded 1st Dan Black Belt after 6 years of intense training. Developed discipline and core focus." },
-    { "title": "Delivered 10+ Technical Seminars", "category": "Speaking", "date": "2024-2026", "description": "Spoke at multiple engineering colleges on Open Source, Linux, and Cloud-native development." },
-    { "title": "Top Performer Award at Digital Forensics Internship", "category": "Internships", "date": "Jan 2025", "description": "Praised for automating log collection scripts, decreasing audit duration by 60%." }
-  ],
-  "testimonials": [
     {
-      "name": "Dr. A. K. Joshi",
-      "role": "Head of CSE Department",
-      "relationship": "Faculty Mentor",
-      "content": "Mahesh is a stellar student leader. His execution as the President of the Student Cell has significantly raised the tech-engagement levels of his peers. Exceptionally competent."
+      "title": "Won 1st Place at Cogni-Sphere 2025 HackSphere",
+      "category": "Hackathons",
+      "date": "2025",
+      "description": "Developed PharmaManage Pro (full-stack pharmacy management system with automated expiry alerts, 2D inventory mapping, secure RBAC, and billing automation)."
     },
     {
-      "name": "Saurabh Deshmukh",
-      "role": "Tech Lead at DFC",
-      "relationship": "Internship Supervisor",
-      "content": "Mahesh demonstrated excellent command over Linux security during his forensic cell internship. His automation scripts save us valuable audit hours. A fast learner who gets things done."
+      "title": "Finalist Among 800+ Teams at Central India Hackathon 3.0",
+      "category": "Hackathons",
+      "date": "2025",
+      "description": "Developed SwasthyaSetu, a healthcare interoperability platform for seamless medical record exchange."
     },
     {
-      "name": "Neha Patil",
-      "role": "Hackathon Teammate",
-      "relationship": "Teammate",
-      "content": "Mahesh is the ultimate builder. In high-pressure hackathons, he manages the core infrastructure, deploys the product cleanly, and keeps the team motivated. Win-driven."
+      "title": "Holds 7th Kyu Belt in Martial Arts",
+      "category": "Martial Arts",
+      "date": "2024",
+      "description": "Demonstrated foundational proficiency, self-defense discipline, and athletic perseverance."
+    },
+    {
+      "title": "State Level Karate Champion",
+      "category": "Sports",
+      "date": "2024",
+      "description": "Won 1 Gold and 2 Silver Medals in State Level Karate Competitions."
+    },
+    {
+      "title": "Open-National Level Karate Silver Medalist",
+      "category": "Sports",
+      "date": "2024",
+      "description": "Silver Medalist in Inter-School Open-National Level Karate Tournament by IGK-Do Federation."
     }
   ],
-  "gallery": [
-    { "title": "Organizing Hackathon Hacked 2K26", "category": "Workshops", "imagePath": "/projects/solid-starters.png" },
-    { "title": "Pitched at CogniSphere Hackathon", "category": "Hackathons", "imagePath": "/projects/radix.png" },
-    { "title": "President Speech at Placement Event", "category": "Speaking", "imagePath": "/projects/bond-cancellation.png" },
-    { "title": "Red Hat RHCSA Certification Ceremony", "category": "Certificates", "imagePath": "/projects/max-life.png" }
-  ]
+  "volunteering": [
+    {
+      "title": "Volunteer – First Year Induction Program",
+      "organization": "CSE Department, 2024–2025",
+      "description": "Supported onboarding of 250+ incoming students through logistics coordination, communication management, and event facilitation."
+    },
+    {
+      "title": "Technical Coordinator – Kalavihangam 2K23",
+      "organization": "Campus Event",
+      "description": "Managed technical event setup, scheduling, and on-ground execution for 1,000+ attendees."
+    },
+    {
+      "title": "Member – Food Committee",
+      "organization": "MIT Boys Hostel (2023–2024)",
+      "description": "Oversaw quality checks, feedback collection, and vendor coordination to maintain hygiene standards."
+    },
+    {
+      "title": "Active Volunteer – CSE & Institutional Events",
+      "organization": "MIT CSN",
+      "description": "Provided operational support for events, registration, crowd management, and communication tasks."
+    },
+    {
+      "title": "Member – MIT CSN U.H.V. Cell",
+      "organization": "Students Wing",
+      "description": "Participated in Universal Human Values activities promoting ethical awareness, empathy building, and student well-being."
+    }
+  ],
+  "skills": {
+    "programming": ["C", "C++", "Java", "Python", "JavaScript"],
+    "operatingSystems": ["Windows", "Linux", "macOS"],
+    "webTechnologies": ["HTML", "CSS", "React", "Node.js", "Express.js"],
+    "databases": ["PostgreSQL", "MySQL", "Firebase"],
+    "tools": ["Git", "GitHub", "VS Code", "Docker", "Microsoft Office", "Google Workspace", "Canva", "Figma"],
+    "coreCompetencies": [
+      "IT Troubleshooting (Hardware & Software)",
+      "Social Media Management",
+      "Linux, Windows & iOS Systems",
+      "Networking Basics",
+      "Full-Stack Development",
+      "Cyber Security & Cloud Fundamentals",
+      "Looping Prompting",
+      "LaTeX Code",
+      "Technical Training Ability"
+    ],
+    "teachingCompetencies": [
+      "Classroom Management",
+      "Student Mentoring",
+      "Technical Training",
+      "Curriculum Delivery",
+      "Practical Lab Management",
+      "Assessment & Evaluation",
+      "Public Speaking",
+      "Educational Technology"
+    ]
+  }
 }

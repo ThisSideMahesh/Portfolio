@@ -13,134 +13,235 @@ import {
 import { SiteConfig } from '@/config/site';
 
 export class ContentLoader {
-  private static contentRoot = path.join(process.cwd(), 'content');
+  private static dbPath = path.join(process.cwd(), 'public', 'data', 'portfolio.json');
 
-  public static loadJsonFiles<T>(subDir: string, validator: (data: unknown) => T): T[] {
-    const dirPath = path.join(this.contentRoot, subDir);
-
-    if (!fs.existsSync(dirPath)) {
-      return [];
-    }
-
+  private static getDatabase(): any {
     try {
-      const files = fs.readdirSync(dirPath);
-      const results: T[] = [];
-
-      for (const file of files) {
-        if (file.endsWith('.json')) {
-          const filePath = path.join(dirPath, file);
-          const rawContent = fs.readFileSync(filePath, 'utf-8');
-          const parsed = JSON.parse(rawContent);
-          
-          // Validate schema
-          const validated = validator(parsed);
-          results.push(validated);
-        }
-      }
-
-      return results;
-    } catch (error) {
-      console.error(`Error loading content from directory: ${dirPath}`, error);
-      return [];
+      const raw = fs.readFileSync(this.dbPath, 'utf-8');
+      return JSON.parse(raw);
+    } catch (e) {
+      console.error('Failed to load centralized portfolio.json database', e);
+      return {};
     }
   }
 
-  public static loadMarkdownFiles<T>(subDir: string, validator: (data: unknown) => T): T[] {
-    const dirPath = path.join(this.contentRoot, subDir);
-
-    if (!fs.existsSync(dirPath)) {
-      return [];
-    }
-
-    try {
-      const files = fs.readdirSync(dirPath);
-      const results: T[] = [];
-
-      for (const file of files) {
-        if (file.endsWith('.md') || file.endsWith('.mdx')) {
-          const filePath = path.join(dirPath, file);
-          const rawContent = fs.readFileSync(filePath, 'utf-8');
-          
-          const frontmatter = this.parseFrontmatter(rawContent);
-          const validated = validator(frontmatter);
-          results.push(validated);
+  public static getProjects(): Project[] {
+    const db = this.getDatabase();
+    const items = db.projects || [];
+    return items.map((p: any) => {
+      const mapped = {
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        subtitle: p.subtitle,
+        description: p.description,
+        summary: p.summary,
+        status: 'Published',
+        visibility: 'Public',
+        featured: p.featured ?? true,
+        draft: false,
+        archived: false,
+        author: 'Mahesh Namdev Khandebharad',
+        contributors: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        publishedAt: new Date().toISOString(),
+        version: '1.0.0',
+        revision: 1,
+        changeNotes: ['Centralized sync'],
+        tags: p.tags || [],
+        categories: p.categories || [],
+        gallery: [],
+        language: 'en',
+        license: 'MIT',
+        metadata: {
+          githubUrl: p.github,
+          liveUrl: p.demo
         }
-      }
-
-      return results;
-    } catch (error) {
-      console.error(`Error loading markdown from directory: ${dirPath}`, error);
-      return [];
-    }
+      };
+      return ProjectSchema.parse(mapped) as Project;
+    });
   }
 
-  private static parseFrontmatter(rawContent: string): Record<string, any> {
-    const lines = rawContent.split('\n');
-    const metadata: Record<string, any> = {};
-    let isFrontmatter = false;
-    let frontmatterLines: string[] = [];
-
-    for (const line of lines) {
-      if (line.trim() === '---') {
-        if (isFrontmatter) {
-          break;
+  public static getExperiences(): Experience[] {
+    const db = this.getDatabase();
+    const items = db.experiences || [];
+    return items.map((exp: any) => {
+      const mapped = {
+        id: exp.id,
+        slug: exp.slug,
+        title: exp.role,
+        subtitle: exp.role,
+        description: exp.description || (exp.achievements ? exp.achievements.join(' ') : 'Experience'),
+        summary: exp.description || (exp.achievements ? exp.achievements[0] || 'Experience' : 'Experience'),
+        status: 'Published',
+        visibility: 'Public',
+        featured: true,
+        draft: false,
+        archived: false,
+        author: 'Mahesh Namdev Khandebharad',
+        contributors: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        publishedAt: new Date().toISOString(),
+        version: '1.0.0',
+        revision: 1,
+        changeNotes: ['Centralized sync'],
+        tags: [],
+        categories: [],
+        gallery: [],
+        language: 'en',
+        license: 'None',
+        metadata: {
+          company: exp.company,
+          role: exp.role,
+          location: exp.location,
+          startDate: exp.startDate,
+          endDate: exp.endDate,
+          isCurrent: exp.isCurrent,
+          achievements: exp.achievements || []
         }
-        isFrontmatter = true;
-        continue;
-      }
-      if (isFrontmatter) {
-        frontmatterLines.push(line);
-      }
-    }
+      };
+      return ExperienceSchema.parse(mapped) as Experience;
+    });
+  }
 
-    for (const line of frontmatterLines) {
-      const parts = line.split(':');
-      if (parts.length >= 2) {
-        const key = parts[0].trim();
-        const value = parts.slice(1).join(':').trim().replace(/^["']|["']$/g, '');
-        
-        if (value === 'true') metadata[key] = true;
-        else if (value === 'false') metadata[key] = false;
-        else if (!isNaN(Number(value))) metadata[key] = Number(value);
-        else if (value.startsWith('[') && value.endsWith(']')) {
-          metadata[key] = value.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, ''));
-        } else {
-          metadata[key] = value;
+  public static getPublications(): Publication[] {
+    const db = this.getDatabase();
+    const items = db.publications || [];
+    return items.map((pub: any) => {
+      const mapped = {
+        id: pub.id,
+        slug: pub.slug,
+        title: pub.title,
+        subtitle: pub.subtitle,
+        description: pub.description,
+        summary: pub.summary,
+        status: 'Published',
+        visibility: 'Public',
+        featured: pub.featured ?? true,
+        draft: false,
+        archived: false,
+        author: 'Mahesh Namdev Khandebharad',
+        contributors: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        publishedAt: pub.publishedAt || new Date().toISOString(),
+        version: '1.0.0',
+        revision: 1,
+        changeNotes: ['Centralized sync'],
+        tags: pub.tags || [],
+        categories: pub.categories || [],
+        gallery: [],
+        language: 'en',
+        license: 'Creative Commons',
+        metadata: {
+          publicationType: pub.publicationType,
+          downloadUrl: pub.downloadUrl
         }
-      }
-    }
+      };
+      return PublicationSchema.parse(mapped) as Publication;
+    });
+  }
 
-    return metadata;
+  public static getResources(): Resource[] {
+    const db = this.getDatabase();
+    const items = db.resources || [];
+    return items.map((res: any) => {
+      const mapped = {
+        id: res.id,
+        slug: res.slug,
+        title: res.title,
+        subtitle: res.subtitle,
+        description: res.description,
+        summary: res.summary,
+        status: 'Published',
+        visibility: 'Public',
+        featured: res.featured ?? true,
+        draft: false,
+        archived: false,
+        author: 'Mahesh Namdev Khandebharad',
+        contributors: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        publishedAt: new Date().toISOString(),
+        version: '1.0.0',
+        revision: 1,
+        changeNotes: ['Centralized sync'],
+        tags: res.tags || [],
+        categories: res.categories || [],
+        gallery: [],
+        language: 'en',
+        license: 'Creative Commons BY-NC',
+        metadata: {
+          downloadUrl: res.downloadUrl,
+          fileType: res.fileType,
+          fileSize: res.fileSize
+        }
+      };
+      return ResourceSchema.parse(mapped) as Resource;
+    });
+  }
+
+  public static getBlogs(): Blog[] {
+    const db = this.getDatabase();
+    const items = db.blogs || [];
+    return items.map((b: any) => {
+      const mapped = {
+        id: b.id,
+        slug: b.slug,
+        title: b.title,
+        subtitle: b.subtitle,
+        description: b.description,
+        summary: b.summary,
+        status: 'Published',
+        visibility: 'Public',
+        featured: b.featured ?? true,
+        draft: false,
+        archived: false,
+        author: 'Mahesh Namdev Khandebharad',
+        contributors: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        publishedAt: b.publishedAt || new Date().toISOString(),
+        version: '1.0.0',
+        revision: 1,
+        changeNotes: ['Centralized sync'],
+        tags: b.tags || [],
+        categories: b.categories || [],
+        gallery: [],
+        language: 'en',
+        license: 'MIT',
+        metadata: {}
+      };
+      return BlogSchema.parse(mapped) as Blog;
+    });
   }
 }
 
 export class LocalContentRepository implements ContentRepository {
   public async getProjects(): Promise<Project[]> {
-    const raw = ContentLoader.loadJsonFiles<Project>('projects', (data) => ProjectSchema.parse(data));
+    const raw = ContentLoader.getProjects();
     return raw.map(p => this.normalizeEntity(p, 'projects')) as Project[];
   }
 
   public async getBlogs(): Promise<Blog[]> {
-    const raw = ContentLoader.loadJsonFiles<Blog>('blog', (data) => BlogSchema.parse(data));
-    const mdx = ContentLoader.loadMarkdownFiles<Blog>('blog', (data) => BlogSchema.parse(data));
-    
-    // Combine and normalize
-    const all = [...raw, ...mdx];
-    return all.map(b => this.normalizeEntity(b, 'blog')) as Blog[];
+    const raw = ContentLoader.getBlogs();
+    return raw.map(b => this.normalizeEntity(b, 'blog')) as Blog[];
   }
 
   public async getPublications(): Promise<Publication[]> {
-    const raw = ContentLoader.loadJsonFiles<Publication>('publications', (data) => PublicationSchema.parse(data));
+    const raw = ContentLoader.getPublications();
     return raw.map(pb => this.normalizeEntity(pb, 'publications')) as Publication[];
   }
 
   public async getExperiences(): Promise<Experience[]> {
-    const raw = ContentLoader.loadJsonFiles<Experience>('experience', (data) => ExperienceSchema.parse(data));
+    const raw = ContentLoader.getExperiences();
     return raw.map(exp => this.normalizeEntity(exp, 'experience')) as Experience[];
   }
 
   public async getResources(): Promise<Resource[]> {
-    const raw = ContentLoader.loadJsonFiles<Resource>('resources', (data) => ResourceSchema.parse(data));
+    const raw = ContentLoader.getResources();
     return raw.map(r => this.normalizeEntity(r, 'resources')) as Resource[];
   }
 
@@ -188,7 +289,6 @@ export class LocalContentRepository implements ContentRepository {
   }
 
   private normalizeEntity(entity: any, routeSegment: string): any {
-    // Generate slug from title if missing
     if (!entity.slug && entity.title) {
       entity.slug = entity.title
         .toLowerCase()
@@ -196,17 +296,13 @@ export class LocalContentRepository implements ContentRepository {
         .replace(/(^-|-$)+/g, '');
     }
 
-    // Set canonicalUrl
     entity.canonicalUrl = `${SiteConfig.url}/${routeSegment}/${entity.slug}`;
 
-    // Normalize dates to ISO format
     if (entity.publishedAt) {
       entity.publishedAt = new Date(entity.publishedAt).toISOString();
     }
 
-    // Add reading time to blogs if absent
     if (routeSegment === 'blog' && !entity.readingTime && entity.summary) {
-      // rough reading time: 200 words per minute
       const wordCount = entity.summary.split(/\s+/).length;
       entity.readingTime = Math.max(1, Math.ceil(wordCount / 200));
     }

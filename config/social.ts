@@ -1,7 +1,8 @@
 export const SocialConfig = {
-  github: "https://github.com/Thissidemahesh",
-  linkedin: "https://linkedin.com/in/Thissidemahesh",
-  twitter: "https://twitter.com/thissidemahesh",
-  email: "maheshnamdevkhandebharad@gmail.com",
-  newsletter: "https://thissidemahesh.substack.com"
+  github: "https://github.com/ThisSideMahesh",
+  linkedin: "https://linkedin.com/in/MaheshKhandebharad",
+  twitter: "https://x.com/ThissideMahesh",
+  instagram: "https://instagram.com/thisside_Mahesh",
+  email: "thissidemahesh@gmail.com",
+  phone: "+91 9373293341"
 };
