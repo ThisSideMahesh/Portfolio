@@ -55,6 +55,22 @@
       ]
     },
     {
+      "id": "exp-1-speaker",
+      "slug": "workshop-speaker-technophilia",
+      "company": "MIT CSN, India",
+      "role": "Workshop Speaker – HACKATHON HACKED 2K26 TECHNOPHILIA 2K26",
+      "location": "MIT CSN, India",
+      "startDate": "April 2026",
+      "endDate": "April 2026",
+      "isCurrent": false,
+      "achievements": [
+        "Delivered an interactive session on Hackathons, Career Planning, Resume Building, Personal Branding, and AI Tools for engineering students.",
+        "Guided students on converting ideas into projects and preparing for technical competitions.",
+        "Shared practical insights from internships, hackathons, and real-world software development experiences.",
+        "Encouraged students to leverage AI responsibly for learning and career growth."
+      ]
+    },
+    {
       "id": "exp-2",
       "slug": "hardware-tech-ntw-2",
       "company": "New Technical World, Jalna",
@@ -338,6 +354,11 @@
       "title": "Google Cloud Skills Boost (64+ Badges)",
       "issuer": "Google Cloud",
       "date": "2025"
+    },
+    {
+      "title": "6-Day Online Students' Workshop on Universal Human Values (UHV)",
+      "issuer": "All India Council for Technical Education (AICTE)",
+      "date": "2026"
     }
   ],
   "achievements": [
