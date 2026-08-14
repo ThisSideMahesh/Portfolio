@@ -81,12 +81,14 @@ export function Navbar() {
             </button>
 
             {/* Resume CTA */}
-            <Link
+            <a
               href={NavigationConfig.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-zinc-950 font-semibold text-xs transition-all"
             >
               {NavigationConfig.resumeLabel}
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Navigation Toggle */}
@@ -141,13 +143,15 @@ export function Navbar() {
               <span>Theme Mode</span>
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <Link
+            <a
               href={NavigationConfig.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-2.5 rounded-lg bg-amber-500 text-zinc-950 font-semibold text-sm"
             >
               Download {NavigationConfig.resumeLabel}
-            </Link>
+            </a>
           </div>
         </div>
       )}
