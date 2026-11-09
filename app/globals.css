@@ -204,6 +204,110 @@
   }
 }
 
+/* Hero portrait: soft ground glow so the black hoodie never melts into a dark page. */
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 18% 4% 0;
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--ink) 9%, transparent), transparent);
+}
+
+/* Flip calendar. Pages stay paper-white in both themes, like a real notepad. */
+:root {
+  --paper: #fbfaf7;
+  --paper-edge: #efece6;
+  --paper-ink: #1c1a19;
+}
+.calendar-page {
+  display: flex;
+  min-height: clamp(4.75rem, 9vw, 6.5rem);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid #ddd8cf;
+  background: var(--paper);
+  padding: 1.1rem 1.4rem 0.9rem;
+  color: var(--paper-ink);
+  backface-visibility: hidden;
+}
+.calendar-word {
+  font-family: var(--font-display);
+  /* Sized from the card's own width (container query units): the longest role is 8.5 em,
+     the card's side padding is 2.8 rem, so 100cqi ≈ 8.6em + 2.8rem. */
+  font-size: clamp(1rem, calc(10.3cqi - 0.35rem), 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.calendar-counter {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.45rem;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #8a8279;
+  font-variant-numeric: tabular-nums;
+}
+.calendar-ring {
+  width: 0.55rem;
+  height: 1.35rem;
+  border-radius: 9999px;
+  border: 2px solid #b9b2a8;
+  background: linear-gradient(to right, #f5f3ef, #d9d4cc);
+}
+.calendar {
+  perspective: 900px;
+  container-type: inline-size;
+}
+.calendar-flip {
+  transform-origin: top center;
+  animation: calendar-flip 650ms cubic-bezier(0.55, 0.05, 0.35, 1) forwards;
+}
+@keyframes calendar-flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  35% {
+    transform: rotateX(28deg);
+    box-shadow: 0 -10px 22px -10px rgb(0 0 0 / 0.25);
+  }
+  100% {
+    transform: rotateX(105deg);
+    opacity: 0;
+  }
+}
+
+/* Pull-cord theme switch: the string stretches with --pull and springs back on release. */
+.pull-cord-string {
+  height: calc(13rem + var(--pull, 0px));
+  background: repeating-linear-gradient(to bottom, var(--muted) 0 3px, var(--line) 3px 5px);
+  transition: height 520ms cubic-bezier(0.34, 1.7, 0.5, 1);
+}
+.pull-cord[data-dragging] .pull-cord-string {
+  transition: none;
+}
+.pull-cord-bead {
+  background:
+    radial-gradient(circle at 35% 30%, color-mix(in srgb, white 35%, transparent), transparent 45%),
+    var(--accent);
+  box-shadow: 0 6px 10px -4px color-mix(in srgb, var(--ink) 45%, transparent);
+  transform-origin: top center;
+  transition: transform 300ms ease;
+}
+.pull-cord:hover .pull-cord-bead {
+  transform: rotate(4deg);
+}
+
+/* Theme switch cross-fade (View Transitions). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 450ms;
+}
+
 /* Doors: the leaf hinges on its left edge over a dark doorway. */
 .door-frame {
   perspective: 1100px;
@@ -216,12 +320,33 @@
 .door:focus-visible .door-leaf {
   transform: rotateY(-12deg);
 }
+/* Hovering one door dims the others. */
+#doors ul:has(.door:hover) > li:not(:has(.door:hover)) {
+  opacity: 0.45;
+}
+#doors ul > li {
+  transition:
+    opacity 300ms ease,
+    transform 500ms ease;
+}
+
+/* Walk-through: the others fall away, the leaf swings wide, then we zoom into the doorway. */
+#doors ul:has(.door[data-opening]) > li:not(:has(.door[data-opening])) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+#doors ul > li:has(.door[data-opening]) {
+  position: relative;
+  z-index: 80;
+}
 .door[data-opening] .door-frame {
-  transform: scale(1.06);
-  transition: transform 700ms cubic-bezier(0.55, 0.05, 0.25, 1);
+  transform: scale(7);
+  transform-origin: 50% 45%;
+  transition: transform 650ms cubic-bezier(0.7, 0, 0.84, 0) 380ms;
 }
 .door[data-opening] .door-leaf {
-  transform: rotateY(-84deg);
+  transform: rotateY(-86deg);
+  transition-duration: 450ms;
 }
 
 /* First-visit loader: shown only while <html> has .is-loading (set by the head script). */
@@ -245,6 +370,40 @@ html.is-loading .site-loader {
 html.is-loading .site-loader[data-done] {
   opacity: 0;
   transform: translateY(-2%);
+  transition-delay: 450ms;
+}
+.site-loader {
+  background:
+    radial-gradient(55% 45% at 0% 100%, color-mix(in srgb, var(--accent) 18%, transparent), transparent),
+    var(--band);
+}
+.loader-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--band-ink) 14%, transparent);
+  background: color-mix(in srgb, var(--band-ink) calc(6% + var(--i) * 3%), var(--band));
+  padding: 0.7rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--band-ink);
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  transition:
+    opacity 300ms ease,
+    transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.loader-pill[data-in] {
+  opacity: 1;
+  transform: none;
+}
+.site-loader[data-done] .loader-pill {
+  opacity: 0;
+  transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1.1);
+  transition:
+    opacity 600ms ease 150ms,
+    transform 750ms cubic-bezier(0.6, 0, 0.3, 1);
 }
 @media (min-width: 640px) {
   html.is-loading .site-loader {

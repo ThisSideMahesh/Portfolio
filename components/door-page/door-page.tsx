@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WalkIn } from "@/components/door-page/walk-in";
 import type { CaseStudy, CaseVisual, DoorPage as DoorPageData } from "@/lib/door-pages";
 
 /**
@@ -8,6 +9,7 @@ import type { CaseStudy, CaseVisual, DoorPage as DoorPageData } from "@/lib/door
 export function DoorPage({ page }: { page: DoorPageData }) {
   return (
     <>
+      <WalkIn />
       <section className="wrap pt-16 pb-12 md:pt-24">
         <h1 className="text-[clamp(3rem,10vw,8rem)]">{page.title}</h1>
         <p className="mt-6 max-w-[46ch] text-[clamp(1.15rem,2vw,1.5rem)] text-muted">{page.intro}</p>

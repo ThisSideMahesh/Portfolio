@@ -5,13 +5,15 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
 import type { OpenDoorData } from "@/lib/data";
 
-const OPEN_MS = 700;
+const OPEN_MS = 1000;
+export const WALK_KEY = "door-walk";
 
 /**
- * An open door. Hover or focus: the leaf eases ajar, the knob turns orange and the tagline
- * swaps for what is behind the door. Click: the leaf swings wide, the room goes dark and
- * the visitor walks through to the door's page. Modified clicks and reduced motion skip
- * the animation and navigate normally.
+ * An open door. Hover or focus: the leaf eases ajar, the knob turns orange, the other doors
+ * dim and the tagline swaps for what is behind the door. Click: the other doors fall away,
+ * the leaf swings wide, the view zooms into the dark doorway until the screen is black, and
+ * the door's page fades in from that black (see WalkIn). Modified clicks and reduced motion
+ * skip the animation and navigate normally.
  */
 export function DoorCard({ door }: { door: OpenDoorData }) {
   const router = useRouter();
@@ -27,6 +29,11 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
     event.preventDefault();
     router.prefetch(door.href);
     setOpening(true);
+    try {
+      sessionStorage.setItem(WALK_KEY, "1");
+    } catch {
+      // Without storage the next page simply appears without the fade.
+    }
     window.setTimeout(() => router.push(door.href), OPEN_MS);
   }
 
@@ -74,7 +81,7 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
       <span
         aria-hidden="true"
         className={`pointer-events-none fixed inset-0 z-[90] bg-band transition-opacity duration-300 ${
-          opening ? "opacity-100 delay-[350ms]" : "opacity-0"
+          opening ? "opacity-100 delay-[620ms]" : "opacity-0"
         }`}
       />
     </>

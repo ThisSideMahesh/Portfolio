@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Loader } from "@/components/site/loader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { PullCord } from "@/components/theme/pull-cord";
 import { ThemeScript } from "@/components/theme/theme-script";
 import { anek, anekDeva, hind } from "@/lib/fonts";
 import { site, siteUrl } from "@/lib/site";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <SiteHeader />
+        <PullCord />
         <main id="main" className="flex-1">
           {children}
         </main>

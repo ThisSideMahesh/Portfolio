@@ -28,7 +28,19 @@ Mahesh asked for the same style as https://therishithakor.com/home, with orange 
 | Story year rolls digit by digit, "01 / 06" progress, warm glow | Per-digit 0–9 columns sliding (700 ms, 60 ms stagger), "01 / 04" with orange bar, 9% orange radial wash |
 | Nav: all sections + local time and date | Home, Tech, Teaching, Management, My story, Contact; IST time and date; full-screen phone menu portalled to `<body>` |
 | "Hire me" multi-step modal | Deferred to the MVP day 5 contact form |
-| Trading-card "ability card", pull-cord switch, illustrated arched doors, poster wall | Not rebuilt: that designer's signature artwork |
+| Trading-card "ability card", illustrated arched doors, poster wall | Not rebuilt: that designer's signature artwork |
+
+### Second pass, on Mahesh's request (2026-11-10)
+
+| Behaviour | Our original version |
+|---|---|
+| Opening: pills stack while the counter climbs, then scatter | `loader.tsx`: Mahesh's name + four door pills stack at 0/18/42/66/88 %, scatter in five directions at 100, warm orange glow; 1.4–2 s, first visit only |
+| Flip calendar of roles under "Hi, I'm … / I am a" | `flip-calendar.tsx`: spiral rings, paper page flips up over the rings (rotateX 105°, 650 ms), offset ink card, stacked edges, "01 / 04"; roles Full-Stack Developer, Technical Trainer, Recruitment Lead, Video Editor; pause button (WCAG 2.2.2); type sized by container query so the longest role fits at 320 px |
+| Pull-cord theme switch | `pull-cord.tsx`: drag ≥ 28 px or click/Enter; string stretches and springs back with overshoot; orange bead; View Transitions cross-fade; desktop only (phones keep the header button) |
+| Door walk-through with zoom into the doorway | Others dim on hover and drop away on click; leaf swings to 86°; frame zooms ×7 into the doorway; black; next page fades in from black (`walk-in.tsx`, layout effect so no flash) |
+| Cut-out portrait | Apple Vision foreground mask, on-device; B&W cut-out with colour reveal on hover; soft ground glow so the black hoodie never melts into dark mode |
+
+Hero copy now: "Hi, I'm Mahesh." / "I am a" / calendar. "Final-year B.Tech CSE" removed; the full name moved to the hero's bottom strip and the h1's screen-reader text.
 
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".
 

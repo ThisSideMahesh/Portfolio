@@ -53,7 +53,7 @@ The site is a personal brand under the username **thissidemahesh**. It is **not*
 5. Hackathons: **one** win (1st place, Cogni-Sphere 2025 HackSphere). Never pluralised. The Central India Hackathon 3.0 result is "finalist", never a win.
 6. All roles have ended (confirmed 2026-11-10): write them in the past tense, with dates.
 7. Never use the words "coming soon".
-8. The photo is cropped, resized and colour-balanced only. The face is never altered, no image of Mahesh is generated, and EXIF data is stripped.
+8. The photo is cropped, resized, colour-balanced, converted to black and white, and (at Mahesh's request, 2026-11-10) has its background removed on-device with Apple Vision (`pnpm cutout`; nothing uploaded). The face and body are never altered, no image of Mahesh is generated, and EXIF data is stripped.
 9. Public resume downloads (Phase 1) are created only after explicit approval and with private contact details removed.
 10. The file `IMG_7128.jpg` in the resume folder belongs to someone else and is never used.
 

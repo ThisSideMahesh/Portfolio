@@ -47,21 +47,21 @@ async function exportCrop(region, file, saturation) {
   console.log(`${file}: ${meta.width}x${meta.height}, metadata stripped`);
 }
 
-// A: head to chest, 4:5, centred, 3% from the top.
-const aWidth = Math.round(width * 0.7);
-const aHeight = Math.min(Math.round((aWidth * 5) / 4), height);
-await exportCrop(
-  { left: Math.round((width - aWidth) / 2), top: Math.round(height * 0.03), width: aWidth, height: aHeight },
-  "mahesh-hero.jpg",
-  0,
-);
-
-// A in colour (balanced), revealed when the visitor hovers the hero portrait.
-await exportCrop(
-  { left: Math.round((width - aWidth) / 2), top: Math.round(height * 0.03), width: aWidth, height: aHeight },
-  "mahesh-hero-colour.jpg",
-  1,
-);
+// Hero: the background-free cut-out (made on-device by `pnpm cutout`), head to just below the
+// hands, black and white plus a colour-balanced copy for the hover reveal. PNG keeps the alpha.
+const CUTOUT = "content/source/photo-cutout.png";
+const cutRegion = { left: 150, top: 40, width: 860, height: 1160 };
+for (const [file, colour] of [
+  ["mahesh-cutout.png", false],
+  ["mahesh-cutout-colour.png", true],
+]) {
+  let pipeline = sharp(CUTOUT).extract(cutRegion);
+  pipeline = colour ? pipeline.linear([...gains, 1], [0, 0, 0, 0]) : pipeline.greyscale();
+  await pipeline.toColourspace("srgb").png({ compressionLevel: 9, palette: false }).toFile(`${OUT_DIR}/${file}`);
+  const meta = await sharp(`${OUT_DIR}/${file}`).metadata();
+  if (meta.exif || meta.xmp || meta.iptc) throw new Error(`${file}: metadata was not stripped`);
+  console.log(`${file}: ${meta.width}x${meta.height}, alpha=${meta.hasAlpha}, metadata stripped`);
+}
 
 // B: full figure, 3:4 from the top.
 await exportCrop({ left: 0, top: 0, width, height: Math.min(Math.round((width * 4) / 3), height) }, "mahesh-story.jpg", 0);
