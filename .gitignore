@@ -1,0 +1,21 @@
+# Private source files (CV, resumes, original photo) — never commit
+/content/source
+
+# Secrets
+.env*
+!.env.example
+
+# Dependencies
+node_modules
+
+# Next.js / build output
+/.next/
+/out/
+/build
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# OS / editor
+.DS_Store
+*.log
