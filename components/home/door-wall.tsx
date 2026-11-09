@@ -61,7 +61,7 @@ function LockedDoor({ door }: { door: Extract<Door, { locked: true }> }) {
   return (
     <div aria-disabled="true" tabIndex={0} className="door locked group block cursor-not-allowed rounded-sm focus-visible:outline-offset-4">
       <PanelDoor variant="creator" name={door.name} locked />
-      <span className="sr-only">: Locked, for now. {door.tagline}</span>
+      <span className="sr-only">{door.name}: Locked, for now. {door.tagline}</span>
       <p aria-hidden="true" className="mt-4 text-muted md:hidden">
         Locked, for now. {door.tagline}
       </p>

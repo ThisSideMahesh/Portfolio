@@ -44,7 +44,7 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
         <span aria-hidden="true" className="door-enter">
           Click to enter
         </span>
-        <span className="sr-only">: {door.tagline}</span>
+        <span className="sr-only">{door.name}: {door.tagline}</span>
       </Link>
       {/* Phones have no hover: the name and tagline sit under the door instead of the panel. */}
       <p aria-hidden="true" className="mt-4 text-muted md:hidden">

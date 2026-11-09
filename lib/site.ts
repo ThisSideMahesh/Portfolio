@@ -13,7 +13,7 @@ export const site = {
   username: "thissidemahesh",
   email: "thissidemahesh@gmail.com",
   description:
-    "Mahesh Namdev Khandebharad: final-year B.Tech CSE student at MIT Chhatrapati Sambhajinagar, working across tech, teaching and management.",
+    "Mahesh Namdev Khandebharad: a final-year B.Tech CSE student at MIT Chhatrapati Sambhajinagar, working across tech, teaching and management.",
 } as const;
 
 export type SocialLink = { label: string; href: string };

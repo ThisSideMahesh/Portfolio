@@ -45,7 +45,7 @@ export function MobileMenu({ links }: { links: readonly NavLink[] }) {
       </button>
       {open
         ? createPortal(
-            <div id={panelId} className="fixed inset-0 z-[60] flex flex-col bg-bg px-4 pt-6 pb-10">
+            <div id={panelId} className="mobile-menu-panel fixed inset-0 z-[60] flex flex-col bg-bg px-4 pt-6 pb-10">
               <button
                 type="button"
                 onClick={() => {
@@ -58,8 +58,8 @@ export function MobileMenu({ links }: { links: readonly NavLink[] }) {
               </button>
               <nav aria-label="Main" className="mt-auto">
                 <ul className="space-y-1">
-                  {links.map((link) => (
-                    <li key={link.href}>
+                  {links.map((link, i) => (
+                    <li key={link.href} className="mobile-menu-item" style={{ animationDelay: `${60 + i * 40}ms` }}>
                       <Link
                         href={link.href}
                         onClick={() => setOpen(false)}

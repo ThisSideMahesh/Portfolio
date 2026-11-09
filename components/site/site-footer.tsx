@@ -45,7 +45,7 @@ export function SiteFooter() {
           <p className="flex items-center gap-2">
             <span>
               Powered by{" "}
-              <span lang="mr" className="font-deva">
+              <span lang="mr" translate="no" className="font-deva">
                 श्री स्वामी समर्थ
               </span>
             </span>

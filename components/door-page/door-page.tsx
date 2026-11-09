@@ -41,9 +41,9 @@ function CaseCard({ study }: { study: CaseStudy }) {
   return (
     <article className="grid grid-cols-[minmax(0,1fr)] gap-10 rounded-[1.5rem] border border-line bg-surface p-6 md:min-h-[520px] md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center md:gap-14 md:p-12">
       <div>
-        <p className="text-sm text-muted">{study.kicker}</p>
+        <p className="text-sm font-semibold text-accent-text">{study.kicker}</p>
         <h2 className="mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)]">{study.title}</h2>
-        <p className="mt-2 text-sm text-muted">{study.when}</p>
+        <p className="mt-2 text-sm font-medium text-muted tabular-nums">{study.when}</p>
         <p className="mt-6 max-w-[52ch] text-lg">{study.summary}</p>
         <ul className="mt-6 space-y-2">
           {study.points.map((point) => (
@@ -65,7 +65,7 @@ function Visual({ visual }: { visual: CaseVisual }) {
       return (
         <div className="flex aspect-[4/3] flex-col justify-end rounded-[1rem] bg-band p-8 text-band-ink">
           <p className="font-display text-[clamp(3.5rem,9vw,7rem)] leading-none font-semibold tracking-tight">{visual.value}</p>
-          <p className="mt-3 text-band-muted">{visual.label}</p>
+          <p className="mt-3 text-lg font-medium text-band-muted">{visual.label}</p>
         </div>
       );
     case "flow":

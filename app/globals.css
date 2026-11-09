@@ -104,6 +104,8 @@
   html {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -919,5 +921,24 @@ html.is-loading .site-loader[data-done] {
 @media (prefers-reduced-motion: reduce) {
   .hire-menu {
     transform: none;
+  }
+}
+
+/* Phone menu: the panel fades in and the links rise in a short cascade (entry only). */
+.mobile-menu-panel {
+  overscroll-behavior: contain;
+  animation: menu-fade 220ms var(--ease-out) both;
+}
+.mobile-menu-item {
+  animation: rise 420ms var(--ease-out) both;
+}
+@keyframes menu-fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-item {
+    animation: none;
   }
 }

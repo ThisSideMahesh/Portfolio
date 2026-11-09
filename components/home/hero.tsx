@@ -42,7 +42,7 @@ export function Hero() {
         <div style={{ "--d": 2 } as CSSProperties} className="rise hero-portrait group relative mx-auto w-full max-w-[460px] self-end md:max-w-[540px]">
           <Image
             src={cutout}
-            alt="Mahesh Namdev Khandebharad smiling, in glasses, a black hoodie and grey jeans, hands in his pockets."
+            alt="Mahesh Namdev Khandebharad, smiling, wearing glasses, a black hoodie and grey jeans, with his hands in his pockets."
             priority
             sizes="(min-width: 768px) 40vw, 90vw"
             className="relative w-full"

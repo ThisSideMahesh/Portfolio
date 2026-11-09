@@ -31,9 +31,9 @@ export function Story() {
                 {year.entries.map((entry) => (
                   <li key={entry.title} className="relative pl-6 md:pl-10">
                     <span aria-hidden="true" data-story-dot className="story-dot absolute top-2 -left-[5px] size-[9px] rounded-full" />
-                    <p className="text-sm text-muted">{entry.when}</p>
+                    <p className="text-sm font-medium text-muted tabular-nums">{entry.when}</p>
                     <h3 className="mt-1 text-[clamp(1.35rem,2.4vw,1.85rem)] leading-tight">{entry.title}</h3>
-                    <p className="mt-1 text-muted">{entry.place}</p>
+                    <p className="mt-1 font-medium text-muted">{entry.place}</p>
                     <p className="mt-3 max-w-[60ch]">{entry.detail}</p>
                   </li>
                 ))}
