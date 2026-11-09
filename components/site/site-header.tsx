@@ -42,7 +42,8 @@ export function SiteHeader() {
             <span aria-hidden="true" className="h-3 w-px bg-line" />
             <LocalDate />
           </p>
-          <ThemeToggle />
+          {/* The rope lamp switches the theme from 1280px up (xl), so this button is only needed below that. */}
+          <ThemeToggle className="xl:hidden" />
           <div className="lg:hidden">
             <MobileMenu links={links} />
           </div>

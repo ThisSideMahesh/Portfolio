@@ -4,29 +4,25 @@ import { useEffect, useState } from "react";
 
 const HOLD_MS = 2600;
 const FLIP_MS = 760;
-const ROUNDS = 3; // stops on the first role after three full rounds
 
 /**
- * Spiral-bound flip calendar that cycles the roles. The top page lifts on its ring hinge,
- * darkens as it turns away and flips up over the rings; the page underneath settles in.
+ * Spiral-bound flip calendar that cycles the roles continuously. The top page lifts on its
+ * ring hinge, darkens as it turns away and flips up over the rings; the page underneath
+ * settles in. It waits while the tab is hidden and does not run under reduced motion.
  *
- * No visible pause button (Mahesh's choice). WCAG 2.2.2 still needs a way to stop moving
- * content, so: hover pauses it, a click or tap on the card pauses/resumes it, it stops by
- * itself after three rounds, it never runs while the tab is hidden, and under reduced motion
- * it does not run at all. Screen readers get the whole list once, as text, in the heading.
+ * Known exception (Mahesh's choice, 2026-11-10): there is no pause control, so this does not
+ * meet WCAG 2.2.2 (Pause, Stop, Hide). Hover/click pauses and a three-round stop were tried
+ * and read as "broken", so they were removed. Revisit before launch (PLAN §8).
+ * Screen readers get the whole list once, as text, in the heading.
  */
 export function FlipCalendar({ roles }: { roles: readonly string[] }) {
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState<number | null>(null);
   const [flips, setFlips] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [tick, setTick] = useState(0); // re-arms the timer while the tab is hidden
 
-  const finished = flips >= roles.length * ROUNDS;
-
   useEffect(() => {
-    if (paused || hovered || finished || roles.length < 2) return;
+    if (roles.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setTimeout(() => {
       if (document.hidden) return setTick((t) => t + 1);
@@ -35,7 +31,7 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
       setFlips((f) => f + 1);
     }, HOLD_MS);
     return () => window.clearTimeout(timer);
-  }, [index, paused, hovered, finished, roles.length, tick]);
+  }, [index, roles.length, tick]);
 
   useEffect(() => {
     if (leaving === null) return;
@@ -46,13 +42,7 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
   const counter = `${String(index + 1).padStart(2, "0")} / ${String(roles.length).padStart(2, "0")}`;
 
   return (
-    <div
-      aria-hidden="true"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onClick={() => (finished ? setFlips(0) : setPaused((p) => !p))}
-      className="calendar relative w-full max-w-[30rem] cursor-pointer"
-    >
+    <div aria-hidden="true" className="calendar relative w-full max-w-[30rem]">
       {/* Rings */}
       <div className="absolute inset-x-6 -top-3 z-30 flex justify-between">
         {Array.from({ length: 11 }, (_, i) => (

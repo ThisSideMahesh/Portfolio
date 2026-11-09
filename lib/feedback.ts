@@ -4,6 +4,8 @@
  */
 export type FeedbackComment = {
   id: string;
+  /** Permanent number shown on the marker (1, 2, 3 …), unique across the whole site, never reused. */
+  number: number;
   page: string; // pathname, e.g. "/" or "/tech"
   comment: string;
   status: "open" | "resolved";
@@ -20,4 +22,7 @@ export type FeedbackComment = {
   theme: string;
 };
 
-export type NewFeedbackComment = Omit<FeedbackComment, "id" | "status" | "createdAt">;
+export type NewFeedbackComment = Omit<FeedbackComment, "id" | "number" | "status" | "createdAt">;
+
+/** On-disk shape of .feedback/comments.json. */
+export type FeedbackStore = { nextNumber: number; comments: FeedbackComment[] };

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import type { FeedbackComment, NewFeedbackComment } from "@/lib/feedback";
+import type { FeedbackComment, FeedbackStore, NewFeedbackComment } from "@/lib/feedback";
 
 /**
  * On-site review tool (development only; layout.tsx renders it only when NODE_ENV is
@@ -77,6 +77,7 @@ function place(c: FeedbackComment): Placed {
 export function FeedbackLayer() {
   const page = usePathname();
   const [comments, setComments] = useState<FeedbackComment[]>([]);
+  const [nextNumber, setNextNumber] = useState(1);
   const [placing, setPlacing] = useState(false);
   const [hover, setHover] = useState<DOMRect | null>(null);
   const [draft, setDraft] = useState<Draft | null>(null);
@@ -97,9 +98,11 @@ export function FeedbackLayer() {
   useEffect(() => {
     let alive = true;
     fetch(`/api/feedback?page=${encodeURIComponent(page)}`)
-      .then((res) => (res.ok ? (res.json() as Promise<FeedbackComment[]>) : []))
+      .then((res) => (res.ok ? (res.json() as Promise<FeedbackStore>) : null))
       .then((data) => {
-        if (alive) setComments(data);
+        if (!alive || !data) return;
+        setComments(data.comments);
+        setNextNumber(data.nextNumber);
       })
       .catch(() => undefined);
     return () => {
@@ -212,19 +215,22 @@ export function FeedbackLayer() {
     <div {...{ [LAYER]: "" }} className="feedback-layer">
       {/* Markers, positioned in document coordinates */}
       <div className="pointer-events-none absolute top-0 left-0 z-[96]">
-        {placed.map(({ comment, left, top }, i) => (
+        {placed.map(({ comment, left, top }) => (
           <div key={comment.id} className="pointer-events-auto absolute" style={{ left, top }}>
             <button
               type="button"
               onClick={() => setOpenId(openId === comment.id ? null : comment.id)}
-              aria-label={`Comment ${i + 1}: ${comment.comment}`}
+              aria-label={`Comment ${comment.number}: ${comment.comment}`}
               className="fb-pin"
             >
-              {i + 1}
+              {comment.number}
             </button>
             {openId === comment.id ? (
               <div className="fb-card mt-2 w-72">
-                <p className="text-xs opacity-70">{comment.section}</p>
+                <p className="text-xs opacity-70">
+                  <span className="mr-1.5 font-semibold text-[#ff7a1a] opacity-100">#{comment.number}</span>
+                  {comment.section}
+                </p>
                 <p className="mt-2 text-sm whitespace-pre-wrap">{comment.comment}</p>
                 <div className="mt-3 flex gap-2">
                   <button type="button" className="fb-btn fb-btn-solid" onClick={() => resolve(comment.id)}>
@@ -241,9 +247,10 @@ export function FeedbackLayer() {
 
         {draft ? (
           <div className="pointer-events-auto absolute" style={{ left: draft.x, top: draft.y }}>
-            <span className="fb-pin fb-pin-new">{placed.length + 1}</span>
+            <span className="fb-pin fb-pin-new">{nextNumber}</span>
             <div className="fb-card mt-2 w-80">
               <label htmlFor="fb-text" className="text-xs opacity-70">
+                <span className="mr-1.5 font-semibold text-[#ff7a1a]">#{nextNumber}</span>
                 What should change here? <span className="opacity-70">({draft.section})</span>
               </label>
               <textarea

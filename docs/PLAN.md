@@ -100,5 +100,6 @@ Commit only after the gate passes, with a conventional message.
 | 5 | Style | Closed: Minimalist Professional |
 | 6 | TLD for thissidemahesh | Open, needed in Phase 2 |
 | 7 | Door photo licence | Closed 2026-11-10: the doors are now drawn in code (components/home/panel-door.tsx); no door photo ships with the site |
+| 8 | Calendar has no pause control | **Open, decide before launch.** Mahesh removed the pause button, and hover/click pauses read as "broken", so the calendar cycles continuously. That fails WCAG 2.2.2 (Pause, Stop, Hide) and the AA quality gate. It still waits while the tab is hidden and does not run under reduced motion. Fix options: a small pause icon, or stop after the first full round |
 
 Standing instruction from Mahesh: if any of his choices causes a problem (accessibility, speed, consistency, legal), change it to the better option and tell him why. Don't keep a weak decision just because he made it.

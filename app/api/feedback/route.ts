@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { NextResponse, type NextRequest } from "next/server";
-import type { FeedbackComment, NewFeedbackComment } from "@/lib/feedback";
+import type { FeedbackComment, FeedbackStore, NewFeedbackComment } from "@/lib/feedback";
 
 /**
  * Development-only store for on-site review comments. In production every method returns
@@ -15,17 +15,26 @@ function notInDev() {
   return process.env.NODE_ENV !== "development" ? new NextResponse(null, { status: 404 }) : null;
 }
 
-async function readAll(): Promise<FeedbackComment[]> {
+/** Reads the store; upgrades the earlier plain-array format and numbers any unnumbered comment. */
+async function readStore(): Promise<FeedbackStore> {
+  let raw: unknown = [];
   try {
-    return JSON.parse(await fs.readFile(FILE, "utf8")) as FeedbackComment[];
+    raw = JSON.parse(await fs.readFile(FILE, "utf8"));
   } catch {
-    return [];
+    // No file yet.
   }
+  const store: FeedbackStore = Array.isArray(raw)
+    ? { nextNumber: 1, comments: raw as FeedbackComment[] }
+    : (raw as FeedbackStore);
+  let next = Math.max(store.nextNumber ?? 1, ...store.comments.map((c) => (c.number ?? 0) + 1));
+  for (const c of store.comments) if (!c.number) c.number = next++;
+  store.nextNumber = next;
+  return store;
 }
 
-async function writeAll(comments: FeedbackComment[]) {
+async function writeStore(store: FeedbackStore) {
   await fs.mkdir(path.dirname(FILE), { recursive: true });
-  await fs.writeFile(FILE, `${JSON.stringify(comments, null, 2)}\n`, "utf8");
+  await fs.writeFile(FILE, `${JSON.stringify(store, null, 2)}\n`, "utf8");
 }
 
 const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
@@ -60,8 +69,11 @@ export async function GET(request: NextRequest) {
   const blocked = notInDev();
   if (blocked) return blocked;
   const page = request.nextUrl.searchParams.get("page");
-  const all = await readAll();
-  return NextResponse.json(page ? all.filter((c) => c.page === page) : all);
+  const store = await readStore();
+  return NextResponse.json({
+    nextNumber: store.nextNumber,
+    comments: page ? store.comments.filter((c) => c.page === page) : store.comments,
+  });
 }
 
 export async function POST(request: NextRequest) {
@@ -69,10 +81,17 @@ export async function POST(request: NextRequest) {
   if (blocked) return blocked;
   const input = parseNew(await request.json().catch(() => null));
   if (!input) return NextResponse.json({ error: "Write a comment first." }, { status: 400 });
-  const comment: FeedbackComment = { ...input, id: randomUUID(), status: "open", createdAt: new Date().toISOString() };
-  const all = await readAll();
-  all.push(comment);
-  await writeAll(all);
+  const store = await readStore();
+  const comment: FeedbackComment = {
+    ...input,
+    id: randomUUID(),
+    number: store.nextNumber,
+    status: "open",
+    createdAt: new Date().toISOString(),
+  };
+  store.comments.push(comment);
+  store.nextNumber += 1; // never reused, even if this comment is later deleted
+  await writeStore(store);
   return NextResponse.json(comment, { status: 201 });
 }
 
@@ -80,12 +99,12 @@ export async function PATCH(request: NextRequest) {
   const blocked = notInDev();
   if (blocked) return blocked;
   const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
-  const all = await readAll();
-  const target = all.find((c) => c.id === body.id);
+  const store = await readStore();
+  const target = store.comments.find((c) => c.id === body.id);
   if (!target) return NextResponse.json({ error: "Comment not found." }, { status: 404 });
   if (body.status === "open" || body.status === "resolved") target.status = body.status;
   if (typeof body.comment === "string" && body.comment.trim()) target.comment = body.comment.trim().slice(0, MAX_COMMENT);
-  await writeAll(all);
+  await writeStore(store);
   return NextResponse.json(target);
 }
 
@@ -93,9 +112,10 @@ export async function DELETE(request: NextRequest) {
   const blocked = notInDev();
   if (blocked) return blocked;
   const id = request.nextUrl.searchParams.get("id");
-  const all = await readAll();
-  const next = all.filter((c) => c.id !== id);
-  if (next.length === all.length) return NextResponse.json({ error: "Comment not found." }, { status: 404 });
-  await writeAll(next);
+  const store = await readStore();
+  const before = store.comments.length;
+  store.comments = store.comments.filter((c) => c.id !== id);
+  if (store.comments.length === before) return NextResponse.json({ error: "Comment not found." }, { status: 404 });
+  await writeStore(store);
   return new NextResponse(null, { status: 204 });
 }
