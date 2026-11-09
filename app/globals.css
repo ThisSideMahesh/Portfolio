@@ -64,6 +64,16 @@
   --danger: #ff8a80;
 }
 
+/* Motion tokens (improve-animations / Emil Kowalski): one set of curves and durations site-wide. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); /* entering / exiting */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); /* moving on screen */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* playful overshoot: rope, pills */
+  --dur-fast: 160ms; /* press feedback, colour */
+  --dur-ui: 260ms; /* hover, small UI */
+  --dur-scene: 700ms; /* deliberate scene motion: doors, flips */
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -160,12 +170,12 @@
     padding: 0.375rem 0.375rem 0.375rem 1.25rem;
     font-weight: 500;
     transition:
-      transform 150ms ease,
-      background-color 150ms ease,
-      color 150ms ease;
+      transform var(--dur-fast) var(--ease-out),
+      background-color var(--dur-ui) ease,
+      color var(--dur-ui) ease;
   }
   .pill:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
   .pill-solid {
     background: var(--ink);
@@ -175,8 +185,13 @@
     padding-right: 1.25rem;
     border: 1px solid var(--line);
   }
-  .pill-ghost:hover {
-    background: var(--surface);
+  @media (hover: hover) and (pointer: fine) {
+    .pill-ghost:hover {
+      background: var(--surface);
+    }
+    .pill:hover .pill-arrow {
+      transform: translateX(3px);
+    }
   }
   .pill-arrow {
     display: inline-flex;
@@ -187,20 +202,22 @@
     border-radius: 9999px;
     background: var(--accent);
     color: var(--on-accent);
-    transition: transform 200ms ease;
+    transition: transform var(--dur-ui) var(--ease-out);
   }
-  .pill:hover .pill-arrow {
-    transform: translateX(2px);
-  }
+}
 
-  .caret {
-    display: inline-block;
-    width: 2px;
-    height: 0.9em;
-    margin-left: 2px;
-    vertical-align: -0.08em;
-    background: var(--accent);
-    animation: blink 1s steps(1) infinite;
+/* Hero entrance: a short staggered rise, held while the opening animation is on screen. */
+.rise {
+  animation: rise 800ms var(--ease-out) both;
+  animation-delay: calc(var(--d, 0) * 70ms + 80ms);
+}
+html.is-loading .rise {
+  animation-play-state: paused;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
   }
 }
 
@@ -265,47 +282,104 @@
 }
 .calendar-flip {
   transform-origin: top center;
-  animation: calendar-flip 650ms cubic-bezier(0.55, 0.05, 0.35, 1) forwards;
+  will-change: transform, opacity;
+  animation: calendar-flip 760ms var(--ease-in-out) forwards;
+}
+/* The turning page darkens as it tilts away from the light. */
+.calendar-flip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0), rgb(0 0 0 / 0.22));
+  opacity: 0;
+  animation: calendar-shade 760ms var(--ease-in-out) forwards;
 }
 @keyframes calendar-flip {
   0% {
     transform: rotateX(0deg);
   }
-  35% {
-    transform: rotateX(28deg);
-    box-shadow: 0 -10px 22px -10px rgb(0 0 0 / 0.25);
+  70% {
+    opacity: 1;
   }
   100% {
-    transform: rotateX(105deg);
+    transform: rotateX(100deg);
     opacity: 0;
   }
 }
+@keyframes calendar-shade {
+  to {
+    opacity: 1;
+  }
+}
+.calendar-settle {
+  animation: calendar-settle 520ms var(--ease-out) both;
+}
+@keyframes calendar-settle {
+  from {
+    transform: translateY(-3px) scale(0.985);
+  }
+}
 
-/* Pull-cord theme switch: the string stretches with --pull and springs back on release. */
-.pull-cord-string {
-  height: calc(13rem + var(--pull, 0px));
-  background: repeating-linear-gradient(to bottom, var(--muted) 0 3px, var(--line) 3px 5px);
-  transition: height 520ms cubic-bezier(0.34, 1.7, 0.5, 1);
+/* Rope lamp. --bulb-on is 1 in the light theme (lit) and 0 in the dark theme (off). */
+:root {
+  --bulb-on: 1;
 }
-.pull-cord[data-dragging] .pull-cord-string {
-  transition: none;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bulb-on: 0;
+  }
 }
-.pull-cord-bead {
+:root[data-theme="dark"] {
+  --bulb-on: 0;
+}
+.rope {
+  border-radius: 9999px;
   background:
-    radial-gradient(circle at 35% 30%, color-mix(in srgb, white 35%, transparent), transparent 45%),
-    var(--accent);
-  box-shadow: 0 6px 10px -4px color-mix(in srgb, var(--ink) 45%, transparent);
-  transform-origin: top center;
-  transition: transform 300ms ease;
+    repeating-linear-gradient(-55deg, #8a673b 0 2.5px, #b18a56 2.5px 6px, #d4b07c 6px 7.2px, #b18a56 7.2px 9px),
+    #b18a56;
+  box-shadow: inset -2px 0 2px rgb(0 0 0 / 0.25);
 }
-.pull-cord:hover .pull-cord-bead {
-  transform: rotate(4deg);
+.bulb-glass-off {
+  fill: color-mix(in srgb, var(--ink) 10%, transparent);
+  stroke: color-mix(in srgb, var(--ink) 35%, transparent);
+  stroke-width: 1;
+}
+.bulb-glass-on {
+  opacity: var(--bulb-on);
+  transition: opacity 500ms var(--ease-out);
+}
+.bulb-filament {
+  stroke: color-mix(in srgb, #7a6a55 calc(100% - var(--bulb-on) * 100%), #fff3c4);
+  transition: stroke 500ms var(--ease-out);
+}
+.bulb-halo {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 260px;
+  height: 260px;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgb(255 196 104 / 0.55), rgb(255 196 104 / 0.18) 45%, transparent);
+  opacity: var(--bulb-on);
+  scale: calc(0.6 + var(--bulb-on) * 0.4);
+  transition:
+    opacity 600ms var(--ease-out),
+    scale 600ms var(--ease-out);
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .lamp-pull:hover .bulb-halo {
+    scale: calc(0.6 + var(--bulb-on) * 0.45);
+  }
 }
 
 /* Theme switch cross-fade (View Transitions). */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 450ms;
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 /* Doors: the leaf hinges on its left edge over a dark doorway. */
@@ -314,20 +388,24 @@
 }
 .door-leaf {
   transform-origin: left center;
-  transition: transform 600ms cubic-bezier(0.55, 0.05, 0.25, 1);
+  transition: transform 520ms var(--ease-out);
 }
-.door:hover .door-leaf,
 .door:focus-visible .door-leaf {
   transform: rotateY(-12deg);
 }
-/* Hovering one door dims the others. */
-#doors ul:has(.door:hover) > li:not(:has(.door:hover)) {
-  opacity: 0.45;
+@media (hover: hover) and (pointer: fine) {
+  .door:hover .door-leaf {
+    transform: rotateY(-12deg);
+  }
+  /* Hovering one door dims the others. */
+  #doors ul:has(.door:hover) > li:not(:has(.door:hover)) {
+    opacity: 0.45;
+  }
 }
 #doors ul > li {
   transition:
-    opacity 300ms ease,
-    transform 500ms ease;
+    opacity var(--dur-ui) ease,
+    transform 500ms var(--ease-out);
 }
 
 /* Walk-through: the others fall away, the leaf swings wide, then we zoom into the doorway. */
@@ -342,11 +420,13 @@
 .door[data-opening] .door-frame {
   transform: scale(7);
   transform-origin: 50% 45%;
-  transition: transform 650ms cubic-bezier(0.7, 0, 0.84, 0) 380ms;
+  will-change: transform;
+  transition: transform 700ms var(--ease-in-out) 340ms;
 }
 .door[data-opening] .door-leaf {
   transform: rotateY(-86deg);
-  transition-duration: 450ms;
+  will-change: transform;
+  transition: transform 480ms var(--ease-in-out);
 }
 
 /* First-visit loader: shown only while <html> has .is-loading (set by the head script). */
@@ -364,8 +444,8 @@ html.is-loading .site-loader {
   background: var(--band);
   color: var(--band-ink);
   transition:
-    opacity 400ms ease,
-    transform 450ms cubic-bezier(0.7, 0, 0.3, 1);
+    opacity 450ms var(--ease-out),
+    transform 500ms var(--ease-out);
 }
 html.is-loading .site-loader[data-done] {
   opacity: 0;
@@ -391,8 +471,8 @@ html.is-loading .site-loader[data-done] {
   opacity: 0;
   transform: translateY(18px) scale(0.96);
   transition:
-    opacity 300ms ease,
-    transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity var(--dur-ui) var(--ease-out),
+    transform 480ms var(--ease-spring);
 }
 .loader-pill[data-in] {
   opacity: 1;
@@ -402,8 +482,8 @@ html.is-loading .site-loader[data-done] {
   opacity: 0;
   transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(1.1);
   transition:
-    opacity 600ms ease 150ms,
-    transform 750ms cubic-bezier(0.6, 0, 0.3, 1);
+    opacity 550ms var(--ease-out) 120ms,
+    transform 800ms var(--ease-in-out);
 }
 @media (min-width: 640px) {
   html.is-loading .site-loader {
@@ -411,19 +491,115 @@ html.is-loading .site-loader[data-done] {
   }
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
+
+/* Reduced motion: no movement, but colour and opacity changes still fade gently. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .calendar-settle,
+  .calendar-flip {
+    animation: none;
+  }
+  .door-leaf,
+  .door-frame,
+  .pill,
+  .pill-arrow,
+  .loader-pill {
+    transition-property: opacity, color, background-color;
+    transform: none !important;
+  }
+  /* The digit columns use transform to show the year: keep it, just jump instead of rolling. */
+  .story-digit {
+    transition: none;
+  }
+  #doors ul > li {
+    transform: none !important;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* Story year: each digit column slides to its value. */
+.story-digit {
+  transition: transform var(--dur-scene) var(--ease-in-out);
+}
+
+/* Development-only review tool (components/dev/feedback-layer.tsx). Fixed colours on purpose:
+   it must read clearly over every section in both themes. */
+.feedback-layer {
+  font-family: var(--font-sans);
+}
+.fb-pin {
+  display: grid;
+  width: 1.9rem;
+  height: 1.9rem;
+  place-items: center;
+  translate: -50% -50%;
+  border-radius: 9999px 9999px 9999px 2px;
+  background: #ff7a1a;
+  color: #171514;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 6px 16px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+}
+.fb-pin-new {
+  animation: fb-drop 260ms var(--ease-spring) both;
+}
+@keyframes fb-drop {
+  from {
+    transform: translateY(-10px) scale(0.9);
+    opacity: 0;
   }
+}
+.fb-card {
+  border-radius: 0.75rem;
+  background: #171514;
+  color: #ece7e1;
+  padding: 0.85rem;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
+}
+.fb-btn {
+  display: inline-flex;
+  min-height: 2.25rem;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgb(236 231 225 / 0.25);
+  padding: 0 0.9rem;
+  font-size: 0.8rem;
+}
+.fb-btn-solid {
+  border-color: transparent;
+  background: #ff7a1a;
+  color: #171514;
+  font-weight: 600;
+}
+.fb-toggle {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: #171514;
+  color: #ece7e1;
+  padding: 0 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.3);
+}
+.fb-toggle[aria-pressed="true"] {
+  background: #ff7a1a;
+  color: #171514;
+}
+.fb-count {
+  display: grid;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  place-items: center;
+  border-radius: 9999px;
+  background: #ff7a1a;
+  color: #171514;
+  font-size: 0.7rem;
 }

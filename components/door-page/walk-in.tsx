@@ -28,7 +28,7 @@ export function WalkIn() {
     overlay.style.opacity = "1";
     const raf = requestAnimationFrame(() =>
       requestAnimationFrame(() => {
-        overlay.style.transition = "opacity 700ms ease";
+        overlay.style.transition = "opacity 700ms var(--ease-out)";
         overlay.style.opacity = "0";
       }),
     );

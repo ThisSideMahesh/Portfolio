@@ -80,7 +80,7 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
       {/* The room goes dark as the visitor steps through. */}
       <span
         aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 z-[90] bg-band transition-opacity duration-300 ${
+        className={`pointer-events-none fixed inset-0 z-[90] bg-band transition-opacity duration-300 ease-[var(--ease-out)] ${
           opening ? "opacity-100 delay-[620ms]" : "opacity-0"
         }`}
       />

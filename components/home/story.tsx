@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { StoryYearMarker } from "@/components/home/story-year";
-import storyPhoto from "@/public/images/mahesh-story.jpg";
+import storyPhoto from "@/public/images/mahesh-story-cutout.png";
 import { story } from "@/lib/data";
 
 /** "My story" timeline: a sticky year on the left that follows the entries on the right. */
@@ -21,8 +21,8 @@ export function Story() {
           <Image
             src={storyPhoto}
             alt="Mahesh standing with his hands in his pockets, in a black hoodie and grey jeans."
-            sizes="(min-width: 768px) 22vw, 60vw"
-            className="mt-8 hidden aspect-[3/4] w-[min(100%,260px)] rounded-[1.25rem] object-cover md:block"
+            sizes="(min-width: 768px) 18vw, 60vw"
+            className="mt-6 hidden w-[min(100%,220px)] [mask-image:linear-gradient(to_bottom,black_80%,transparent)] md:block"
           />
         </div>
 

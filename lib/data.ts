@@ -111,6 +111,12 @@ export const story: readonly StoryYear[] = [
         when: "Jun 2025; Nov – Dec 2025",
         detail: "Diagnosed desktop, laptop, printer and network faults and installed Windows systems.",
       },
+      {
+        title: "Technical Coordinator, Kalavihangam 2K23",
+        place: "MIT Chhatrapati Sambhajinagar",
+        when: "24 – 28 Feb 2025",
+        detail: "Ran technical arrangements for an event with 1,000+ attendees.",
+      },
     ],
   },
   {
@@ -130,14 +136,8 @@ export const story: readonly StoryYear[] = [
       {
         title: "Started B.Tech, Computer Science and Engineering",
         place: "MIT Chhatrapati Sambhajinagar",
-        when: "2023",
+        when: "Aug 2023",
         detail: "Class of 2027.",
-      },
-      {
-        title: "Technical Coordinator, Kalavihangam 2K23",
-        place: "MIT Chhatrapati Sambhajinagar",
-        when: "2023",
-        detail: "Ran technical arrangements for an event with 1,000+ attendees.",
       },
     ],
   },

@@ -168,7 +168,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       {
         kicker: "Events",
         title: "Kalavihangam 2K23 and first-year induction",
-        when: "MIT CSN · 2023 – 2024",
+        when: "MIT CSN · 24 – 28 Feb 2025; induction 2023 – 2024",
         summary: "Technical coordination and onboarding at scale.",
         points: [
           "Technical Coordinator for an event with 1,000+ attendees",

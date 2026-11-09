@@ -3,31 +3,39 @@
 import { useEffect, useState } from "react";
 
 const HOLD_MS = 2600;
-const FLIP_MS = 650;
+const FLIP_MS = 760;
+const ROUNDS = 3; // stops on the first role after three full rounds
 
 /**
- * Spiral-bound flip calendar that cycles the roles. The top page lifts on its ring hinge and
- * flips up and over to reveal the next one. Pauses on hover/focus, while the tab is hidden,
- * and via the pause button (WCAG 2.2.2). Under reduced motion it stays still on the first role.
- * Screen readers get the whole list once, as text, in the parent heading.
+ * Spiral-bound flip calendar that cycles the roles. The top page lifts on its ring hinge,
+ * darkens as it turns away and flips up over the rings; the page underneath settles in.
+ *
+ * No visible pause button (Mahesh's choice). WCAG 2.2.2 still needs a way to stop moving
+ * content, so: hover pauses it, a click or tap on the card pauses/resumes it, it stops by
+ * itself after three rounds, it never runs while the tab is hidden, and under reduced motion
+ * it does not run at all. Screen readers get the whole list once, as text, in the heading.
  */
 export function FlipCalendar({ roles }: { roles: readonly string[] }) {
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState<number | null>(null);
+  const [flips, setFlips] = useState(0);
   const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [tick, setTick] = useState(0); // re-arms the timer while the tab is hidden
 
+  const finished = flips >= roles.length * ROUNDS;
+
   useEffect(() => {
-    if (paused || hovered || roles.length < 2) return;
+    if (paused || hovered || finished || roles.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setTimeout(() => {
       if (document.hidden) return setTick((t) => t + 1);
       setLeaving(index);
       setIndex((i) => (i + 1) % roles.length);
+      setFlips((f) => f + 1);
     }, HOLD_MS);
     return () => window.clearTimeout(timer);
-  }, [index, paused, hovered, roles.length, tick]);
+  }, [index, paused, hovered, finished, roles.length, tick]);
 
   useEffect(() => {
     if (leaving === null) return;
@@ -39,46 +47,35 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
 
   return (
     <div
-      className="flex items-end gap-3"
+      aria-hidden="true"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={() => (finished ? setFlips(0) : setPaused((p) => !p))}
+      className="calendar relative w-full max-w-[30rem] cursor-pointer"
     >
-      <div aria-hidden="true" className="calendar relative min-w-0 flex-1 md:max-w-[30rem]">
-        {/* Rings */}
-        <div className="absolute -top-3 inset-x-6 z-30 flex justify-between">
-          {Array.from({ length: 11 }, (_, i) => (
-            <span key={i} className="calendar-ring" />
-          ))}
-        </div>
-        {/* Offset backing card and the stacked page edges under it */}
-        <span className="absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-[0.9rem] bg-ink" />
-        <span className="absolute inset-x-1 -bottom-1.5 h-full rounded-[0.9rem] border border-line bg-[var(--paper-edge)]" />
-        <span className="absolute inset-x-0.5 -bottom-0.75 h-full rounded-[0.9rem] border border-line bg-[var(--paper-edge)]" />
+      {/* Rings */}
+      <div className="absolute inset-x-6 -top-3 z-30 flex justify-between">
+        {Array.from({ length: 11 }, (_, i) => (
+          <span key={i} className="calendar-ring" />
+        ))}
+      </div>
+      {/* Offset backing card and the stacked page edges under it */}
+      <span className="absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-[0.9rem] bg-ink" />
+      <span className="absolute inset-x-1 -bottom-1.5 h-full rounded-[0.9rem] border border-line bg-[var(--paper-edge)]" />
+      <span className="absolute inset-x-0.5 -bottom-0.75 h-full rounded-[0.9rem] border border-line bg-[var(--paper-edge)]" />
 
-        {/* Current page */}
-        <div className="calendar-page relative z-10">
-          <span className="calendar-word">{roles[index]}</span>
-          <span className="calendar-counter">{counter}</span>
-        </div>
-
-        {/* The page that is flipping away */}
-        {leaving !== null ? (
-          <div key={leaving} className="calendar-page calendar-flip absolute inset-0 z-20">
-            <span className="calendar-word">{roles[leaving]}</span>
-          </div>
-        ) : null}
+      {/* Current page: settles in as the page above lifts away */}
+      <div key={`page-${index}`} className={`calendar-page relative z-10 ${flips > 0 ? "calendar-settle" : ""}`}>
+        <span className="calendar-word">{roles[index]}</span>
+        <span className="calendar-counter">{counter}</span>
       </div>
 
-      <button
-        type="button"
-        onClick={() => setPaused((p) => !p)}
-        aria-label={paused ? "Play role animation" : "Pause role animation"}
-        className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:text-ink"
-      >
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true">
-          {paused ? <path d="M4 2.5v11l9-5.5z" /> : <path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z" />}
-        </svg>
-      </button>
+      {/* The page that is flipping away */}
+      {leaving !== null ? (
+        <div key={`leaving-${flips}`} className="calendar-page calendar-flip absolute inset-0 z-20">
+          <span className="calendar-word">{roles[leaving]}</span>
+        </div>
+      ) : null}
     </div>
   );
 }

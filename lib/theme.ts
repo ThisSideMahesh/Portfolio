@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { THEME_STORAGE_KEY } from "@/components/theme/theme-script";
 
-/** Shared theme store for the header toggle and the pull-cord, so both always agree. */
+/** Shared theme store for the header toggle and the rope lamp, so both always agree. */
 export type Theme = "light" | "dark";
 
 const darkQuery = "(prefers-color-scheme: dark)";
@@ -35,15 +35,31 @@ function apply(next: Theme) {
   listeners.forEach((notify) => notify());
 }
 
-/** Switches theme with a cross-fade (View Transitions) where supported and motion is allowed. */
-export function toggleTheme() {
+/**
+ * Switches theme. Where View Transitions are supported and motion is allowed, the new theme
+ * spreads as a circle from `origin` (the lamp's bulb, or the button that was pressed).
+ */
+export function toggleTheme(origin?: { x: number; y: number }) {
   const next: Theme = resolvedTheme() === "dark" ? "light" : "dark";
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!reduced && "startViewTransition" in document) {
-    document.startViewTransition(() => apply(next));
-  } else {
+  if (reduced || !("startViewTransition" in document)) {
     apply(next);
+    return;
   }
+  const x = origin?.x ?? window.innerWidth / 2;
+  const y = origin?.y ?? 0;
+  const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+  const transition = document.startViewTransition(() => apply(next));
+  transition.ready
+    .then(() => {
+      document.documentElement.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 650, easing: "cubic-bezier(0.77, 0, 0.175, 1)", pseudoElement: "::view-transition-new(root)" }, // = --ease-in-out
+      );
+    })
+    .catch(() => {
+      // A skipped transition still applied the theme.
+    });
 }
 
 /** Current theme on the client; null during server render and hydration. */

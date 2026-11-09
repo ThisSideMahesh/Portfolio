@@ -13,7 +13,8 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "photo": "node scripts/process-photo.mjs",
-    "cutout": "swift scripts/cutout.swift content/source/photo.jpg content/source/photo-cutout.png"
+    "cutout": "swift scripts/cutout.swift content/source/photo.jpg content/source/photo-cutout.png",
+    "feedback": "node scripts/feedback.mjs"
   },
   "packageManager": "pnpm@12.16.1",
   "dependencies": {

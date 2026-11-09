@@ -40,6 +40,14 @@ Mahesh asked for the same style as https://therishithakor.com/home, with orange 
 | Door walk-through with zoom into the doorway | Others dim on hover and drop away on click; leaf swings to 86°; frame zooms ×7 into the doorway; black; next page fades in from black (`walk-in.tsx`, layout effect so no flash) |
 | Cut-out portrait | Apple Vision foreground mask, on-device; B&W cut-out with colour reveal on hover; soft ground glow so the black hoodie never melts into dark mode |
 
+### Third pass (2026-11-10)
+
+- **Rope lamp** replaces the pull-cord (`components/theme/rope-lamp.tsx`): black ceiling cap, twisted jute rope with a knot, bronze socket, Edison bulb. Lit in the light theme, off in the dark theme (CSS `--bulb-on`, correct before JS). Pull (rubber-band drag) or click/Enter to switch; rope springs back, lamp swings; the new theme spreads as a circle from the bulb (View Transitions). Hero only, tablet and up; the header button works on every size.
+- **Story photo** is now a background-free cut-out too.
+- **Calendar** has no visible pause button (Mahesh's choice). WCAG 2.2.2 is still met by: hover pauses, click/tap pauses and resumes, it stops after three rounds, never runs in a hidden tab, and never under reduced motion.
+- **Motion system** (improve-animations audit): three easing tokens (`--ease-out`, `--ease-in-out`, `--ease-spring`) and three durations (`--dur-fast` 160 ms, `--dur-ui` 260 ms, `--dur-scene` 700 ms) replace nine hand-typed curves; transform/opacity only (cord height and progress-bar width removed); hover motion gated to real pointers; no ease-in; reduced motion removes movement but keeps fades; hero rises with a 70 ms stagger after the opening.
+- **Review tool** (development only): `components/dev/feedback-layer.tsx` + `app/api/feedback` (404 in production). Comments are stored in `.feedback/comments.json` (git-ignored); `pnpm feedback` lists open ones.
+
 Hero copy now: "Hi, I'm Mahesh." / "I am a" / calendar. "Final-year B.Tech CSE" removed; the full name moved to the hero's bottom strip and the h1's screen-reader text.
 
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".

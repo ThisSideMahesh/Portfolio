@@ -35,8 +35,8 @@ export function StoryYearMarker({ years }: { years: readonly number[] }) {
           .map((digit, i) => (
             <span key={i} className="relative inline-block h-[1em] overflow-hidden">
               <span
-                className="flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]"
-                style={{ transform: `translateY(-${Number(digit)}em)`, transitionDelay: `${i * 60}ms` }}
+                className="story-digit flex flex-col"
+                style={{ transform: `translateY(-${Number(digit)}em)`, transitionDelay: `${i * 50}ms` }}
               >
                 {"0123456789".split("").map((n) => (
                   <span key={n} className="h-[1em]">
@@ -53,8 +53,8 @@ export function StoryYearMarker({ years }: { years: readonly number[] }) {
         </span>
         <span className="relative h-px w-28 bg-line">
           <span
-            className="absolute inset-y-0 left-0 bg-accent transition-[width] duration-500"
-            style={{ width: `${((position + 1) / years.length) * 100}%` }}
+            className="absolute inset-0 origin-left bg-accent transition-transform duration-500 ease-[var(--ease-out)]"
+            style={{ transform: `scaleX(${(position + 1) / years.length})` }}
           />
         </span>
       </div>

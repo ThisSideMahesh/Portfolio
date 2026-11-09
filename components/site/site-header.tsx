@@ -42,7 +42,7 @@ export function SiteHeader() {
             <span aria-hidden="true" className="h-3 w-px bg-line" />
             <LocalDate />
           </p>
-          <ThemeToggle className="lg:hidden" />
+          <ThemeToggle />
           <div className="lg:hidden">
             <MobileMenu links={links} />
           </div>

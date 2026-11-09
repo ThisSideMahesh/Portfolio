@@ -27,3 +27,6 @@ next-env.d.ts
 .pnp.*
 .pnpm-debug.log*
 
+
+# On-site review comments (development only)
+/.feedback/
