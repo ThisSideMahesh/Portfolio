@@ -19,3 +19,11 @@ next-env.d.ts
 # OS / editor
 .DS_Store
 *.log
+
+# Testing / misc (from the Next.js 16 template)
+/coverage
+*.pem
+.pnp
+.pnp.*
+.pnpm-debug.log*
+

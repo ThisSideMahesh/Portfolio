@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — docs/DESIGN.md §2 (O3 chalk and blackboard, 60/30/10).
+ * Components use only the semantic names below, never raw hex.
+ * Theme: system by default; data-theme="light"|"dark" on <html> overrides it.
+ */
+:root {
+  color-scheme: light;
+  --bg: #f2f3f0; /* 60 */
+  --surface: #dde3e1; /* 30 */
+  --line: #cfd6d4;
+  --ink: #1b2120;
+  --muted: #525c5a;
+  --accent: #c44d00; /* 10 */
+  --on-accent: #ffffff;
+  --accent-text: #a33f00;
+  --success: #1f6b3a;
+  --danger: #b42318;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121815;
+    --surface: #1c2521;
+    --line: #2a3530;
+    --ink: #e6ebe6;
+    --muted: #9aa7a1;
+    --accent: #ff7a1a;
+    --on-accent: #121815;
+    --accent-text: #ff8f3f;
+    --success: #6fcf8e;
+    --danger: #ff8a80;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121815;
+  --surface: #1c2521;
+  --line: #2a3530;
+  --ink: #e6ebe6;
+  --muted: #9aa7a1;
+  --accent: #ff7a1a;
+  --on-accent: #121815;
+  --accent-text: #ff8f3f;
+  --success: #6fcf8e;
+  --danger: #ff8a80;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+
+  --font-display: var(--font-anek), ui-sans-serif, system-ui, sans-serif;
+  --font-deva: var(--font-anek-deva), var(--font-anek), sans-serif;
+  --font-sans: var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-control: 6px;
+  --radius-card: 12px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  /* One focus style for every interactive element (DESIGN.md §9). */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

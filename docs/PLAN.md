@@ -9,8 +9,8 @@ Rule: one phase at a time. Plan → approval → build → verify → commit. No
 |---|---|---|
 | next | 16.4.5 | Latest stable; App Router, Turbopack, `next/image`, `next/font` |
 | react / react-dom | 19.3.1 | Required by Next 16 |
-| typescript | 6.0.3 | 7.x is the new native compiler; lint and type plugins may lag behind it |
-| tailwindcss + @tailwindcss/postcss | 4.3.5 | CSS-first `@theme` tokens |
+| typescript | 5.9.3 | Changed on day 1: the official Next 16.4.5 template pins `^5`, so 6.x/7.x are not yet the supported path |
+| tailwindcss + @tailwindcss/turbopack | 4.3.5 | CSS-first `@theme` tokens; the Turbopack loader is what the 16.4.5 template uses (no PostCSS) |
 | motion | 14.11.1 | `motion/react`; `MotionConfig reducedMotion="user"` |
 | @next/mdx, @mdx-js/react | 16.4.5, 3.1.1 | Local MDX content, no CMS |
 | zod | 4.6.7 | Frontmatter schema and form validation |
@@ -60,7 +60,7 @@ The private source folder is checked as well: `git ls-files content/source` must
 
 **Rate-limit note:** an in-memory limiter only protects one serverless instance. For the MVP that is acceptable with the honeypot and fill-time checks. Phase 2 can move it to Upstash Redis (free tier) if spam appears.
 
-**Security headers (in `next.config.ts`):** `X-Content-Type-Options: nosniff`; `X-Frame-Options: DENY` plus CSP `frame-ancestors 'none'`; `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` (production only); `Referrer-Policy: strict-origin-when-cross-origin`; `Permissions-Policy` that turns off camera, microphone and geolocation; a CSP with per-request nonces through `proxy.ts` (`script-src 'self' 'nonce-…' 'strict-dynamic'`, no `unsafe-eval`, `img-src 'self' data: blob:`, `connect-src 'self'`).
+**Security headers (in `next.config.ts`):** `X-Content-Type-Options: nosniff`; `X-Frame-Options: DENY` plus CSP `frame-ancestors 'none'`; `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` (production only); `Referrer-Policy: strict-origin-when-cross-origin`; `Permissions-Policy` that turns off camera, microphone and geolocation; a CSP with no `unsafe-eval`, `img-src 'self' data: blob:`, `connect-src 'self'`. **Decision to make on day 5:** per-request nonces force every page to render dynamically, which conflicts with the fully static pages Cache Components gives us today. The preferred option is a hash-based `script-src` (the theme script is byte-stable for this reason), checked against Next's current CSP guide in `node_modules/next/dist/docs`.
 
 ## 5. Phase 1
 
@@ -80,7 +80,7 @@ The private source folder is checked as well: `git ls-files content/source` must
 ## 7. Gate at the end of every phase
 
 ```
-pnpm typecheck        # tsc --noEmit
+pnpm typecheck        # next typegen && tsc --noEmit (typegen creates the global route types)
 pnpm lint             # eslint
 pnpm build            # check-content.mjs && next build
 pnpm lighthouse       # Lighthouse CLI, mobile preset, against `next start`
