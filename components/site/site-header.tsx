@@ -18,17 +18,17 @@ const links: readonly NavLink[] = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-bg/90 backdrop-blur-sm">
-      <div className="wrap flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="inline-flex min-h-11 items-center font-display text-lg font-semibold tracking-tight">
+      <div className="wrap flex h-[4.5rem] items-center justify-between gap-6">
+        <Link href="/" className="inline-flex min-h-11 items-center font-display text-xl font-bold tracking-tight">
           {site.username}
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="inline-flex min-h-11 items-center rounded-full px-3 text-sm text-muted transition-colors hover:bg-surface hover:text-ink"
+              className="inline-flex min-h-11 items-center rounded-full px-3.5 text-[0.95rem] font-medium text-muted transition-colors hover:bg-surface hover:text-ink"
             >
               {link.label}
             </Link>
@@ -36,7 +36,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1">
-          <p className="hidden items-center gap-3 rounded-full border border-line px-4 py-2 text-sm sm:inline-flex">
+          <p className="hidden items-center gap-3 rounded-full border border-line px-4 py-2 text-[0.95rem] font-medium sm:inline-flex">
             <span className="text-muted">Local time</span>
             <LocalTime />
             <span aria-hidden="true" className="h-3 w-px bg-line" />

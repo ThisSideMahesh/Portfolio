@@ -127,7 +127,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
   }
 
   p {
@@ -884,4 +884,40 @@ html.is-loading .site-loader[data-done] {
   box-shadow:
     0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent),
     0 0 18px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* Contact "Hire me" menu: scales in from the button's corner (ease-out, interruptible). */
+.hire-menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.75rem);
+  z-index: 20;
+  width: min(20rem, calc(100vw - 2rem));
+  border-radius: 1.1rem;
+  border: 1px solid var(--band-line);
+  background: color-mix(in srgb, var(--band-ink) 6%, var(--band));
+  padding: 0.6rem;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.35);
+  transform-origin: top left;
+  opacity: 0;
+  transform: scale(0.96) translateY(-4px);
+  visibility: hidden;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out),
+    visibility 0s linear 200ms;
+}
+.hire-menu[data-open] {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out),
+    visibility 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hire-menu {
+    transform: none;
+  }
 }

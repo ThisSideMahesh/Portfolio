@@ -69,6 +69,10 @@ The carved wooden photo door is replaced by a **modern panel door drawn in code*
 
 Hover: the handle turns 18°, the leaf eases 16° ajar on its right-hand hinges. Click: the handle turns, the leaf swings to 100°, the door zooms ×6.5 into the doorway, black, page fades in. Headline: "Open a door. / Behind it is my work." (Mahesh's wording, grammar tidied).
 
+### Review round 1 (Mahesh's on-site comments #1–#10, 2026-11-10)
+
+#1 hero strip: "Available for work from 10 December 2026" with an orange dot · #2 "Onsite-first" · #3 header taller (72 px), wordmark 20 px bold, nav 15 px medium, time pill medium · #4 story photo removed · #5 contact label "Available for internships" · #7 footer "Hire me for" · #8 "Digital footprint" (singular, the standard phrase) · #9 footer flower is the 🌸 emoji again (Mahesh's choice) · #10 the four contact pills became one "Hire me" button with a dropdown of the four prefilled-email options. The full name moved to a footer line ("© Mahesh Namdev Khandebharad") so it stays visible.
+
 Hero copy now: "Hi, I'm Mahesh." / "I am a" / calendar. "Final-year B.Tech CSE" removed; the full name moved to the hero's bottom strip and the h1's screen-reader text.
 
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".

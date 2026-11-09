@@ -3,8 +3,8 @@
  * Photo pipeline (docs/DESIGN.md §6): background removal (on-device, `pnpm cutout`), crop,
  * resize and global colour balance only. Face and body pixels are never edited.
  * Input:  content/source/photo.jpg and photo-cutout.png (private, git-ignored)
- * Output: public/images/mahesh-cutout.png (B&W), mahesh-cutout-colour.png (hover reveal) and
- *         mahesh-story-cutout.png (B&W full figure), all with transparent backgrounds
+ * Output: public/images/mahesh-cutout.png (B&W), mahesh-cutout-colour.png (hover reveal) (hover reveal),
+ *         both with transparent backgrounds
  * sharp drops EXIF/GPS by default (no .withMetadata()), and the script verifies it.
  * next/image then serves AVIF/WebP from these sources.
  */
@@ -38,18 +38,5 @@ for (const [file, colour] of [
   console.log(`${file}: ${meta.width}x${meta.height}, alpha=${meta.hasAlpha}, metadata stripped`);
 }
 
-// Story: the full-figure cut-out (no background), black and white.
-{
-  const file = "mahesh-story-cutout.png";
-  await sharp(CUTOUT)
-    .extract({ left: 160, top: 50, width: 840, height: 1398 })
-    .greyscale()
-    .toColourspace("srgb")
-    .png({ compressionLevel: 9 })
-    .toFile(`${OUT_DIR}/${file}`);
-  const meta = await sharp(`${OUT_DIR}/${file}`).metadata();
-  if (meta.exif || meta.xmp || meta.iptc) throw new Error(`${file}: metadata was not stripped`);
-  console.log(`${file}: ${meta.width}x${meta.height}, alpha=${meta.hasAlpha}, metadata stripped`);
-}
 
 console.log(`gains r=${gains[0].toFixed(3)} g=${gains[1].toFixed(3)} b=${gains[2].toFixed(3)}`);

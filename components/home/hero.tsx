@@ -56,9 +56,12 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hidden grid-cols-3 items-center border-t border-line py-1 text-xs text-muted md:grid">
-        <span>{site.name}</span>
-        <span className="text-center">B.Tech CSE, class of 2027, Jalna</span>
+      <div className="hidden grid-cols-3 items-center border-t border-line py-1 text-sm text-muted md:grid">
+        <span className="inline-flex items-center gap-2 font-medium text-ink">
+          <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
+          Available for work from 10 December 2026
+        </span>
+        <span className="text-center">Onsite-first</span>
         <a href="#doors" className="inline-flex min-h-11 items-center justify-self-end hover:text-ink">
           Scroll to explore
         </a>

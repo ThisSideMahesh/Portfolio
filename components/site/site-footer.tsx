@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { Flower } from "@/components/site/flower";
 import { site, socials } from "@/lib/site";
 
-/** Continues the dark contact band; the dedication line sits at the very bottom of every page. */
+/** Continues the dark contact band; the name and the dedication line sit at the very bottom of every page. */
 export function SiteFooter() {
   return (
     <footer className="mt-auto bg-band text-band-ink">
       <div className="wrap border-t border-band-line py-12">
         <div className="grid gap-10 sm:grid-cols-3">
           <div>
-            <h2 className="font-sans text-xs font-medium tracking-wide text-band-muted">Doors</h2>
+            <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Hire me for</h2>
             <ul className="mt-3 space-y-1">
               {(["tech", "teaching", "management"] as const).map((id) => (
                 <li key={id}>
@@ -21,7 +20,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h2 className="font-sans text-xs font-medium tracking-wide text-band-muted">Elsewhere</h2>
+            <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Digital footprint</h2>
             <ul className="mt-3 space-y-1">
               {socials.map((social) => (
                 <li key={social.href}>
@@ -34,22 +33,25 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h2 className="font-sans text-xs font-medium tracking-wide text-band-muted">Email</h2>
+            <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Email</h2>
             <a href={`mailto:${site.email}`} className="mt-3 inline-flex min-h-11 items-center underline underline-offset-4">
               {site.email}
             </a>
           </div>
         </div>
 
-        <p className="mt-12 flex items-center justify-center gap-2 border-t border-band-line pt-8 text-sm text-band-muted">
-          <span>
-            Powered by{" "}
-            <span lang="mr" className="font-deva">
-              श्री स्वामी समर्थ
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-band-line pt-8 text-sm text-band-muted sm:flex-row sm:justify-between">
+          <p>&copy; {site.name}</p>
+          <p className="flex items-center gap-2">
+            <span>
+              Powered by{" "}
+              <span lang="mr" className="font-deva">
+                श्री स्वामी समर्थ
+              </span>
             </span>
-          </span>
-          <Flower className="size-4 text-accent" />
-        </p>
+            <span aria-hidden="true">🌸</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
