@@ -48,6 +48,14 @@ Mahesh asked for the same style as https://therishithakor.com/home, with orange 
 - **Motion system** (improve-animations audit): three easing tokens (`--ease-out`, `--ease-in-out`, `--ease-spring`) and three durations (`--dur-fast` 160 ms, `--dur-ui` 260 ms, `--dur-scene` 700 ms) replace nine hand-typed curves; transform/opacity only (cord height and progress-bar width removed); hover motion gated to real pointers; no ease-in; reduced motion removes movement but keeps fades; hero rises with a 70 ms stagger after the opening.
 - **Review tool** (development only): `components/dev/feedback-layer.tsx` + `app/api/feedback` (404 in production). Comments are stored in `.feedback/comments.json` (git-ignored); `pnpm feedback` lists open ones.
 
+### Fourth pass (2026-11-10, from Mahesh's door and bulb recordings)
+
+- **Doors are a carved wooden double door** (photo supplied by Mahesh; licence check on PLAN §8 #7). `pnpm door` cuts the background on-device, shrinks the edge 1 px, and slices it into a hollow frame plus left and right leaves (`public/images/door-*.png`). Each leaf swings on its own outer hinge over a dark doorway; brass name plate on the lintel; Creator dimmed with a brass padlock on the latch and a small "locked" jiggle on hover.
+- **Hover (desktop)**: the other doors fade to 8 %, both leaves ease 14° ajar, "Click to enter" shows, and a panel with the door's name, tagline and three facts appears in the space the other doors left (right side for the first two doors, left for the last two). Phones show the tagline under each door.
+- **Click**: leaves swing to 104°, the door zooms ×6.5 into the doorway, the room goes black, the page fades in. Hover rules are disabled while opening (they used to out-rank the opening rule and hold the leaves at 14°). Measured on the production build: 60 fps, worst frame 18 ms, no long tasks.
+- **Lamp** is now fixed in the right margin on every section (≥1280 px, centred in the gutter so it never covers content). A click or tap plays the pull by itself: 34 px dip in 190 ms, theme switch at the bottom, spring back and swing.
+- **Story line**: a track, an orange fill that grows with scroll (scaleY) and a glowing pointer riding its end (translateY); entry dots fill in as the pointer passes. One passive scroll listener, one update per frame.
+
 Hero copy now: "Hi, I'm Mahesh." / "I am a" / calendar. "Final-year B.Tech CSE" removed; the full name moved to the hero's bottom strip and the h1's screen-reader text.
 
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".

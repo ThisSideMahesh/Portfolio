@@ -3,6 +3,7 @@ import { FeedbackLayer } from "@/components/dev/feedback-layer";
 import { Loader } from "@/components/site/loader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { RopeLamp } from "@/components/theme/rope-lamp";
 import { ThemeScript } from "@/components/theme/theme-script";
 import { anek, anekDeva, hind } from "@/lib/fonts";
 import { site, siteUrl } from "@/lib/site";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <SiteHeader />
+        <RopeLamp />
         <main id="main" className="flex-1">
           {children}
         </main>

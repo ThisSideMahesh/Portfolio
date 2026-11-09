@@ -14,7 +14,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "photo": "node scripts/process-photo.mjs",
     "cutout": "swift scripts/cutout.swift content/source/photo.jpg content/source/photo-cutout.png",
-    "feedback": "node scripts/feedback.mjs"
+    "feedback": "node scripts/feedback.mjs",
+    "door": "swift scripts/cutout.swift content/source/door.webp content/source/door-cutout.png && node scripts/process-door.mjs"
   },
   "packageManager": "pnpm@12.16.1",
   "dependencies": {

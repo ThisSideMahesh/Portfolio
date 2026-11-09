@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { StoryLine } from "@/components/home/story-line";
 import { StoryYearMarker } from "@/components/home/story-year";
 import storyPhoto from "@/public/images/mahesh-story-cutout.png";
 import { story } from "@/lib/data";
@@ -26,16 +27,18 @@ export function Story() {
           />
         </div>
 
-        <ol className="relative border-l border-line">
+        <div className="relative">
+          <StoryLine />
+          <ol>
           {story.map((year) => (
             <li key={year.year} data-story-year={year.year} className="pb-6">
-              <p className="mb-6 -ml-px border-l-2 border-accent pl-6 font-display text-xl font-semibold md:hidden">
+              <p className="mb-6 pl-6 font-display text-xl font-semibold md:hidden">
                 {year.year}
               </p>
               <ul className="space-y-10">
                 {year.entries.map((entry) => (
                   <li key={entry.title} className="relative pl-6 md:pl-10">
-                    <span aria-hidden="true" className="absolute top-2 -left-[5px] size-[9px] rounded-full bg-ink" />
+                    <span aria-hidden="true" data-story-dot className="story-dot absolute top-2 -left-[5px] size-[9px] rounded-full" />
                     <p className="text-sm text-muted">{entry.when}</p>
                     <h3 className="mt-1 text-[clamp(1.35rem,2.4vw,1.85rem)] leading-tight">{entry.title}</h3>
                     <p className="mt-1 text-muted">{entry.place}</p>
@@ -45,7 +48,8 @@ export function Story() {
               </ul>
             </li>
           ))}
-        </ol>
+          </ol>
+        </div>
       </div>
     </section>
   );

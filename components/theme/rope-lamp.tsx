@@ -6,11 +6,15 @@ import { toggleTheme, useTheme } from "@/lib/theme";
 const MAX_PULL = 70; // px, the most the rope stretches
 const TRIGGER = 22; // px of pull that switches the light
 
+const AUTO_PULL = 34; // px the lamp dips by itself on a click or tap
+
 /**
- * Hanging rope lamp (hero, tablet and up). Black ceiling cap, twisted jute rope with a knot,
+ * Hanging rope lamp, fixed in the right-hand margin so it hangs beside every section
+ * (desktop widths that have a margin wide enough; smaller screens use the header button). Black ceiling cap, twisted jute rope with a knot,
  * bronze socket and an Edison bulb. The bulb is lit in the light theme and off in the dark
  * theme (pure CSS from the theme tokens, so it is right before JavaScript runs). Pull the
- * bulb down, or click / press Enter, to switch; the rope springs back and the lamp swings.
+ * bulb down, or click / tap / press Enter: a click plays the pull by itself (dip, switch at the
+ * bottom, spring back). The rope springs back and the lamp swings.
  * Motion is transform-only; drag uses rubber-band resistance.
  */
 export function RopeLamp() {
@@ -22,11 +26,11 @@ export function RopeLamp() {
   const drag = useRef<{ startY: number; pull: number; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
 
-  function setPull(px: number, animate: boolean) {
+  function setPull(px: number, animate: boolean | string) {
     const lower = lowerRef.current;
     const upper = upperRef.current;
     if (!lower || !upper) return;
-    const transition = animate ? "transform 620ms var(--ease-spring)" : "none";
+    const transition = animate === false ? "none" : animate === true ? "transform 620ms var(--ease-spring)" : animate;
     lower.style.transition = transition;
     upper.style.transition = transition;
     lower.style.transform = `translateY(${px}px)`;
@@ -49,6 +53,19 @@ export function RopeLamp() {
   function flip() {
     toggleTheme(bulbCentre());
     swing();
+  }
+
+  /** Click / tap / keyboard: pull the lamp down by itself, switch at the bottom, spring back. */
+  function autoPull() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      toggleTheme(bulbCentre());
+      return;
+    }
+    setPull(AUTO_PULL, "transform 190ms var(--ease-out)");
+    window.setTimeout(() => {
+      flip();
+      setPull(0, true);
+    }, 200);
   }
 
   function onPointerDown(event: PointerEvent<HTMLButtonElement>) {
@@ -79,7 +96,11 @@ export function RopeLamp() {
   }
 
   return (
-    <div ref={swingRef} className="rope-lamp pointer-events-none absolute top-0 right-[4%] z-10 hidden origin-top md:block lg:right-[8%]">
+    <div
+      ref={swingRef}
+      className="rope-lamp pointer-events-none fixed top-0 z-50 hidden origin-top xl:block"
+      style={{ right: "max(4px, calc((100vw - 1200px) / 4 - 16px))" }}
+    >
       {/* Ceiling cap */}
       <svg viewBox="0 0 60 22" width="60" height="22" aria-hidden="true" className="mx-auto block">
         <rect x="4" y="0" width="52" height="12" rx="3" fill="#1b1a19" />
@@ -119,7 +140,7 @@ export function RopeLamp() {
               suppressClick.current = false;
               return;
             }
-            flip();
+            autoPull();
           }}
           className="lamp-pull pointer-events-auto relative mx-auto -mt-px flex w-16 touch-none cursor-grab flex-col items-center select-none active:cursor-grabbing"
         >

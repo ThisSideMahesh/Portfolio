@@ -1,9 +1,12 @@
 import { DoorCard } from "@/components/home/door-card";
+import { WoodDoor } from "@/components/home/wood-door";
 import { doors, type Door } from "@/lib/data";
 
 /**
- * The four-door wall (DESIGN.md §4). Doors are drawn in CSS: a recessed two-panel leaf on a
- * dark doorway, a name plate and a round knob. Phones get a horizontal scroll-snap row.
+ * The four-door wall. Each door is the carved wooden double door (WoodDoor). On desktop,
+ * hovering or focusing a door fades the others away and shows a panel in the space they
+ * leave: on the right for the first two doors, on the left for the last two. Phones get a
+ * horizontal scroll-snap row with the tagline under each door.
  */
 export function DoorWall() {
   return (
@@ -15,47 +18,52 @@ export function DoorWall() {
         </h2>
       </div>
 
-      <ul className="wrap mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible">
-        {doors.map((door) => (
-          <li key={door.id} className="w-[72vw] max-w-[300px] shrink-0 snap-start md:w-auto md:max-w-none">
-            {door.locked ? <LockedDoor door={door} /> : <DoorCard door={door} />}
-          </li>
+      <div className="door-stage wrap relative mt-14">
+        <ul className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
+          {doors.map((door, index) => (
+            <li key={door.id} data-door={door.id} className="w-[64vw] max-w-[280px] shrink-0 snap-start md:w-auto md:max-w-none">
+              {door.locked ? <LockedDoor door={door} /> : <DoorCard door={door} index={index} />}
+            </li>
+          ))}
+        </ul>
+
+        {/* Hover panels (desktop): decorative duplicates of the link text, hidden from screen readers. */}
+        {doors.map((door, index) => (
+          <div
+            key={door.id}
+            aria-hidden="true"
+            data-for={door.id}
+            className={`door-panel pointer-events-none absolute top-1/2 hidden w-[44%] -translate-y-1/2 md:block ${index < 2 ? "right-8" : "left-8"}`}
+          >
+            <p className="font-display text-[clamp(1.75rem,3vw,2.75rem)] leading-none font-semibold tracking-tight">{door.name}</p>
+            <p className="mt-3 max-w-[38ch] text-lg text-muted">{door.tagline}</p>
+            {door.locked ? (
+              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm">Locked, for now</p>
+            ) : (
+              <ul className="mt-5 space-y-2">
+                {door.behind.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
 
 function LockedDoor({ door }: { door: Extract<Door, { locked: true }> }) {
   return (
-    <div aria-disabled="true" className="cursor-default">
-      <div className="relative aspect-[3/5] rounded-t-[6px] border border-door-line bg-door/60 p-[11%]">
-        <div className="flex h-full flex-col gap-[9%]">
-          <div className="h-[40%] rounded-[3px] border border-door-line" />
-          <div className="flex-1 rounded-[3px] border border-door-line" />
-        </div>
-        <span className="absolute top-[7%] left-1/2 -translate-x-1/2 rounded-[3px] border border-line bg-bg px-3 py-1 text-xs font-medium tracking-wide">
-          {door.name}
-        </span>
-        <svg
-          viewBox="0 0 24 28"
-          aria-hidden="true"
-          className="absolute top-[52%] right-[9%] h-7 w-6 text-muted"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path d="M7 12V8a5 5 0 0 1 10 0v4" strokeLinecap="round" />
-          <rect x="3.5" y="12" width="17" height="13" rx="2" fill="currentColor" stroke="none" />
-          <circle cx="12" cy="18" r="1.6" fill="var(--bg)" stroke="none" />
-        </svg>
-        <span aria-hidden="true" className="absolute inset-x-[-6%] -bottom-px h-1 rounded-full bg-ink/80" />
-      </div>
-      <p className="mt-5 font-display text-2xl font-semibold tracking-tight">
-        {door.name}
-        <span className="ml-3 align-middle text-sm font-normal text-muted">Locked, for now</span>
+    <div aria-disabled="true" tabIndex={0} className="door locked group block cursor-not-allowed rounded-sm focus-visible:outline-offset-4">
+      <WoodDoor name={door.name} locked />
+      <span className="sr-only">: Locked, for now. {door.tagline}</span>
+      <p aria-hidden="true" className="mt-4 text-muted md:hidden">
+        Locked, for now. {door.tagline}
       </p>
-      <p className="mt-2 text-muted">{door.tagline}</p>
     </div>
   );
 }
