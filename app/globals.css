@@ -942,3 +942,22 @@ html.is-loading .site-loader[data-done] {
     animation: none;
   }
 }
+
+/* Door walk-through cover on the arriving page (components/door-page/walk-in.tsx).
+   Hidden unless .walk-in-active; then a CSS animation fades it out (no rAF dependency). */
+.walk-in-cover {
+  opacity: 0;
+  visibility: hidden;
+}
+.walk-in-cover.walk-in-active {
+  visibility: visible;
+  animation: walk-in-fade 650ms var(--ease-out) 60ms both;
+}
+@keyframes walk-in-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

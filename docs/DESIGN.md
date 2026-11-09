@@ -73,6 +73,10 @@ Hover: the handle turns 18°, the leaf eases 16° ajar on its right-hand hinges.
 
 #1 hero strip: "Available for work from 10 December 2026" with an orange dot · #2 "Onsite-first" · #3 header taller (72 px), wordmark 20 px bold, nav 15 px medium, time pill medium · #4 story photo removed · #5 contact label "Available for internships" · #7 footer "Hire me for" · #8 "Digital footprint" (singular, the standard phrase) · #9 footer flower is the 🌸 emoji again (Mahesh's choice) · #10 the four contact pills became one "Hire me" button with a dropdown of the four prefilled-email options. The full name moved to a footer line ("© Mahesh Namdev Khandebharad") so it stays visible.
 
+### Door walk-through, black-screen fix (2026-11-10)
+
+Reported: opening a door could leave a black screen. Cause: the arriving page's cover faded out on `requestAnimationFrame`, which browsers pause or delay when a window is unfocused or busy, so the cover could stay up indefinitely. Fix: the cover fades with a CSS animation (browser-timed) plus a 1.2 s safety timer; the cover now uses the page colour (`--bg`), so there is no black flash in the light theme; routes are prefetched on hover/focus; and if the page has not changed 3 s after navigating, the cover lifts and the browser loads the page directly. Verified with `requestAnimationFrame` disabled: cover gone 1.75 s after the click.
+
 Hero copy now: "Hi, I'm Mahesh." / "I am a" / calendar. "Final-year B.Tech CSE" removed; the full name moved to the hero's bottom strip and the h1's screen-reader text.
 
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".
