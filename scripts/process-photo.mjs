@@ -56,6 +56,13 @@ await exportCrop(
   0,
 );
 
+// A in colour (balanced), revealed when the visitor hovers the hero portrait.
+await exportCrop(
+  { left: Math.round((width - aWidth) / 2), top: Math.round(height * 0.03), width: aWidth, height: aHeight },
+  "mahesh-hero-colour.jpg",
+  1,
+);
+
 // B: full figure, 3:4 from the top.
 await exportCrop({ left: 0, top: 0, width, height: Math.min(Math.round((width * 4) / 3), height) }, "mahesh-story.jpg", 0);
 

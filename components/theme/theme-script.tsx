@@ -5,7 +5,13 @@
  */
 export const THEME_STORAGE_KEY = "theme";
 
-export const themeScript = `try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
+export const LOADER_SEEN_KEY = "loader-seen";
+
+/*
+ * Also decides, before paint, whether the first-visit loader shows (home page only, once per
+ * session, never under reduced motion). Without JavaScript nothing runs and no loader appears.
+ */
+export const themeScript = `(function(d){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t==="light"||t==="dark")d.dataset.theme=t}catch(e){}try{if(location.pathname==="/"&&!sessionStorage.getItem("${LOADER_SEEN_KEY}")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)d.classList.add("is-loading")}catch(e){}})(document.documentElement)`;
 
 export function ThemeScript() {
   return <script dangerouslySetInnerHTML={{ __html: themeScript }} />;

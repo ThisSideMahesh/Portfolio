@@ -15,6 +15,21 @@ Mahesh asked for the same style as https://therishithakor.com/home, with orange 
 | Sticky big year beside a vertical timeline | The pull-cord, the cut-out portrait, the coloured blur blobs |
 | A dark contact band that flows into the footer | |
 
+### Behaviours rebuilt from Mahesh's screen recording (2026-11-10, 3 min 46 s, 113 frames reviewed)
+
+| Behaviour in the recording | Our original version |
+|---|---|
+| Full-screen % loader | `components/site/loader.tsx`: band-coloured screen, counter bottom-left, 1 px orange bar; first visit to `/` only, decided before paint by the head script; ≤ 1.2 s; skipped under reduced motion |
+| B&W portrait turns colour on hover | Colour-balanced copy of the same crop cross-fades in (700 ms) |
+| Hero bottom strip | Class of 2027 · Jalna · "Scroll to explore" |
+| Door hover shows what is behind + "Click to enter" | Tagline swaps for 3 facts; leaf eases 12° ajar; knob turns orange |
+| Click opens the door and walks through | Leaf swings to 84°, frame scales 1.06, room goes dark, then route change (700 ms); modified clicks and reduced motion navigate instantly; door resets on return (Activity cleanup) |
+| Door page: huge title, stacking cards, "Back to the doors" | `/tech`, `/teaching`, `/management`: CSS-sticky cards offset 1.25 rem each; visuals drawn from facts (architecture stack, framework steps, big numbers, tags); fixed back pill |
+| Story year rolls digit by digit, "01 / 06" progress, warm glow | Per-digit 0–9 columns sliding (700 ms, 60 ms stagger), "01 / 04" with orange bar, 9% orange radial wash |
+| Nav: all sections + local time and date | Home, Tech, Teaching, Management, My story, Contact; IST time and date; full-screen phone menu portalled to `<body>` |
+| "Hire me" multi-step modal | Deferred to the MVP day 5 contact form |
+| Trading-card "ability card", pull-cord switch, illustrated arched doors, poster wall | Not rebuilt: that designer's signature artwork |
+
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".
 
 ## 1. Direction

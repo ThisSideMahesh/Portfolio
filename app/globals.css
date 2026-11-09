@@ -20,6 +20,8 @@
   --band-ink: #ece7e1;
   --band-muted: #8f877f;
   --band-line: #34302c;
+  --door: var(--surface);
+  --door-line: var(--line);
   --success: #1f6b3a;
   --danger: #b42318;
 }
@@ -37,6 +39,8 @@
     --accent-text: #ff8f3f;
     --band: #0f0e0d;
     --band-line: #2a2724;
+    --door: #312d2a;
+    --door-line: #4a443e;
     --success: #6fcf8e;
     --danger: #ff8a80;
   }
@@ -54,6 +58,8 @@
   --accent-text: #ff8f3f;
   --band: #0f0e0d;
   --band-line: #2a2724;
+  --door: #312d2a;
+  --door-line: #4a443e;
   --success: #6fcf8e;
   --danger: #ff8a80;
 }
@@ -71,6 +77,8 @@
   --color-band-ink: var(--band-ink);
   --color-band-muted: var(--band-muted);
   --color-band-line: var(--band-line);
+  --color-door: var(--door);
+  --color-door-line: var(--door-line);
   --color-success: var(--success);
   --color-danger: var(--danger);
 
@@ -193,6 +201,54 @@
     vertical-align: -0.08em;
     background: var(--accent);
     animation: blink 1s steps(1) infinite;
+  }
+}
+
+/* Doors: the leaf hinges on its left edge over a dark doorway. */
+.door-frame {
+  perspective: 1100px;
+}
+.door-leaf {
+  transform-origin: left center;
+  transition: transform 600ms cubic-bezier(0.55, 0.05, 0.25, 1);
+}
+.door:hover .door-leaf,
+.door:focus-visible .door-leaf {
+  transform: rotateY(-12deg);
+}
+.door[data-opening] .door-frame {
+  transform: scale(1.06);
+  transition: transform 700ms cubic-bezier(0.55, 0.05, 0.25, 1);
+}
+.door[data-opening] .door-leaf {
+  transform: rotateY(-84deg);
+}
+
+/* First-visit loader: shown only while <html> has .is-loading (set by the head script). */
+.site-loader {
+  display: none;
+}
+html.is-loading .site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1rem 2rem;
+  background: var(--band);
+  color: var(--band-ink);
+  transition:
+    opacity 400ms ease,
+    transform 450ms cubic-bezier(0.7, 0, 0.3, 1);
+}
+html.is-loading .site-loader[data-done] {
+  opacity: 0;
+  transform: translateY(-2%);
+}
+@media (min-width: 640px) {
+  html.is-loading .site-loader {
+    padding: 2rem 2rem 2.5rem;
   }
 }
 

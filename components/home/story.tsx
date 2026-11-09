@@ -6,7 +6,11 @@ import { story } from "@/lib/data";
 /** "My story" timeline: a sticky year on the left that follows the entries on the right. */
 export function Story() {
   return (
-    <section id="story" aria-labelledby="story-title" className="border-t border-line py-24 md:py-32">
+    <section
+      id="story"
+      aria-labelledby="story-title"
+      className="border-t border-line bg-[radial-gradient(60%_45%_at_0%_0%,color-mix(in_srgb,var(--accent)_9%,transparent),transparent)] py-24 md:py-32"
+    >
       <div className="wrap grid gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
         <div className="md:sticky md:top-24 md:self-start">
           <h2 id="story-title" className="text-[clamp(2.25rem,5vw,4rem)]">

@@ -4,14 +4,43 @@
  */
 import { taglines, type DoorId } from "@/lib/site";
 
-export type Door =
-  | { id: DoorId; name: string; tagline: string; href: `/${DoorId}`; locked: false }
-  | { id: "creator"; name: string; tagline: string; locked: true };
+export type OpenDoorData = {
+  id: DoorId;
+  name: string;
+  tagline: string;
+  href: `/${DoorId}`;
+  locked: false;
+  /** Shown on hover/focus: what is behind the door. */
+  behind: readonly string[];
+};
+
+export type Door = OpenDoorData | { id: "creator"; name: string; tagline: string; locked: true };
 
 export const doors: readonly Door[] = [
-  { id: "tech", name: "Tech", tagline: taglines.tech, href: "/tech", locked: false },
-  { id: "teaching", name: "Teaching", tagline: taglines.teaching, href: "/teaching", locked: false },
-  { id: "management", name: "Management", tagline: taglines.management, href: "/management", locked: false },
+  {
+    id: "tech",
+    name: "Tech",
+    tagline: taglines.tech,
+    href: "/tech",
+    locked: false,
+    behind: ["MediIndex: full-stack plus Android", "1st place, HackSphere 2025", "Linux, cloud and hardware repair"],
+  },
+  {
+    id: "teaching",
+    name: "Teaching",
+    tagline: taglines.teaching,
+    href: "/teaching",
+    locked: false,
+    behind: ["MS-CIT: 25+ students trained", "Engineering Toolkit workshop", "Hackathon Hacked session"],
+  },
+  {
+    id: "management",
+    name: "Management",
+    tagline: taglines.management,
+    href: "/management",
+    locked: false,
+    behind: ["95+ campus recruitment drives", "125+ admission leads, 5 centres", "25,000+ monthly reach"],
+  },
   {
     id: "creator",
     name: "Creator",

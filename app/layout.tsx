@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Loader } from "@/components/site/loader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { ThemeScript } from "@/components/theme/theme-script";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeScript />
       </head>
       <body className="flex min-h-dvh flex-col">
+        <Loader />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-[var(--radius-control)] focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
