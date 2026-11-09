@@ -1,13 +1,29 @@
 # DESIGN: thissidemahesh portfolio
 
 Status: approved direction · Last updated: 2026-11-10
-All decisions closed: style **Minimalist Professional**, palette **O3**, photo **A (hero) + B (story)**, Creator label **option 1**.
+Current: style **in the manner of therishithakor.com, built original** · palette **Warm stone and ink** (orange 10%) · photo **A (hero) + B (story), black and white** · Creator label **option 1**.
+
+## 0. Style reference (2026-11-10)
+
+Mahesh asked for the same style as https://therishithakor.com/home, with orange as the 10%. I studied it in the browser and took the **style**, not the work.
+
+| Taken (style) | Not taken (that designer's own work) |
+|---|---|
+| Warm greige ground, near-black ink, one bold sans voice, huge headings at weight 600 with tight tracking and a muted second line | Code, copy lines, images, exact colours and exact layout |
+| Dark pill button with a round arrow, a ghost pill beside it | The flip-calendar role card (we use the self-typing line from the original brief) |
+| Local time in the header, a small status line | The illustrated arched wooden doors with brass plates (we draw our own panel doors in CSS) |
+| Sticky big year beside a vertical timeline | The pull-cord, the cut-out portrait, the coloured blur blobs |
+| A dark contact band that flows into the footer | |
+
+**Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".
 
 ## 1. Direction
 
-**Minimalist Professional, in chalk, blackboard and signal orange.** Lots of whitespace, 1 px lines instead of shadows, one accent colour, type doing the work. Three tracks meet in one person: the classroom (chalk on a board), the workshop (orange is the colour of tools and safety tags) and the office (plain, ordered type). It should feel like a well-kept engineering department noticeboard: calm, exact and easy to scan in under a minute.
+**Warm stone and ink, with one orange.** Big, confident type on a calm warm ground; black-and-white photography so orange is the only colour on the page; generous space; pill buttons. It should read like a confident personal site rather than a template, and be scannable in under a minute.
 
 **The one memorable thing:** the four-door wall. Everything else stays quiet so the doors can carry the page.
+
+The minimalist rules below still apply, except where §0 replaces them: pill buttons and a larger radius (24 px) on photos are now part of the style.
 
 ### Minimalist rules adopted (from the `minimalist-ui` skill)
 - Large vertical spacing between sections (96–128 px on desktop, 64 px on phones); content width max 1120 px, text width max 68 characters.
@@ -32,7 +48,23 @@ O1 and O2 remain available below if Mahesh prefers them.
 
 Rule: 60% quiet ground, 30% supporting surface, 10% orange (buttons, links, focus, active door, key numbers). Text is neutral and not counted. Status colours sit outside the split.
 
-### Chosen: O3 Chalk and blackboard
+### Current: Warm stone and ink (from 2026-11-10)
+
+| Token | Role | Light | Dark | Measured contrast (light / dark) |
+|---|---|---|---|---|
+| `--bg` | 60: page ground | `#ebe7e1` | `#171514` | n/a |
+| `--surface` | 30: doors, cards, pills on hover | `#dfd9d1` | `#221f1d` | n/a |
+| `--line` | 1 px borders | `#cfc7bd` | `#34302c` | decorative |
+| `--ink` | text | `#1c1a19` | `#ece7e1` | 14.1 / 14.8 on bg; 12.4 / 13.3 on surface |
+| `--muted` | secondary text, second headline lines | `#5e5852` | `#a39a91` | 5.7 / 6.6 on bg; 5.0 / 5.9 on surface |
+| `--accent` | 10: arrow circles, caret, knobs on hover, status dot, focus | `#c44d00` | `#ff7a1a` | 3.9 / 7.0 vs bg (UI ≥ 3) |
+| `--on-accent` | arrow on the accent circle | `#ffffff` | `#171514` | 4.8 / 7.0 |
+| `--accent-text` | links in text | `#a33f00` | `#ff8f3f` | 5.2 / 8.0 on bg; 4.6 / 7.2 on surface |
+| `--band`, `--band-ink`, `--band-muted` | always-dark contact band and footer | `#1c1a19`, `#ece7e1`, `#8f877f` | `#0f0e0d`, same, same | ink 14.1 / 15.7; muted 4.9 / 5.5; orange on band 6.6 / 7.4 |
+
+All pairs pass WCAG AA in both themes.
+
+### Previous: O3 Chalk and blackboard (superseded 2026-11-10)
 
 | Token | Role | Light | Dark | Measured contrast |
 |---|---|---|---|---|
@@ -145,7 +177,9 @@ One orchestrated moment and responsive feedback. Nothing fades in on scroll.
 
 Reduced motion: `MotionConfig reducedMotion="user"`; the loader is skipped; the typing line shows the first tagline in full; doors don't move. Nothing is hidden waiting for an animation.
 
-## 6. Photo (decided: A in the hero, B in the story section)
+## 6. Photo (decided: A in the hero, B in the story section, both black and white)
+
+Update 2026-11-10: both exports are black and white (sharp `greyscale()`, a global adjustment; no face or background edits), so orange is the only colour on the page. The frames have a 24 px radius. `pnpm photo` regenerates them.
 
 Chosen after comparing real crops. A keeps the face large enough to read on a phone. B's full figure suits the slower story section. The colour balance is a 40% grey-world correction (blue ×1.15, red ×0.92) that removes the yellow lamp cast without shifting skin tone.
 
