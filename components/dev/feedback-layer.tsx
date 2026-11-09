@@ -227,10 +227,8 @@ export function FeedbackLayer() {
             </button>
             {openId === comment.id ? (
               <div className="fb-card mt-2 w-72">
-                <p className="text-xs opacity-70">
-                  <span className="mr-1.5 font-semibold text-[#ff7a1a] opacity-100">#{comment.number}</span>
-                  {comment.section}
-                </p>
+                <p className="fb-badge">Comment #{comment.number}</p>
+                <p className="mt-2 text-xs opacity-70">{comment.section}</p>
                 <p className="mt-2 text-sm whitespace-pre-wrap">{comment.comment}</p>
                 <div className="mt-3 flex gap-2">
                   <button type="button" className="fb-btn fb-btn-solid" onClick={() => resolve(comment.id)}>
@@ -249,8 +247,8 @@ export function FeedbackLayer() {
           <div className="pointer-events-auto absolute" style={{ left: draft.x, top: draft.y }}>
             <span className="fb-pin fb-pin-new">{nextNumber}</span>
             <div className="fb-card mt-2 w-80">
-              <label htmlFor="fb-text" className="text-xs opacity-70">
-                <span className="mr-1.5 font-semibold text-[#ff7a1a]">#{nextNumber}</span>
+              <p className="fb-badge">Comment #{nextNumber}</p>
+              <label htmlFor="fb-text" className="mt-2 block text-xs opacity-70">
                 What should change here? <span className="opacity-70">({draft.section})</span>
               </label>
               <textarea
@@ -298,7 +296,7 @@ export function FeedbackLayer() {
             />
           ) : null}
           <p className="fb-card pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 text-sm">
-            Click the spot you want changed. Esc to cancel.
+            Click the spot you want changed. This will be comment #{nextNumber}. Press Esc to cancel.
           </p>
         </div>
       ) : null}

@@ -36,7 +36,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       {
         kicker: "B.Tech major project",
         title: "MediIndex",
-        when: "Grew out of PharmaManage Pro, 1st place at Cogni-Sphere 2025 HackSphere",
+        when: "Grew out of PharmaManage Pro, which won 1st place at Cogni-Sphere 2025 HackSphere",
         summary:
           "A pharmacy platform for inventory, billing and expiry tracking, with an Android app that keeps working offline.",
         points: [
@@ -90,7 +90,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
         kicker: "Workshop speaker",
         title: "Engineering Toolkit: Skills Beyond the Syllabus",
         when: "AlumniOS CSE Cell, MIT CSN · Aug 2026",
-        summary: "Co-delivered an interactive workshop for second and third year engineering students.",
+        summary: "Co-delivered an interactive workshop for second- and third-year engineering students.",
         points: [
           "Covered Git and GitHub, projects, AI tools, internships, hackathons, resumes and portfolios",
           "Explained LLMs, prompting, hallucinations, context engineering and responsible AI",

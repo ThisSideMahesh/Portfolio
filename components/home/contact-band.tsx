@@ -16,7 +16,7 @@ export function ContactBand() {
           B.Tech CSE, class of 2027
         </p>
         <h2 id="contact-title" className="mt-6 text-[clamp(2.5rem,7.5vw,6.5rem)]">
-          <span className="block">Hiring for tech, teaching or management?</span>
+          <span className="block">Hiring for a tech, teaching or management role?</span>
           <span className="block text-band-muted">Let&rsquo;s talk.</span>
         </h2>
 

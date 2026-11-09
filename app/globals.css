@@ -776,15 +776,16 @@ html.is-loading .site-loader[data-done] {
 }
 .fb-pin {
   display: grid;
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 2.5rem;
+  height: 2.5rem;
   place-items: center;
   translate: -50% -50%;
-  border-radius: 9999px 9999px 9999px 2px;
+  border-radius: 9999px 9999px 9999px 3px;
   background: #ff7a1a;
   color: #171514;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
   box-shadow:
     0 0 0 3px #ffffff,
     0 6px 16px rgb(0 0 0 / 0.3);
@@ -798,6 +799,17 @@ html.is-loading .site-loader[data-done] {
     transform: translateY(-10px) scale(0.9);
     opacity: 0;
   }
+}
+/* "Comment #3" heading inside the comment box. */
+.fb-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background: #ff7a1a;
+  color: #171514;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 800;
 }
 .fb-card {
   border-radius: 0.75rem;

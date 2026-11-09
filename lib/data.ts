@@ -23,7 +23,7 @@ export const doors: readonly Door[] = [
     tagline: taglines.tech,
     href: "/tech",
     locked: false,
-    behind: ["MediIndex: full-stack plus Android", "1st place, HackSphere 2025", "Linux, cloud and hardware repair"],
+    behind: ["MediIndex: a full-stack web and Android app", "1st place, HackSphere 2025", "Linux administration, cloud and hardware repair"],
   },
   {
     id: "teaching",
@@ -97,7 +97,7 @@ export const story: readonly StoryYear[] = [
         title: "Social Media Manager Intern",
         place: "Athlete Meets Explorer, remote",
         when: "Aug 2025 – Nov 2026",
-        detail: "Ran LinkedIn, Instagram and YouTube content and reached 15,000+ engagements.",
+        detail: "Ran LinkedIn, Instagram and YouTube content and achieved 15,000+ engagements.",
       },
       {
         title: "AlumniOS Bridge Captain",

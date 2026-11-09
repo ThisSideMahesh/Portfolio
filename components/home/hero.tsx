@@ -27,7 +27,7 @@ export function Hero() {
           </div>
           <div style={{ "--d": 3 } as CSSProperties} className="rise mt-10 flex flex-wrap gap-3">
             <a href="#contact" className="pill pill-solid">
-              Work with me
+              Hire me
               <span className="pill-arrow" aria-hidden="true">
                 <Arrow />
               </span>

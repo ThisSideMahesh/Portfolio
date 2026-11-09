@@ -35,7 +35,7 @@ Mahesh asked for the same style as https://therishithakor.com/home, with orange 
 | Behaviour | Our original version |
 |---|---|
 | Opening: pills stack while the counter climbs, then scatter | `loader.tsx`: Mahesh's name + four door pills stack at 0/18/42/66/88 %, scatter in five directions at 100, warm orange glow; 1.4–2 s, first visit only |
-| Flip calendar of roles under "Hi, I'm … / I am a" | `flip-calendar.tsx`: spiral rings, paper page flips up over the rings (rotateX 105°, 650 ms), offset ink card, stacked edges, "01 / 04"; roles Full-Stack Developer, Technical Trainer, Recruitment Lead, Video Editor; pause button (WCAG 2.2.2); type sized by container query so the longest role fits at 320 px |
+| Flip calendar of roles under "Hi, I'm … / I am a" | `flip-calendar.tsx`: spiral rings, paper page flips up over the rings (rotateX 105°, 650 ms), offset ink card, stacked edges, "01 / 04"; roles Full-Stack Developer, Technical Trainer, Recruitment Lead, Digital Creator (renamed from Video Editor); no pause control (see PLAN §8 #8); type sized by container query so the longest role fits at 320 px |
 | Pull-cord theme switch | `pull-cord.tsx`: drag ≥ 28 px or click/Enter; string stretches and springs back with overshoot; orange bead; View Transitions cross-fade; desktop only (phones keep the header button) |
 | Door walk-through with zoom into the doorway | Others dim on hover and drop away on click; leaf swings to 86°; frame zooms ×7 into the doorway; black; next page fades in from black (`walk-in.tsx`, layout effect so no flash) |
 | Cut-out portrait | Apple Vision foreground mask, on-device; B&W cut-out with colour reveal on hover; soft ground glow so the black hoodie never melts into dark mode |
