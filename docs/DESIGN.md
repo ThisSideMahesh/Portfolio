@@ -56,6 +56,19 @@ Mahesh asked for the same style as https://therishithakor.com/home, with orange 
 - **Lamp** is now fixed in the right margin on every section (≥1280 px, centred in the gutter so it never covers content). A click or tap plays the pull by itself: 34 px dip in 190 ms, theme switch at the bottom, spring back and swing.
 - **Story line**: a track, an orange fill that grows with scroll (scaleY) and a glowing pointer riding its end (translateY); entry dots fill in as the pointer passes. One passive scroll listener, one update per frame.
 
+### Fifth pass (2026-11-10): drawn panel doors
+
+The carved wooden photo door is replaced by a **modern panel door drawn in code** (`components/home/panel-door.tsx`), after the style Mahesh chose: casing and skirting, flat leaf with stepped mouldings, raised panel with a thin brass inlay, brass lever handle on the left, brass hinges on the right. Drawing it instead of using a photo means each door can be unique, scales crisply, works in both themes, and ships no third-party image (the licence question in PLAN §8 #7 is closed).
+
+| Door | Colour | Panel design |
+|---|---|---|
+| Tech | navy `#1f2c40` | brass circuit traces with solder nodes and a chip |
+| Teaching | chalkboard green `#2c4437` | a blackboard with chalk lines on a wooden chalk ledge |
+| Management | burgundy `#5a2731` | two stacked panels; brass org chart (one node to three) on top |
+| Creator | charcoal `#36322e`, locked | brass ring with a play mark; dimmed, padlock over the handle |
+
+Hover: the handle turns 18°, the leaf eases 16° ajar on its right-hand hinges. Click: the handle turns, the leaf swings to 100°, the door zooms ×6.5 into the doorway, black, page fades in. Headline: "Open a door. / Behind it is my work." (Mahesh's wording, grammar tidied).
+
 Hero copy now: "Hi, I'm Mahesh." / "I am a" / calendar. "Final-year B.Tech CSE" removed; the full name moved to the hero's bottom strip and the h1's screen-reader text.
 
 **Why not a 1:1 copy:** it is another designer's original work (copyright and credibility), recruiters who have seen it would notice, and the first brief itself said "do not copy its code, text, images, colors or exact layout".

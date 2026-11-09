@@ -99,6 +99,6 @@ Commit only after the gate passes, with a conventional message.
 | 4 | Social URLs | Closed: recorded in PRD §8 |
 | 5 | Style | Closed: Minimalist Professional |
 | 6 | TLD for thissidemahesh | Open, needed in Phase 2 |
-| 7 | Door photo licence | **Open, must close before launch.** The carved wooden door (content/source/door.webp, supplied 2026-11-10) looks like a seller's product photo. Before the site goes public, either confirm Mahesh has the right to use it, or photograph a real door and re-run `pnpm door` (cut-out, slicing and positions are scripted, so a swap takes minutes) |
+| 7 | Door photo licence | Closed 2026-11-10: the doors are now drawn in code (components/home/panel-door.tsx); no door photo ships with the site |
 
 Standing instruction from Mahesh: if any of his choices causes a problem (accessibility, speed, consistency, legal), change it to the better option and tell him why. Don't keep a weak decision just because he made it.
