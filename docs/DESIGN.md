@@ -332,3 +332,21 @@ Never "coming soon". Never branded "Institutelevel-boy" on this site.
 - Order: step back out of the current doorway, that door closes, the next door opens inward, then the view goes straight in. The stage is reset before it is measured (React runs effects twice in development).
 - **Comment #18:** the Tech door's panel gained a code mark `</>` (lower left) and a terminal prompt `>_` (top right), drawn in the same brass inlay as the circuit.
 - **Bug found and fixed:** the opening and the tab walk draw the same door as the page, so two SVG gradients shared one `id` (`b-tech`). The copy inside the hidden opening came first, and browsers cannot draw a gradient defined inside a hidden element, so the real Tech door lost its artwork. Every door instance now suffixes its gradient ids with `useId()`.
+
+## 19. Animation audit, production build, 10 Nov 2026
+Method: a frame sampler (`requestAnimationFrame` deltas) ran during each interaction on `pnpm build` + `pnpm start`, plus state checks (route, scroll position, overlay and cover removed). Smooth means no frame over 34 ms.
+
+| Animation | Worked | Frames | Slowest frame |
+| --- | --- | --- | --- |
+| Opening ("Opening up the work" door intro; count 17, 72, 91, 100, then fade) | yes | 289 | 17.7 ms |
+| Hero entrance + calendar flips (6 s) | yes | 361 | 17.7 ms |
+| Theme toggle (rope lamp, view transition) | yes | 170 | 17.6 ms |
+| Hire me menu open and close | yes | 54 | 17.5 ms |
+| Story scroll (line, dot, year and month roll) | yes | 67 | 17.7 ms |
+| Door hover: inward swing (-58deg), light, card, 6 lines rise | yes | 222 | 17.7 ms |
+| Click a home door: walk-through (-84deg, zoom), lands on top of the page | yes | 217 | 17.7 ms |
+| Tab walk, door to door (close, open inward, straight in) | yes | 480 | 17.6 ms |
+| Tab walk, home to door | yes | 169 | 17.6 ms |
+| Phone menu, then walk to a door (390 px) | yes | 235 | 17.5 ms |
+
+Also: Home from a door page is a plain navigation (no overlay), no console errors, no horizontal overflow on phone. Lighthouse (mobile): home 98 / 100 / 100 / 100 (CLS 0, LCP 0.9 s, TBT 10 ms), `/tech` 100 / 100 / 100 / 100. Nothing was broken, so nothing was changed. Judgement call left as is: the walk ends in warm light, which is a bright moment before a dark page in dark theme.
