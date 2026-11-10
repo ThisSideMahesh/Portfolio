@@ -15,22 +15,22 @@ const idOf = (path: string) => path.slice(1);
  * walk into it. From the home page the hallway is already there, so it goes straight to opening.
  */
 const FROM_DOOR = {
-  unfreeze: 60, // transitions back on after the first frame
-  stepBack: 200, // the light shrinks from the whole screen to the current doorway (800 ms)
-  hideLight: 1050, // the doorway shows its own light again (160 ms)
-  close: 1150, // the current door swings shut (540 ms)
-  open: 1700, // the next door's handle turns and it swings open (540 ms)
-  goIn: 2300, // the light grows from the new doorway to the whole screen (800 ms)
-  navigate: 3150,
+  unfreeze: 40, // transitions back on after the first frame
+  stepBack: 60, // the light shrinks from the whole screen to the current doorway (520 ms)
+  hideLight: 640, // the doorway shows its own light again (120 ms)
+  close: 680, // the current door swings shut (400 ms)
+  open: 900, // the next door's handle turns and it swings open (400 ms)
+  goIn: 1250, // the light grows from the new doorway to the whole screen (550 ms)
+  navigate: 1850,
 } as const;
 const FROM_HOME = {
-  unfreeze: 60,
-  stepBack: 60,
-  hideLight: 60,
-  close: 60,
-  open: 350,
-  goIn: 1000,
-  navigate: 1850,
+  unfreeze: 40,
+  stepBack: 40,
+  hideLight: 40,
+  close: 40,
+  open: 150,
+  goIn: 550,
+  navigate: 1150,
 } as const;
 const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
 const FALLBACK_MS = 7000; // if the page still has not changed this long after navigating, load it directly (a cold route in development can take several seconds)
@@ -149,14 +149,14 @@ function SwapOverlay({ from, to }: Swap) {
 
     const timers = [
       window.setTimeout(() => root.classList.remove("is-instant"), T.unfreeze),
-      window.setTimeout(() => fromBox && animate("transform", "scale(1)", 800), T.stepBack),
-      window.setTimeout(() => fromBox && animate("opacity", "0", 160), T.hideLight),
+      window.setTimeout(() => fromBox && animate("transform", "scale(1)", 520), T.stepBack),
+      window.setTimeout(() => fromBox && animate("opacity", "0", 120), T.hideLight),
       window.setTimeout(() => leaf(fromId, "shut"), T.close),
       window.setTimeout(() => leaf(toId, "open"), T.open),
       window.setTimeout(() => {
         if (!toBox) return;
         place(toBox, 1, 1);
-        animate("transform", `scale(${coverScale(toBox)})`, 800);
+        animate("transform", `scale(${coverScale(toBox)})`, 550);
       }, T.goIn),
       window.setTimeout(() => {
         try {
@@ -184,7 +184,7 @@ function SwapOverlay({ from, to }: Swap) {
                 <span className="door-light-cone" />
               </span>
               <span className="swap-door relative block" data-swap-door={door.id} data-leaf={door.id === fromId ? "open" : "shut"}>
-                <PanelDoor variant={door.id} name={door.name} locked={door.locked} />
+                <PanelDoor variant={door.id} name={door.name} locked={door.locked} tape={false} />
               </span>
             </li>
           ))}

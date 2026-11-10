@@ -5,8 +5,8 @@ import { PanelDoor } from "@/components/home/panel-door";
 import { LOADER_SEEN_KEY } from "@/components/theme/theme-script";
 import { site } from "@/lib/site";
 
-const MIN_MS = 1100;
-const MAX_MS = 1700;
+const MIN_MS = 900;
+const MAX_MS = 1500;
 const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
 
 /**
@@ -16,8 +16,8 @@ const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
  * wide inward, and the view walks through the doorway into the page, which fades in with the
  * hero rising: the same door and the same walk the site's tabs use. Skipped under reduced motion.
  *
- * Beat map (ms after 100): 0 handle, 120 swing in (650), 800 light grows from the doorway (800),
- * 1550 fade to page (350), 1950 done. Fail-safe: the counter uses requestAnimationFrame, which browsers pause
+ * Beat map (ms after 100): 0 handle, 100 swing in (500), 550 light grows from the doorway (650),
+ * 1150 fade to page (350), 1450 done. Fail-safe: the counter uses requestAnimationFrame, which browsers pause
  * in background windows, so a plain timer also runs the whole sequence at MAX_MS + 400.
  */
 export function Loader() {
@@ -62,14 +62,14 @@ export function Loader() {
         lever.style.transition = "transform 160ms cubic-bezier(0.23, 1, 0.32, 1)";
         lever.style.transform = "rotate(28deg)";
       }
-      at(120, () => {
+      at(100, () => {
         if (!leaf) return;
-        leaf.style.transition = `transform 650ms ${EASE}`;
+        leaf.style.transition = `transform 500ms ${EASE}`;
         leaf.style.transform = "rotateY(-84deg)";
       });
       // The walk through is a flat patch of warm light that grows out of the doorway to cover the
       // screen. (Scaling the door's artwork about 9x made the browser drop tiles: black patches.)
-      at(800, () => {
+      at(550, () => {
         if (!opening || !light) return;
         const box = opening.getBoundingClientRect();
         const cx = box.left + box.width / 2;
@@ -82,11 +82,11 @@ export function Loader() {
         light.style.height = `${box.height}px`;
         light.style.opacity = "1";
         void light.offsetWidth;
-        light.style.transition = `transform 800ms ${EASE}`;
+        light.style.transition = `transform 650ms ${EASE}`;
         light.style.transform = `scale(${scale})`;
       });
-      at(1550, () => root.setAttribute("data-fade", ""));
-      at(1950, () => {
+      at(1150, () => root.setAttribute("data-fade", ""));
+      at(1450, () => {
         html.classList.remove("is-loading");
         try {
           sessionStorage.setItem(LOADER_SEEN_KEY, "1");

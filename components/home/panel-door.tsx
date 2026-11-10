@@ -11,7 +11,7 @@ export type DoorVariant = "tech" | "teaching" | "management" | "creator";
  * Details: crown moulding on the casing, lacquer sheen, brass kick plate and threshold, and a
  * soft contact shadow on the floor. The locked Creator door wears two strips of caution tape.
  */
-export function PanelDoor({ variant, name, locked = false }: { variant: DoorVariant; name: string; locked?: boolean }) {
+export function PanelDoor({ variant, name, locked = false, tape = true }: { variant: DoorVariant; name: string; locked?: boolean; tape?: boolean }) {
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   return (
     <span className={`pdoor relative block aspect-[10/21] ${locked ? "is-locked" : ""}`} data-variant={variant}>
@@ -42,7 +42,7 @@ export function PanelDoor({ variant, name, locked = false }: { variant: DoorVari
           <rect x="11.2" y="19.5" width="1.6" height="4" rx="0.8" fill="#3a2a12" />
         </svg>
       ) : null}
-      {locked ? (
+      {locked && tape ? (
         <>
           <span aria-hidden="true" className="pdoor-tape" style={{ top: "30%", rotate: "-17deg" }}>
             <span>UNDER CONSTRUCTION • DO NOT ENTER • UNDER CONSTRUCTION • DO NOT ENTER •</span>

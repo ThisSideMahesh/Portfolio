@@ -6,9 +6,9 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { PanelDoor } from "@/components/home/panel-door";
 import type { OpenDoorData } from "@/lib/data";
 
-const LIGHT_MS = 760; // the leaf has finished swinging in; the light now grows from the doorway
-const GROW_MS = 800;
-const NAVIGATE_MS = 1650;
+const LIGHT_MS = 400; // the leaf has finished swinging in; the light now grows from the doorway
+const GROW_MS = 600;
+const NAVIGATE_MS = 1100;
 const FALLBACK_MS = 6000; // if the page has not changed this long after navigating, load it directly
 export const WALK_KEY = "door-walk";
 

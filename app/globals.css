@@ -695,7 +695,7 @@ html.is-loading .rise {
 }
 .door[data-opening] .pdoor-leaf {
   transform: rotateY(-84deg);
-  transition: transform 640ms var(--ease-in-out) 120ms;
+  transition: transform 380ms var(--ease-in-out);
 }
 
 
@@ -1136,7 +1136,7 @@ html.is-loading .site-loader[data-done] {
   max-width: min(72rem, calc(118vh + 6rem));
 }
 .door-swap .swap-door .pdoor-leaf {
-  transition: transform 540ms var(--ease-in-out);
+  transition: transform 400ms var(--ease-in-out);
 }
 .door-swap .swap-door[data-leaf="open"] .pdoor-leaf {
   transform: rotateY(-84deg);
@@ -1153,6 +1153,7 @@ html.is-loading .site-loader[data-done] {
    moved only by transform and opacity, so the browser has no tiles to drop. */
 .swap-light {
   position: absolute;
+  z-index: 60; /* above everything in the hallway (the locked door's tape sits at 5) */
   pointer-events: none;
   background: var(--light);
   transform-origin: 50% 50%;
