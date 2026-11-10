@@ -5,8 +5,19 @@
  */
 import type { DoorId } from "@/lib/site";
 
+/** A real image from Mahesh's own work (a screenshot or a logo), prepared by hand into public/images/work. */
+export type WorkImage = { src: string; width: number; height: number; alt: string };
+
 export type CaseVisual =
   | { kind: "stat"; value: string; label: string }
+  /** One or two real screenshots in a window-like frame (the second overlaps the first). */
+  | { kind: "screens"; images: readonly WorkImage[] }
+  /** One logo on a light tile. */
+  | { kind: "logo"; image: WorkImage }
+  /** Issuer logos on light tiles, with an optional line under them. */
+  | { kind: "logos"; logos: readonly WorkImage[]; note?: string }
+  /** A drawn monogram for work that has no screenshot or logo: type on a blueprint grid. */
+  | { kind: "mark"; mark: string; caption: string }
   | { kind: "flow"; steps: readonly string[] }
   | { kind: "stack"; layers: readonly { name: string; detail: string }[] }
   | { kind: "tags"; items: readonly string[] };
@@ -63,11 +74,10 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "React Native and Expo app with QR scanning, an offline queue and automatic sync; deployed on Vercel",
             ],
             visual: {
-              kind: "stack",
-              layers: [
-                { name: "Android app", detail: "React Native, Expo, TypeScript" },
-                { name: "REST API", detail: "Node.js on Vercel" },
-                { name: "Database", detail: "PostgreSQL on Neon (SQLite locally)" },
+              kind: "screens",
+              images: [
+                { src: "/images/work/mediindex-dashboard.webp", width: 1400, height: 770, alt: "MediIndex dashboard with total medicines, units in stock, expired batches, expiring-soon and low-stock counts" },
+                { src: "/images/work/mediindex-expiry.webp", width: 1400, height: 770, alt: "MediIndex expiry alerts list showing an expired batch and batches close to expiry, each with an Acknowledge button" },
               ],
             },
             links: [
@@ -87,7 +97,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Built with an AI-assisted development workflow for rapid prototyping",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/TERAPLAY" }],
-            visual: { kind: "tags", items: ["Node.js", "Express.js", "JavaScript", "Video streaming", "Downloads", "AI-assisted"] },
+            visual: { kind: "logo", image: { src: "/images/work/teraplay-logo.webp", width: 700, height: 186, alt: "TeraPlay logo: a play button beside the name, with the words Video Streaming under it" } },
           },
           {
             kicker: "Freelance project",
@@ -98,7 +108,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Developed the full-stack web application to the client's requirements",
               "Supports core shop operations and business workflows",
             ],
-            visual: { kind: "tags", items: ["Full-stack web", "Freelance", "Client requirements", "Business workflows"] },
+            visual: { kind: "mark", mark: "SMS", caption: "Built to a client's brief for day-to-day shop operations" },
           },
           {
             kicker: "Project",
@@ -126,7 +136,13 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Shows the recommended crop, a confidence score and the top alternative crops",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/AgriSenseAI" }],
-            visual: { kind: "tags", items: ["Python", "Streamlit", "scikit-learn", "Random Forest", "pandas", "NumPy", "Open-Meteo API"] },
+            visual: {
+              kind: "screens",
+              images: [
+                { src: "/images/work/agrisense-farmer.webp", width: 1400, height: 615, alt: "AgriSenseAI Farmer Mode: simple questions about soil, last crop and fertiliser, with live weather for the chosen place" },
+                { src: "/images/work/agrisense-expert.webp", width: 1400, height: 615, alt: "AgriSenseAI Expert Mode: entry fields for nitrogen, phosphorus, potassium, pH, temperature, humidity and rainfall" },
+              ],
+            },
           },
           {
             kicker: "Hackathon prototype",
@@ -159,14 +175,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Built and tested the foundation: a Next.js web app, a NestJS API with a background worker and shared contracts",
               "Local Docker setup for PostgreSQL, with secret scanning on every commit",
             ],
-            visual: {
-              kind: "stack",
-              layers: [
-                { name: "Web app", detail: "Next.js" },
-                { name: "API and worker", detail: "NestJS" },
-                { name: "Database", detail: "PostgreSQL in Docker" },
-              ],
-            },
+            visual: { kind: "logo", image: { src: "/images/work/cadriva-logo.webp", width: 900, height: 292, alt: "Cadriva logo: an orange interlocking C mark beside the name" } },
           },
           {
             kicker: "Personal project",
@@ -180,7 +189,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Checks its own content at build time, so private details never reach the site",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Portfolio" }],
-            visual: { kind: "tags", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "CSS and SVG art", "Accessible"] },
+            visual: { kind: "screens", images: [{ src: "/images/work/portfolio-home.webp", width: 1400, height: 875, alt: "The home page of this portfolio in dark theme: the greeting, the role calendar and a black and white portrait" }] },
           },
         ],
       },
@@ -197,7 +206,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Developed an industrial project under the guidance of Kiran Academy's expert technical team",
               "Technology: Python Full Stack",
             ],
-            visual: { kind: "tags", items: ["Python", "Full stack", "Industrial project", "Trainee Developer"] },
+            visual: { kind: "logo", image: { src: "/images/work/logos/kiran-academy.webp", width: 640, height: 137, alt: "Kiran Academy, IT Training Institute" } },
           },
           {
             kicker: "Internship",
@@ -240,7 +249,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "SwasthyaSetu brings fragmented hospital records into one consent-driven view, with limited emergency access",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Team_Future_3.8_SDG3" }],
-            visual: { kind: "stat", value: "800+", label: "teams, with SwasthyaSetu a finalist" },
+            visual: { kind: "logo", image: { src: "/images/work/swasthyasetu-logo.webp", width: 279, height: 279, alt: "SwasthyaSetu logo: a bridge and a leaf around a caduceus, with the words Ek Jeevan, Ek Swasthya Drishti" } },
           },
           {
             kicker: "Hackathon",
@@ -262,7 +271,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Entered the Engineering and Technology category",
               "Medicine Inventory and Expiry Management System with Demand Prediction for Medical Stores",
             ],
-            visual: { kind: "tags", items: ["Engineering and Technology", "Demand prediction", "Medical stores", "Working model"] },
+            visual: { kind: "mark", mark: "AV", caption: "District-level research convention, Engineering and Technology" },
           },
         ],
       },
@@ -307,7 +316,14 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "AWS Cloud Practitioner Essentials, AWS IoT Foundations and AWS SimuLearn: Cloud Practitioner",
               "AWS Solutions Architecture job simulation (Forage, Jul 2025)",
             ],
-            visual: { kind: "stat", value: "64+", label: "Google Cloud skill badges" },
+            visual: {
+              kind: "logos",
+              logos: [
+                { src: "/images/work/logos/oracle.webp", width: 640, height: 97, alt: "Oracle" },
+                { src: "/images/work/logos/nasscom.webp", width: 640, height: 187, alt: "nasscom IT-ITeS Sector Skill Council" },
+              ],
+              note: "and 64+ Google Cloud skill badges",
+            },
           },
           {
             kicker: "Programming, AI and data",
@@ -322,7 +338,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Foundational C# with Microsoft (freeCodeCamp); Introduction to Data Science and Introduction to IoT (Cisco Networking Academy)",
               "Programming in C and C++ (Disha Computer Institute)",
             ],
-            visual: { kind: "tags", items: ["Java", "C and C++", "C#", "Python", "Prompt engineering", "Data science", "IoT"] },
+            visual: { kind: "logo", image: { src: "/images/work/logos/cisco-networking-academy.webp", width: 640, height: 148, alt: "Cisco Networking Academy" } },
           },
           {
             kicker: "Security and digital skills",
@@ -349,7 +365,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Google Cloud Study Jam, Google Developer Student Clubs MIT (Dec 2023)",
               "6-day Student Workshop on Universal Human Values (AICTE, Mar – Apr 2026)",
             ],
-            visual: { kind: "tags", items: ["GDG", "CNCF", "Google Cloud", "AICTE", "Build With AI", "LaunchLab"] },
+            visual: { kind: "logo", image: { src: "/images/work/logos/gdg.webp", width: 407, height: 98, alt: "Google Developer Groups" } },
           },
         ],
       },

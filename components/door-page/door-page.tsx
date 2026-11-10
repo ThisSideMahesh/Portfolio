@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CardCarousel } from "@/components/door-page/card-carousel";
 import { WalkIn } from "@/components/door-page/walk-in";
@@ -102,8 +103,71 @@ function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; headin
   );
 }
 
+const imageSizes = "(min-width: 768px) 40vw, 85vw";
+
 function Visual({ visual }: { visual: CaseVisual }) {
   switch (visual.kind) {
+    case "screens": {
+      const [main, second] = visual.images;
+      // The main screenshot fills the panel (cropped to fit, anchored top left so the app's navigation
+      // stays visible); a second screenshot sits in the corner like a second window.
+      return (
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-band ring-1 ring-line">
+          <Image
+            src={main.src}
+            width={main.width}
+            height={main.height}
+            alt={main.alt}
+            sizes={imageSizes}
+            className={`absolute inset-0 h-full w-full object-cover ${second ? "object-left-top" : "object-center"}`}
+          />
+          {second ? (
+            <Image
+              src={second.src}
+              width={second.width}
+              height={second.height}
+              alt={second.alt}
+              sizes={imageSizes}
+              className="absolute right-3 bottom-3 h-auto w-[56%] rounded-md shadow-[0_14px_34px_-10px_rgb(0_0_0/0.75)] ring-1 ring-white/25"
+            />
+          ) : null}
+        </div>
+      );
+    }
+    case "logo":
+      return (
+        <div className="flex aspect-[4/3] items-center justify-center rounded-[1rem] border border-line bg-[#f6f4f0] p-10">
+          <Image
+            src={visual.image.src}
+            width={visual.image.width}
+            height={visual.image.height}
+            alt={visual.image.alt}
+            sizes={imageSizes}
+            className="h-auto max-h-[68%] w-auto max-w-[78%] object-contain"
+          />
+        </div>
+      );
+    case "logos":
+      return (
+        <div className="flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-[1rem] border border-line bg-[#f6f4f0] p-6">
+          <ul className="grid w-full max-w-[26rem] grid-cols-2 gap-3">
+            {visual.logos.map((logo) => (
+              <li key={logo.src} className="flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-[0_1px_0_rgb(0_0_0/0.06)]">
+                <Image src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} sizes="200px" className="h-auto max-h-full w-auto max-w-full object-contain" />
+              </li>
+            ))}
+          </ul>
+          {visual.note ? <p className="text-center font-medium text-[#3b3732]">{visual.note}</p> : null}
+        </div>
+      );
+    case "mark":
+      return (
+        <div aria-hidden="true" className="relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-[1rem] bg-band p-8 text-band-ink">
+          <div className="absolute inset-0 opacity-70 [background-image:linear-gradient(var(--band-line)_1px,transparent_1px),linear-gradient(90deg,var(--band-line)_1px,transparent_1px)] [background-size:34px_34px]" />
+          <p className="relative font-display text-[clamp(4.5rem,11vw,8rem)] leading-none font-semibold tracking-tight text-accent">{visual.mark}</p>
+          <p className="relative max-w-[24ch] text-lg font-medium text-band-muted">{visual.caption}</p>
+        </div>
+      );
     case "stat":
       return (
         <div className="flex aspect-[4/3] flex-col justify-end rounded-[1rem] bg-band p-8 text-band-ink">
