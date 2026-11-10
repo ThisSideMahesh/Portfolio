@@ -339,7 +339,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           {
             kicker: "Technical Coordinator",
             title: "Kalavihangam 2K23",
-            when: "MIT CSN · 24 – 28 Feb 2023",
+            when: "MIT CSN · 24 – 28 Feb 2024",
             summary: "Ran the technical arrangements for a campus event.",
             points: ["Technical Coordinator for an event with 1,000+ attendees"],
             visual: emblem("kalavihangam", "Emblem for Kalavihangam 2K23: a stage light with three beams. 1,000+ event attendees"),
@@ -485,7 +485,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Internships, technical competitions and responsible AI use",
         ],
         links: [{ label: "LinkedIn: session", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447890687116787712/" }, { label: "LinkedIn: materials", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447892040065015809/" }],
-        visual: emblem("hacked", "Emblem for the Hackathon Hacked session at Technophilia 2K26: a light bulb"),
+        visual: { kind: "logo", image: { src: "/images/work/logos/tnp-cell.webp", width: 600, height: 512, alt: "Logo of the Training, Placement and Entrepreneurship Cell, MIT CSN: a graduation cap on a briefcase" } },
       },
     ],
   },
@@ -500,12 +500,12 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
         when: "MIT CSN · Nov 2025 – Nov 2026",
         summary: "Led the student side of campus recruitment.",
         points: [
-          "Coordinated individual, pooled and mega campus drives",
+          "Led and coordinated 95+ campus recruitment drives: individual, pooled and mega",
           "Ran resume screening, shortlisting, interview scheduling and onboarding documentation",
           "Liaised with company HR, placement officers and institute leadership",
         ],
         links: [{ label: "LinkedIn: Micron campus drive", href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7423799283335905280/" }, { label: "LinkedIn: HireReady 2.0", href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7373400163253415936/" }],
-        visual: emblem("tnp", "Emblem for the Training, Placement and Entrepreneurship Student Cell: a briefcase. 95+ campus recruitment drives"),
+        visual: { kind: "logo", image: { src: "/images/work/logos/tnp-cell.webp", width: 600, height: 512, alt: "Logo of the Training, Placement and Entrepreneurship Cell, MIT CSN: a graduation cap on a briefcase" } },
       },
       {
         kicker: "Sales and Marketing Intern",
@@ -513,12 +513,12 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
         when: "Chhatrapati Sambhajinagar · Jun 2026",
         summary: "Admissions outreach across five centres, alongside semester exams.",
         points: [
-          "Generated qualified admission leads in Selu, Ambad, Deulgaon Raja, Sillod and online batches",
+          "Generated 125+ qualified admission leads across five centres, with outreach in Selu, Ambad, Deulgaon Raja, Sillod and online batches",
           "Counselled students and parents about programmes",
           "Coordinated with centre heads on admissions and examinations",
         ],
         links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7477926494892351488/" }],
-        visual: emblem("dfc", "Emblem for the Dnyandeep Foundation Centre internship: an open book. 125+ qualified admission leads"),
+        visual: { kind: "logo", image: { src: "/images/work/logos/dfc.webp", width: 582, height: 384, alt: "Dnyandeep Foundation Centre (DFC) logo: a blue oval around the letters DFC, House of Competitive Examination Studies" } },
       },
       {
         kicker: "Community and content",
@@ -535,7 +535,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       {
         kicker: "Events",
         title: "Kalavihangam 2K23 and first-year induction",
-        when: "MIT CSN · 24 – 28 Feb 2023; induction 2023 – 2024",
+        when: "MIT CSN · 24 – 28 Feb 2024; induction 2023 – 2024",
         summary: "Technical coordination and onboarding at scale.",
         points: [
           "Technical Coordinator for an event with 1,000+ attendees",
