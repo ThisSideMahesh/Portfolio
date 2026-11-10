@@ -1403,3 +1403,13 @@ html.is-loading:has(.site-loader[data-fade]) .rise {
   border-radius: 0;
   font-size: 0.95rem;
 }
+
+/* The home door's light patch is only ever visible while that door is being walked through
+   (data-walking follows the door's state). When the home page is hidden and shown again, React
+   detaches the element before any cleanup can reset its inline styles, which left the patch full
+   screen over the page on the way back (seen in a recording); this rule makes that impossible. */
+.door-card-light:not([data-walking]) {
+  opacity: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}

@@ -117,7 +117,7 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
       </Link>
 
       {/* The patch of warm light that grows from the doorway to the whole screen (see walkThrough). */}
-      <span ref={lightRef} aria-hidden="true" className="swap-light" style={{ position: "fixed", zIndex: 90, opacity: 0 }} />
+      <span ref={lightRef} aria-hidden="true" data-walking={opening || undefined} className="swap-light door-card-light" style={{ position: "fixed", zIndex: 90, opacity: 0 }} />
     </>
   );
 }
