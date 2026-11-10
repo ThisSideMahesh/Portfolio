@@ -32,7 +32,7 @@ const FROM_HOME = {
   veil: 1550,
   navigate: 1800,
 } as const;
-const FALLBACK_MS = 3000; // if the page still has not changed this long after navigating, load it directly
+const FALLBACK_MS = 7000; // if the page still has not changed this long after navigating, load it directly (a cold route in development can take several seconds)
 
 type Swap = { from: string; to: string };
 
@@ -67,12 +67,17 @@ export function DoorSwap() {
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
-      if (activeRef.current || event.defaultPrevented || event.button !== 0) return;
+      if (event.defaultPrevented || event.button !== 0) return;
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const anchor = (event.target as Element | null)?.closest?.("a[href]");
       if (!(anchor instanceof HTMLAnchorElement) || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
       const url = new URL(anchor.href);
       const from = window.location.pathname;
+      // A walk is in progress: a second door link (reachable by keyboard) must not cut it off.
+      if (activeRef.current) {
+        if (DOOR_PATHS.includes(url.pathname) && url.origin === window.location.origin) event.preventDefault();
+        return;
+      }
       if (url.origin !== window.location.origin || url.hash) return;
       if (anchor.classList.contains("door")) return; // the home doors have their own walk-through (DoorCard)
       if ((from !== "/" && !DOOR_PATHS.includes(from)) || !DOOR_PATHS.includes(url.pathname) || url.pathname === from) return;
@@ -179,7 +184,7 @@ function SwapOverlay({ from, to }: Swap) {
         </ul>
         <div className="door-floor" />
       </div>
-      <div className="door-swap-veil pointer-events-none absolute inset-0 bg-bg" />
+      <div className="door-swap-veil pointer-events-none absolute inset-0 bg-[var(--light)]" />
     </div>
   );
 }

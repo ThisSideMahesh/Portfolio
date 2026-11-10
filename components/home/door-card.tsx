@@ -7,7 +7,7 @@ import { PanelDoor } from "@/components/home/panel-door";
 import type { OpenDoorData } from "@/lib/data";
 
 const NAVIGATE_MS = 1250;
-const FALLBACK_MS = 3000; // if the page has not changed this long after navigating, load it directly
+const FALLBACK_MS = 6000; // if the page has not changed this long after navigating, load it directly
 export const WALK_KEY = "door-walk";
 
 /**
@@ -84,7 +84,7 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
       {/* A cover in the page colour comes up as the visitor steps through (no black screen). */}
       <span
         aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 z-[90] bg-bg transition-opacity duration-300 ease-[var(--ease-out)] ${
+        className={`pointer-events-none fixed inset-0 z-[90] bg-[var(--light)] transition-opacity duration-300 ease-[var(--ease-out)] ${
           opening ? "opacity-100 delay-[900ms]" : "opacity-0"
         }`}
       />

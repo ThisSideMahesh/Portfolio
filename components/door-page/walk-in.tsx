@@ -15,18 +15,24 @@ const SAFETY_MS = 1200;
  */
 export function WalkIn() {
   const ref = useRef<HTMLDivElement>(null);
+  const walkedRef = useRef<boolean | null>(null);
 
   useLayoutEffect(() => {
     const cover = ref.current;
     if (!cover) return;
-    let walked = false;
-    try {
-      walked = sessionStorage.getItem(WALK_KEY) === "1";
-      sessionStorage.removeItem(WALK_KEY);
-    } catch {
-      // No storage: no fade.
+    // Read the flag once per mount: in development React runs this effect twice, and the second run
+    // would otherwise find the flag already cleared and leave the first run's class behind.
+    if (walkedRef.current === null) {
+      let walked = false;
+      try {
+        walked = sessionStorage.getItem(WALK_KEY) === "1";
+        sessionStorage.removeItem(WALK_KEY);
+      } catch {
+        // No storage: no fade.
+      }
+      walkedRef.current = walked;
     }
-    if (!walked) return;
+    if (!walkedRef.current) return;
 
     cover.classList.add("walk-in-active");
     const remove = () => cover.classList.remove("walk-in-active");
@@ -38,5 +44,5 @@ export function WalkIn() {
     };
   }, []);
 
-  return <div ref={ref} aria-hidden="true" className="walk-in-cover pointer-events-none fixed inset-0 z-[90] bg-bg" />;
+  return <div ref={ref} aria-hidden="true" className="walk-in-cover pointer-events-none fixed inset-0 z-[90] bg-[var(--light)]" />;
 }

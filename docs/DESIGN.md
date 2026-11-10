@@ -350,3 +350,10 @@ Method: a frame sampler (`requestAnimationFrame` deltas) ran during each interac
 | Phone menu, then walk to a door (390 px) | yes | 235 | 17.5 ms |
 
 Also: Home from a door page is a plain navigation (no overlay), no console errors, no horizontal overflow on phone. Lighthouse (mobile): home 98 / 100 / 100 / 100 (CLS 0, LCP 0.9 s, TBT 10 ms), `/tech` 100 / 100 / 100 / 100. Nothing was broken, so nothing was changed. Judgement call left as is: the walk ends in warm light, which is a bright moment before a dark page in dark theme.
+
+## 20. Door switching hardened, 10 Nov 2026
+Tested again on the production build: five walks in a row, each pair of doors, home to door, and a hover switch from Tech to Teaching (panels never overlap, the first panel is gone before the second appears). 1109 frames, slowest 17.7 ms, none over 34 ms.
+- **Mid-walk clicks are blocked.** A second door link during a walk (reachable by keyboard or Enter) used to cut the animation and jump to the new page. It is now ignored until the walk ends.
+- **One continuous light.** The walk ends in warm light (`--light`), the veil and the arrival cover are that same colour, and the new page fades in from it. Before, the light flipped to the page colour (dark in dark theme) and then faded to the page.
+- **Slow route loads.** The direct-load fallback waits 7 s (walk) and 6 s (home door) instead of 3 s, so a cold route in development is not interrupted by a reload.
+- **Dev-only:** the arrival fade now survives React's double effect, so the cover class no longer lingers.

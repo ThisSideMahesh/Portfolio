@@ -22,6 +22,7 @@
   --band-line: #34302c;
   --door: var(--surface);
   --door-line: var(--line);
+  --light: #f7ecd9; /* the warm light inside an open doorway: walks end in it and the new page fades in from it */
   --success: #1f6b3a;
   --danger: #b42318;
 }
