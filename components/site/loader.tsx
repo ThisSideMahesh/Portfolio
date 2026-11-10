@@ -16,8 +16,8 @@ const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
  * wide inward, and the view walks through the doorway into the page, which fades in with the
  * hero rising: the same door and the same walk the site's tabs use. Skipped under reduced motion.
  *
- * Beat map (ms after 100): 0 handle, 120 swing in (650), 600 walk through (850), 1250 fade to
- * page (350), 1650 done. Fail-safe: the counter uses requestAnimationFrame, which browsers pause
+ * Beat map (ms after 100): 0 handle, 120 swing in (650), 800 light grows from the doorway (800),
+ * 1550 fade to page (350), 1950 done. Fail-safe: the counter uses requestAnimationFrame, which browsers pause
  * in background windows, so a plain timer also runs the whole sequence at MAX_MS + 400.
  */
 export function Loader() {
@@ -25,6 +25,7 @@ export function Loader() {
   const numberRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
   const doorRef = useRef<HTMLDivElement>(null);
+  const lightRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -34,6 +35,7 @@ export function Loader() {
     const leaf = door.querySelector<HTMLElement>(".pdoor-leaf");
     const lever = door.querySelector<HTMLElement>(".pdoor-lever");
     const opening = door.querySelector<HTMLElement>(".pdoor-opening");
+    const light = lightRef.current;
 
     let ready = false;
     Promise.all([
@@ -65,15 +67,26 @@ export function Loader() {
         leaf.style.transition = `transform 650ms ${EASE}`;
         leaf.style.transform = "rotateY(-84deg)";
       });
-      at(600, () => {
-        if (!opening) return;
+      // The walk through is a flat patch of warm light that grows out of the doorway to cover the
+      // screen. (Scaling the door's artwork about 9x made the browser drop tiles: black patches.)
+      at(800, () => {
+        if (!opening || !light) return;
         const box = opening.getBoundingClientRect();
-        const scale = Math.max(window.innerWidth / box.width, window.innerHeight / box.height) * 1.15;
-        door.style.transition = `transform 850ms ${EASE}`;
-        door.style.transform = `scale(${scale})`;
+        const cx = box.left + box.width / 2;
+        const cy = box.top + box.height / 2;
+        const scale =
+          Math.max((2 * cx) / box.width, (2 * (window.innerWidth - cx)) / box.width, (2 * cy) / box.height, (2 * (window.innerHeight - cy)) / box.height) * 1.06;
+        light.style.left = `${box.left}px`;
+        light.style.top = `${box.top}px`;
+        light.style.width = `${box.width}px`;
+        light.style.height = `${box.height}px`;
+        light.style.opacity = "1";
+        void light.offsetWidth;
+        light.style.transition = `transform 800ms ${EASE}`;
+        light.style.transform = `scale(${scale})`;
       });
-      at(1250, () => root.setAttribute("data-fade", ""));
-      at(1650, () => {
+      at(1550, () => root.setAttribute("data-fade", ""));
+      at(1950, () => {
         html.classList.remove("is-loading");
         try {
           sessionStorage.setItem(LOADER_SEEN_KEY, "1");
@@ -115,6 +128,8 @@ export function Loader() {
           <PanelDoor variant="tech" name="Welcome" />
         </div>
       </div>
+
+      <span ref={lightRef} className="swap-light" style={{ position: "fixed", opacity: 0 }} />
 
       <div className="loader-ui">
         <span translate="no" className="font-display text-lg font-semibold">

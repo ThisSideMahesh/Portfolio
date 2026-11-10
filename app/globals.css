@@ -697,12 +697,7 @@ html.is-loading .rise {
   transform: rotateY(-84deg);
   transition: transform 640ms var(--ease-in-out) 120ms;
 }
-.door[data-opening] .pdoor {
-  transform: scale(6.5);
-  transform-origin: 50% 50%;
-  will-change: transform;
-  transition: transform 760ms var(--ease-in-out) 460ms;
-}
+
 
 /* First-visit loader: shown only while <html> has .is-loading (set by the head script). */
 .site-loader {
@@ -1139,9 +1134,6 @@ html.is-loading .site-loader[data-done] {
 /* Four doors that always fit on screen: door height is about 2.1 × its width. */
 .door-swap-stage {
   max-width: min(72rem, calc(118vh + 6rem));
-  transform-origin: 0 0;
-  transition: transform 700ms var(--ease-in-out);
-  will-change: transform;
 }
 .door-swap .swap-door .pdoor-leaf {
   transition: transform 540ms var(--ease-in-out);
@@ -1157,11 +1149,14 @@ html.is-loading .site-loader[data-done] {
 .door-swap.is-instant .pdoor-lever {
   transition: none !important;
 }
-.door-swap-veil {
-  transition: opacity 250ms var(--ease-out);
-}
-.door-swap[data-veil="off"] .door-swap-veil {
-  opacity: 0;
+/* The patch of warm light that grows from a doorway to the whole screen (and back): flat colour,
+   moved only by transform and opacity, so the browser has no tiles to drop. */
+.swap-light {
+  position: absolute;
+  pointer-events: none;
+  background: var(--light);
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
 }
 
 /* ── Recruiter-facing polish: door info card, floating tab island, buttons ──────────────────── */
@@ -1341,7 +1336,6 @@ html.is-loading .site-loader[data-done] {
 }
 .loader-door {
   width: clamp(8.5rem, 21vw, 13rem);
-  will-change: transform;
 }
 .site-loader .pdoor-leaf,
 .site-loader .pdoor-lever {

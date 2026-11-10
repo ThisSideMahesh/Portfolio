@@ -6,7 +6,9 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { PanelDoor } from "@/components/home/panel-door";
 import type { OpenDoorData } from "@/lib/data";
 
-const NAVIGATE_MS = 1250;
+const LIGHT_MS = 760; // the leaf has finished swinging in; the light now grows from the doorway
+const GROW_MS = 800;
+const NAVIGATE_MS = 1650;
 const FALLBACK_MS = 6000; // if the page has not changed this long after navigating, load it directly
 export const WALK_KEY = "door-walk";
 
@@ -24,6 +26,7 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
   const router = useRouter();
   const [opening, setOpening] = useState(false);
   const timers = useRef<number[]>([]);
+  const lightRef = useRef<HTMLSpanElement>(null);
 
   // Cache Components keeps the home page mounted (hidden) after navigating away;
   // the cleanup runs when it is hidden, so the door is closed again on the way back.
@@ -31,6 +34,12 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
     () => () => {
       timers.current.forEach((t) => window.clearTimeout(t));
       timers.current = [];
+      const light = lightRef.current;
+      if (light) {
+        light.style.transition = "none";
+        light.style.opacity = "0";
+        light.style.transform = "none";
+      }
       setOpening(false);
     },
     [],
@@ -44,6 +53,32 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
     event.preventDefault();
     router.prefetch(door.href);
     setOpening(true);
+    // The walk in is a flat patch of warm light placed over the doorway that grows to the whole
+    // screen. (Scaling the door's own artwork 6x made the browser drop tiles: black patches.)
+    const light = lightRef.current;
+    const opening = event.currentTarget.querySelector(".pdoor-opening");
+    if (light && opening) {
+      const b = opening.getBoundingClientRect();
+      const cx = b.left + b.width / 2;
+      const cy = b.top + b.height / 2;
+      const scale =
+        Math.max((2 * cx) / b.width, (2 * (window.innerWidth - cx)) / b.width, (2 * cy) / b.height, (2 * (window.innerHeight - cy)) / b.height) * 1.06;
+      light.style.transition = "none";
+      light.style.left = `${b.left}px`;
+      light.style.top = `${b.top}px`;
+      light.style.width = `${b.width}px`;
+      light.style.height = `${b.height}px`;
+      light.style.transform = "none";
+      light.style.opacity = "0";
+      timers.current.push(
+        window.setTimeout(() => {
+          light.style.opacity = "1";
+          void light.offsetWidth;
+          light.style.transition = `transform ${GROW_MS}ms cubic-bezier(0.77, 0, 0.175, 1)`;
+          light.style.transform = `scale(${scale})`;
+        }, LIGHT_MS),
+      );
+    }
     try {
       sessionStorage.setItem(WALK_KEY, "1");
     } catch {
@@ -81,13 +116,8 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
         <span className="sr-only">{door.name}: {door.tagline}</span>
       </Link>
 
-      {/* A cover in the page colour comes up as the visitor steps through (no black screen). */}
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 z-[90] bg-[var(--light)] transition-opacity duration-300 ease-[var(--ease-out)] ${
-          opening ? "opacity-100 delay-[900ms]" : "opacity-0"
-        }`}
-      />
+      {/* The patch of warm light that grows from the doorway to the whole screen (see walkThrough). */}
+      <span ref={lightRef} aria-hidden="true" className="swap-light" style={{ position: "fixed", zIndex: 90, opacity: 0 }} />
     </>
   );
 }
