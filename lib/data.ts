@@ -42,7 +42,7 @@ export const doors: readonly Door[] = [
     locked: false,
     sub: "From computer basics to Git and AI",
     offer: [
-      "Beginner-friendly MS-CIT classes, 25+ students",
+      "Technical Trainer for 25+ students",
       "Git, GitHub and AI tools, made practical",
       "Workshops for engineering students",
       "LLMs and responsible AI, explained simply",

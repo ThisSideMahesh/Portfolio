@@ -437,8 +437,8 @@ html.is-loading .rise {
 .pdoor-opening {
   position: absolute;
   inset: 4.5% 8% 2.5% 8%;
-  perspective: 1200px;
-  overflow: hidden; /* the swinging leaf stays inside the frame, as in the reference */
+  perspective: 3200px; /* a long lens: the swinging leaf stays almost the same height, so nothing is cut */
+  overflow: hidden; /* and what little overshoots is cropped by the frame, as in the reference */
 }
 .pdoor-doorway {
   position: absolute;
@@ -580,7 +580,7 @@ html.is-loading .rise {
   position: relative;
 }
 .door:focus-visible .pdoor-leaf {
-  transform: rotateY(58deg);
+  transform: rotateY(56deg);
   transition-duration: 680ms;
 }
 .door:focus-visible .pdoor-doorway::after,
@@ -622,7 +622,7 @@ html.is-loading .rise {
 @media (hover: hover) and (pointer: fine) {
   /* :not([data-opening]) so hover never out-ranks the opening swing. */
   .door:not(.locked):not([data-opening]):hover .pdoor-leaf {
-    transform: rotateY(58deg);
+    transform: rotateY(56deg);
     transition-duration: 680ms;
   }
   .door:not(.locked):hover .pdoor-doorway::after,
@@ -1322,4 +1322,15 @@ html.is-loading .site-loader[data-done] {
   border-radius: 50% 50% 0 0;
   background: radial-gradient(60% 60% at 50% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
   pointer-events: none;
+}
+
+/* Door-to-door walk: an open door shows the same warm light as the hover state, so walking
+   into it reads as stepping into the light, not into a black hole. */
+.door-swap .swap-door[data-leaf="open"] .pdoor-doorway::after,
+.door-swap .swap-door[data-leaf="open"] .pdoor-leaf::before {
+  opacity: 1;
+}
+.door-swap.is-instant .pdoor-doorway::after,
+.door-swap.is-instant .pdoor-leaf::before {
+  transition: none;
 }

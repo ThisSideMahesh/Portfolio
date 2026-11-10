@@ -11,8 +11,8 @@ export function ContactBand() {
           Available for internships
         </p>
         <h2 id="contact-title" className="mt-6 text-[clamp(2.5rem,7.5vw,6.5rem)]">
-          <span className="block">Hiring for a tech, teaching or management role?</span>
-          <span className="block text-band-muted">Let&rsquo;s talk.</span>
+          <span className="block">Building a team?</span>
+          <span className="block text-band-muted">Let&rsquo;s explore how I can contribute.</span>
         </h2>
 
         <div className="mt-10">
