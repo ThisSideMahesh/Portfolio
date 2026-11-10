@@ -485,7 +485,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Internships, technical competitions and responsible AI use",
         ],
         links: [{ label: "LinkedIn: session", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447890687116787712/" }, { label: "LinkedIn: materials", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447892040065015809/" }],
-        visual: { kind: "logo", image: { src: "/images/work/logos/tnp-cell.webp", width: 600, height: 512, alt: "Logo of the Training, Placement and Entrepreneurship Cell, MIT CSN: a graduation cap on a briefcase" } },
+        visual: { kind: "screens", images: [{ src: "/images/work/hackathon-hacked-session.webp", width: 720, height: 540, alt: "Mahesh speaking into a microphone at the Hackathon Hacked session, Technophilia 2K26, with students and faculty around him" }] },
       },
     ],
   },
@@ -518,7 +518,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Coordinated with centre heads on admissions and examinations",
         ],
         links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7477926494892351488/" }],
-        visual: { kind: "logo", image: { src: "/images/work/logos/dfc.webp", width: 582, height: 384, alt: "Dnyandeep Foundation Centre (DFC) logo: a blue oval around the letters DFC, House of Competitive Examination Studies" } },
+        visual: { kind: "logo", image: { src: "/images/work/logos/dfc.webp", width: 530, height: 344, alt: "Dnyandeep Foundation Centre (DFC) logo: a blue oval around the letters DFC, House of Competitive Examination Studies" } },
       },
       {
         kicker: "Community and content",
