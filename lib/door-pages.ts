@@ -485,7 +485,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Internships, technical competitions and responsible AI use",
         ],
         links: [{ label: "LinkedIn: session", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447890687116787712/" }, { label: "LinkedIn: materials", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447892040065015809/" }],
-        visual: { kind: "screens", images: [{ src: "/images/work/hackathon-hacked-session.webp", width: 720, height: 540, alt: "Mahesh speaking into a microphone at the Hackathon Hacked session, Technophilia 2K26, with students and faculty around him" }] },
+        visual: { kind: "screens", images: [{ src: "/images/work/hackathon-hacked-group.webp", width: 1280, height: 720, alt: "Mahesh with faculty and students after the Hackathon Hacked session at Technophilia 2K26, MIT CSN" }] },
       },
     ],
   },
