@@ -1,6 +1,7 @@
+import type { CSSProperties } from "react";
 import { DoorCard } from "@/components/home/door-card";
 import { PanelDoor } from "@/components/home/panel-door";
-import { doors, offerHeading, type Door, type OpenDoorData } from "@/lib/data";
+import { doors, type Door, type OpenDoorData } from "@/lib/data";
 
 /**
  * The four-door wall, staged as a lit hallway: plaster wall with a ceiling shadow, a spotlight
@@ -52,10 +53,12 @@ export function DoorWall() {
                   </>
                 ) : (
                   <>
-                    <p className="door-eyebrow mt-3">{offerHeading}</p>
-                    <ul className="mt-3.5 space-y-2">
-                      {door.offer.map((item) => (
-                        <li key={item} className="flex gap-3">
+                    <p className="door-eyebrow reveal mt-3" style={{ "--i": 0 } as CSSProperties}>
+                      {door.sub}
+                    </p>
+                    <ul className="mt-4 space-y-2.5">
+                      {door.offer.map((item, i) => (
+                        <li key={item} className="reveal flex gap-3 font-medium" style={{ "--i": i + 1 } as CSSProperties}>
                           <Tick />
                           {item}
                         </li>
@@ -79,7 +82,7 @@ export function DoorWall() {
 function PhoneOffer({ door }: { door: OpenDoorData }) {
   return (
     <div aria-hidden="true" className="mt-4 md:hidden">
-      <p className="door-eyebrow">{offerHeading}</p>
+      <p className="door-eyebrow">{door.sub}</p>
       <ul className="mt-3 space-y-2 text-sm">
         {door.offer.map((item) => (
           <li key={item} className="flex gap-2.5">

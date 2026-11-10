@@ -8,11 +8,11 @@
  */
 :root {
   color-scheme: light;
-  --bg: #ebe7e1; /* 60 */
-  --surface: #dfd9d1; /* 30 */
-  --line: #cfc7bd;
-  --ink: #1c1a19;
-  --muted: #5e5852;
+  --bg: #f4f2ee; /* 60: clean warm paper */
+  --surface: #ffffff; /* 30: cards lift off the paper */
+  --line: #e2ded7;
+  --ink: #14120f;
+  --muted: #5a554e;
   --accent: #c44d00; /* 10 */
   --on-accent: #ffffff;
   --accent-text: #a33f00;
@@ -29,9 +29,9 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #171514;
-    --surface: #221f1d;
-    --line: #34302c;
+    --bg: #121110;
+    --surface: #1b1917;
+    --line: #2b2825;
     --ink: #ece7e1;
     --muted: #a39a91;
     --accent: #ff7a1a;
@@ -48,9 +48,9 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #171514;
-  --surface: #221f1d;
-  --line: #34302c;
+  --bg: #121110;
+  --surface: #1b1917;
+  --line: #2b2825;
   --ink: #ece7e1;
   --muted: #a39a91;
   --accent: #ff7a1a;
@@ -438,6 +438,7 @@ html.is-loading .rise {
   position: absolute;
   inset: 4.5% 8% 2.5% 8%;
   perspective: 1200px;
+  overflow: hidden; /* the swinging leaf stays inside the frame, as in the reference */
 }
 .pdoor-doorway {
   position: absolute;
@@ -452,7 +453,7 @@ html.is-loading .rise {
     linear-gradient(90deg, rgb(0 0 0 / 0.18), transparent 7%, transparent 93%, rgb(0 0 0 / 0.22)),
     linear-gradient(180deg, var(--dc-l), var(--dc) 18%, var(--dc) 82%, var(--dc-d));
   box-shadow: inset 0 0 0 0.35cqi rgb(0 0 0 / 0.25);
-  transition: transform 560ms var(--ease-out);
+  transition: transform 420ms var(--ease-out);
   backface-visibility: hidden;
 }
 /* Stepped moulding: three fine rings, like the reference door's frame-within-frame. */
@@ -579,7 +580,13 @@ html.is-loading .rise {
   position: relative;
 }
 .door:focus-visible .pdoor-leaf {
-  transform: rotateY(16deg);
+  transform: rotateY(58deg);
+  transition-duration: 680ms;
+}
+.door:focus-visible .pdoor-doorway::after,
+.door:focus-visible .pdoor-leaf::before,
+.door[data-opening] .pdoor-doorway::after {
+  opacity: 1;
 }
 .door:focus-visible .pdoor-lever {
   transform: rotate(18deg);
@@ -610,11 +617,17 @@ html.is-loading .rise {
 .door-stage:has(li[data-door="creator"] .door:focus-visible) .door-panel[data-for="creator"] {
   opacity: 1;
   translate: 0 0;
+  transition-delay: 160ms;
 }
 @media (hover: hover) and (pointer: fine) {
   /* :not([data-opening]) so hover never out-ranks the opening swing. */
   .door:not(.locked):not([data-opening]):hover .pdoor-leaf {
-    transform: rotateY(16deg);
+    transform: rotateY(58deg);
+    transition-duration: 680ms;
+  }
+  .door:not(.locked):hover .pdoor-doorway::after,
+  .door:not(.locked):hover .pdoor-leaf::before {
+    opacity: 1;
   }
   .door:not(.locked):not([data-opening]):hover .pdoor-lever {
     transform: rotate(18deg);
@@ -634,7 +647,22 @@ html.is-loading .rise {
   .door-stage:has(li[data-door="creator"] .door:hover) .door-panel[data-for="creator"] {
     opacity: 1;
     translate: 0 0;
+    transition-delay: 160ms;
   }
+  .door-stage:has(li[data-door="tech"] .door:hover) .door-panel[data-for="tech"] .reveal,
+  .door-stage:has(li[data-door="teaching"] .door:hover) .door-panel[data-for="teaching"] .reveal,
+  .door-stage:has(li[data-door="management"] .door:hover) .door-panel[data-for="management"] .reveal {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: calc(240ms + var(--i) * 70ms);
+  }
+}
+.door-stage:has(li[data-door="tech"] .door:focus-visible) .door-panel[data-for="tech"] .reveal,
+.door-stage:has(li[data-door="teaching"] .door:focus-visible) .door-panel[data-for="teaching"] .reveal,
+.door-stage:has(li[data-door="management"] .door:focus-visible) .door-panel[data-for="management"] .reveal {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: calc(240ms + var(--i) * 70ms);
 }
 @keyframes locked-jiggle {
   25% {
@@ -1189,10 +1217,9 @@ html.is-loading .site-loader[data-done] {
   background: color-mix(in srgb, var(--accent) 12%, transparent);
   padding: 0.3rem 0.8rem;
   color: var(--accent-text);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 /* Header tabs: one floating pill; the current page is a filled tab. */
@@ -1235,4 +1262,64 @@ html.is-loading .site-loader[data-done] {
 /* The info card may overlap the floor, so the stage sits above it. */
 .door-stage {
   z-index: 2;
+}
+
+/* Half-open door: the doorway fills with warm light and the leaf darkens as it swings away;
+   the info card's lines then rise in one after another (a stagger of 70 ms). */
+.pdoor-doorway::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 85% at 50% 35%, #fffbf2, #f4e9d6 62%, #e8d6b8);
+  opacity: 0;
+  transition: opacity 380ms var(--ease-out);
+}
+.pdoor-leaf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.1));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms var(--ease-out);
+}
+.reveal {
+  opacity: 0;
+  translate: 0 10px;
+  transition:
+    opacity 320ms var(--ease-out),
+    translate 420ms var(--ease-out);
+}
+.door-panel-core {
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    translate: none;
+  }
+}
+
+/* ── New look, 10 Nov 2026: paper and white cards, double-bezel case cards, lit portrait ───── */
+.case-shell {
+  border-radius: 2rem;
+  padding: 0.4rem;
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.case-core {
+  border-radius: calc(2rem - 0.4rem);
+  background: var(--surface);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    0 28px 56px -36px rgb(0 0 0 / 0.35);
+}
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 12% -6% 0;
+  z-index: -1;
+  border-radius: 50% 50% 0 0;
+  background: radial-gradient(60% 60% at 50% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+  pointer-events: none;
 }
