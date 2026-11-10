@@ -102,37 +102,47 @@ function SwapOverlay({ from, to }: Swap) {
     const stage = stageRef.current;
     if (!root || !stage) return;
 
-    // Measure both doorways before anything is transformed, so each zoom can centre its door.
+    // Measure both doorways before anything is transformed. Each zoom is a pure scale about the
+    // door's own centre, never a pan: the doorway grows in place until it fills the screen, so the
+    // view goes straight into the door instead of sliding sideways across the hallway to it.
+    // Reset first: in development React runs effects twice, and a second run would otherwise measure
+    // a stage the first run had already zoomed.
+    stage.style.transform = "none";
+    stage.style.transformOrigin = "50% 50%";
     const stageBox = stage.getBoundingClientRect();
-    const zoomInto = (id: string) => {
+    type Zoom = { origin: string; transform: string };
+    const NONE: Zoom = { origin: "50% 50%", transform: "none" };
+    const zoomInto = (id: string): Zoom => {
       const opening = root.querySelector(`[data-swap-door="${id}"] .pdoor-opening`);
-      if (!opening) return "none";
+      if (!opening) return NONE;
       const box = opening.getBoundingClientRect();
-      const scale = Math.max(window.innerWidth / box.width, window.innerHeight / box.height) * 1.12;
-      const cx = box.left + box.width / 2 - stageBox.left;
-      const cy = box.top + box.height / 2 - stageBox.top;
-      const dx = window.innerWidth / 2 - stageBox.left - scale * cx;
-      const dy = window.innerHeight / 2 - stageBox.top - scale * cy;
-      return `translate(${dx}px, ${dy}px) scale(${scale})`;
+      const cx = box.left + box.width / 2;
+      const cy = box.top + box.height / 2;
+      // Smallest scale at which the doorway covers all four screen edges.
+      const scale =
+        Math.max((2 * cx) / box.width, (2 * (window.innerWidth - cx)) / box.width, (2 * cy) / box.height, (2 * (window.innerHeight - cy)) / box.height) * 1.06;
+      return { origin: `${cx - stageBox.left}px ${cy - stageBox.top}px`, transform: `scale(${scale})` };
     };
     const fromZoom = zoomInto(fromId);
     const toZoom = zoomInto(toId);
+    const apply = (zoom: Zoom) => {
+      stage.style.transformOrigin = zoom.origin;
+      stage.style.transform = zoom.transform;
+    };
     const leaf = (id: string, state: "open" | "shut") =>
       root.querySelector(`[data-swap-door="${id}"]`)?.setAttribute("data-leaf", state);
 
-    if (!fromHome) stage.style.transform = fromZoom; // first frame: still inside the current doorway
+    if (!fromHome) apply(fromZoom); // first frame: still inside the current doorway
 
     const timers = [
       window.setTimeout(() => root.classList.remove("is-instant"), T.unfreeze),
       window.setTimeout(() => {
         root.dataset.veil = "off";
-        stage.style.transform = "none";
+        stage.style.transform = "none"; // steps back out about the same point it went in
       }, T.zoomOut),
       window.setTimeout(() => leaf(fromId, "shut"), T.close),
       window.setTimeout(() => leaf(toId, "open"), T.open),
-      window.setTimeout(() => {
-        stage.style.transform = toZoom;
-      }, T.zoomIn),
+      window.setTimeout(() => apply(toZoom), T.zoomIn), // the origin moves while the stage is at scale 1, so nothing slides
       window.setTimeout(() => {
         root.dataset.veil = "on";
       }, T.veil),
