@@ -153,8 +153,8 @@ function Visual({ visual }: { visual: CaseVisual }) {
       return (
         <div className="flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-[1rem] border border-line bg-[#f6f4f0] p-6">
           <ul className="grid w-full max-w-[26rem] grid-cols-2 gap-3">
-            {visual.logos.map((logo) => (
-              <li key={logo.src} className="flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-[0_1px_0_rgb(0_0_0/0.06)]">
+            {visual.logos.map((logo, i) => (
+              <li key={logo.src} className={`flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-[0_1px_0_rgb(0_0_0/0.06)] ${i === visual.logos.length - 1 && visual.logos.length % 2 === 1 ? "col-span-2" : ""}`}>
                 <Image src={logo.src} width={logo.width} height={logo.height} alt={logo.alt} sizes="200px" className="h-auto max-h-full w-auto max-w-full object-contain" />
               </li>
             ))}

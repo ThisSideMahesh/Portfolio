@@ -8,6 +8,13 @@ import type { DoorId } from "@/lib/site";
 /** A real image from Mahesh's own work (a screenshot or a logo), prepared by hand into public/images/work. */
 export type WorkImage = { src: string; width: number; height: number; alt: string };
 
+/**
+ * A drawn emblem (800 x 600) for a card that has no screenshot or logo of its own: a line icon, the name
+ * and one fact. Source: scripts/emblems.html. It is a picture of the work, never an organisation's logo.
+ */
+const emblem = (id: string, alt: string) =>
+  ({ kind: "screens", images: [{ src: `/images/work/emblems/${id}.webp`, width: 800, height: 600, alt }] }) as const;
+
 export type CaseVisual =
   | { kind: "stat"; value: string; label: string }
   /** One or two real screenshots in a window-like frame (the second overlaps the first). */
@@ -108,7 +115,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Developed the full-stack web application to the client's requirements",
               "Supports core shop operations and business workflows",
             ],
-            visual: { kind: "mark", mark: "SMS", caption: "Built to a client's brief for day-to-day shop operations" },
+            visual: emblem("shop", "Emblem for the Shop Management System: a line drawing of a shop front with an awning"),
           },
           {
             kicker: "Project",
@@ -122,7 +129,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Back end in Node.js and Express.js with MongoDB (Mongoose); a responsive vanilla JavaScript front end",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/canteengo" }],
-            visual: { kind: "flow", steps: ["Browse the menu", "Pre-order", "Get an Order ID", "Collect when ready"] },
+            visual: emblem("canteen", "Emblem for CanteenGo: a line drawing of a fork and a knife"),
           },
           {
             kicker: "Project",
@@ -156,14 +163,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Reads medical reports (PDF and images) with local OCR and graphs heart rate, oxygen and temperature trends",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/02_TeamsFuture" }],
-            visual: {
-              kind: "stack",
-              layers: [
-                { name: "Web app", detail: "React, Vite, Zustand, Tailwind CSS, Recharts" },
-                { name: "Risk engine and OCR", detail: "FastAPI, Python, PyTesseract" },
-                { name: "Storage", detail: "Local JSON, Pydantic validation" },
-              ],
-            },
+            visual: emblem("handoff", "Emblem for Clinical Handoff Risk Intelligence: a heartbeat line inside a screen"),
           },
           {
             kicker: "In early development",
@@ -190,14 +190,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "JWT sign-in and 80 automated tests with pytest",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/internship-guidance-agent" }],
-            visual: {
-              kind: "stack",
-              layers: [
-                { name: "Web app", detail: "React 18, Vite" },
-                { name: "API and agent tools", detail: "FastAPI, Python 3.11, JWT" },
-                { name: "Data and AI", detail: "MongoDB Atlas, OpenAI, Gemini or Groq" },
-              ],
-            },
+            visual: emblem("internpath", "Emblem for Internpath: a winding path that ends at a flag"),
           },
           {
             kicker: "Personal project",
@@ -211,7 +204,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Card-based interface using shadcn/ui, set up with Google Genkit for future insights",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Momentum-Tracker" }],
-            visual: { kind: "mark", mark: "MT", caption: "Habits, streaks and a Momentum Score" },
+            visual: emblem("momentum", "Emblem for Momentum Tracker: rising bars with a trend arrow"),
           },
           {
             kicker: "Learning project",
@@ -224,7 +217,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Written as a first Clarity smart contract, with a roadmap for editing, voting and IPFS storage",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Decentralized-Blog" }],
-            visual: { kind: "flow", steps: ["Publish a post", "Hash goes on-chain", "Anyone can read it"] },
+            visual: emblem("chain", "Emblem for the Decentralized Blog: three linked blocks, like a blockchain"),
           },
           {
             kicker: "Personal project",
@@ -267,7 +260,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Installed, configured and maintained Windows and essential software",
               "Performed preventive maintenance and hardware replacement",
             ],
-            visual: { kind: "tags", items: ["Desktops", "Laptops", "Printers", "Networks", "Windows", "Assembly"] },
+            visual: emblem("technician", "Emblem for the Hardware and Software Technician internship at New Technical World, Jalna: a computer screen with a gear"),
           },
         ],
       },
@@ -285,7 +278,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Secure role-based access, billing automation and inter-pharmacy collaboration tools",
             ],
             links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/PharmaManagePro" }],
-            visual: { kind: "stat", value: "1st", label: "place, Cogni-Sphere 2025 HackSphere" },
+            visual: { kind: "screens", images: [{ src: "/images/work/cert-hacksphere-first-rank.webp", width: 1200, height: 848, alt: "Certificate of achievement: Mahesh Khandebharad secured first rank in Cogni-Sphere 2025, HackSphere, organised by the IETE Student Forum at MIT CSN, 13 and 14 October 2025" }] },
           },
           {
             kicker: "Finalist",
@@ -331,10 +324,10 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           {
             kicker: "Technical Coordinator",
             title: "Kalavihangam 2K23",
-            when: "MIT CSN · 24 – 28 Feb 2025",
+            when: "MIT CSN · 24 – 28 Feb 2023",
             summary: "Ran the technical arrangements for a campus event.",
             points: ["Technical Coordinator for an event with 1,000+ attendees"],
-            visual: { kind: "stat", value: "1,000+", label: "event attendees" },
+            visual: emblem("kalavihangam", "Emblem for Kalavihangam 2K23: a stage light with three beams. 1,000+ event attendees"),
           },
           {
             kicker: "Workshop speaker",
@@ -360,6 +353,8 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
             summary: "Linux administration, cloud foundations and hands-on labs.",
             points: [
               "Red Hat System Administration training, completed; RHCSA exam pending",
+              "Certified Linux Administrator, Linux Academy Australia (through Unnati Development and Training Centre)",
+              "KuCL (DevOps), Unnati Development and Training Centre",
               "Linux Administrator for Datacenter, Silver (NASSCOM)",
               "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
               "AWS Cloud Practitioner Essentials, AWS IoT Foundations and AWS SimuLearn: Cloud Practitioner",
@@ -370,6 +365,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               logos: [
                 { src: "/images/work/logos/oracle.webp", width: 640, height: 97, alt: "Oracle" },
                 { src: "/images/work/logos/nasscom.webp", width: 640, height: 187, alt: "nasscom IT-ITeS Sector Skill Council" },
+                { src: "/images/work/logos/unnati.webp", width: 640, height: 278, alt: "Unnati Development and Training Centre Pvt Ltd: A Step Towards Success" },
               ],
               note: "and 64+ Google Cloud skill badges",
             },
@@ -400,7 +396,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "MS-CIT (Maharashtra State Certificate in Information Technology)",
               "Basics of Social Media and Digital Marketing (NIELIT)",
             ],
-            visual: { kind: "tags", items: ["Cyber security", "Digital forensics", "Ethical hacking", "MS-CIT", "Digital marketing"] },
+            visual: emblem("cyber", "Emblem for cybersecurity and digital skills: a shield with a keyhole"),
           },
           {
             kicker: "Workshops and meetups",
@@ -448,7 +444,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Ran practical sessions, assessments and doubt-solving",
           "Improved students' proficiency with computer operations, documents and basic IT tools",
         ],
-        visual: { kind: "stat", value: "25+", label: "students trained" },
+        visual: emblem("mscit", "Emblem for the MS-CIT trainer role: a teaching board. 25+ students trained"),
       },
       {
         kicker: "Session speaker",
@@ -460,7 +456,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Guided students on converting ideas into practical projects",
           "Internships, technical competitions and responsible AI use",
         ],
-        visual: { kind: "tags", items: ["Hackathons", "Career planning", "Resumes", "Personal branding", "AI tools"] },
+        visual: emblem("hacked", "Emblem for the Hackathon Hacked session at Technophilia 2K26: a light bulb"),
       },
     ],
   },
@@ -479,7 +475,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Ran resume screening, shortlisting, interview scheduling and onboarding documentation",
           "Liaised with company HR, placement officers and institute leadership",
         ],
-        visual: { kind: "stat", value: "95+", label: "campus recruitment drives" },
+        visual: emblem("tnp", "Emblem for the Training, Placement and Entrepreneurship Student Cell: a briefcase. 95+ campus recruitment drives"),
       },
       {
         kicker: "Sales and Marketing Intern",
@@ -491,7 +487,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Counselled students and parents about programmes",
           "Coordinated with centre heads on admissions and examinations",
         ],
-        visual: { kind: "stat", value: "125+", label: "qualified admission leads" },
+        visual: emblem("dfc", "Emblem for the Dnyandeep Foundation Centre internship: an open book. 125+ qualified admission leads"),
       },
       {
         kicker: "Community and content",
@@ -503,19 +499,19 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Managed LinkedIn, Instagram and YouTube for Athlete Meets Explorer, with 15,000+ engagements",
           "Planned content calendars and tracked analytics",
         ],
-        visual: { kind: "stat", value: "25,000+", label: "monthly reach" },
+        visual: emblem("social", "Emblem for social media work: a speech bubble with a chart. 25,000+ monthly reach"),
       },
       {
         kicker: "Events",
         title: "Kalavihangam 2K23 and first-year induction",
-        when: "MIT CSN · 24 – 28 Feb 2025; induction 2023 – 2024",
+        when: "MIT CSN · 24 – 28 Feb 2023; induction 2023 – 2024",
         summary: "Technical coordination and onboarding at scale.",
         points: [
           "Technical Coordinator for an event with 1,000+ attendees",
           "Helped induct 250+ first-year students",
           "Food Committee member: quality checks and vendor coordination",
         ],
-        visual: { kind: "stat", value: "1,000+", label: "event attendees" },
+        visual: emblem("induction", "Emblem for Kalavihangam 2K23 and first-year induction: a group of people. 250+ first-year students inducted"),
       },
     ],
   },
