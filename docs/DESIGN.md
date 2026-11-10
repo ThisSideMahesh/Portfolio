@@ -294,3 +294,8 @@ Never "coming soon". Never branded "Institutelevel-boy" on this site.
 - **Proof strip: tried and removed** (comment #11): four numbers under the hero duplicated what the doors already say in their hover panels, so the strip went. The numbers stay in each door's panel and on the role pages.
 - **Phones** now see the availability line ("Available for work from 10 December 2026"), which was hidden below md.
 - No skeleton screens: every page is static, so there is nothing to wait for.
+
+## 12. Full audit, 10 Nov 2026 (guidelines, animation rules, Lighthouse)
+- **Lighthouse (mobile, production build):** home 99 / 100 / 100 / 100, `/tech` 100 / 100 / 100 / 100 (performance, accessibility, best practices, SEO). The only note is Speed Index 3.6 s on home, caused by the 1.4 s opening on a throttled run.
+- **Web Interface Guidelines:** passes on focus states, reduced motion, `color-scheme`, `touch-action`, `theme-color`, skip link, alt text, `translate="no"` on the brand and `lang`. No `transition: all`, no `ease-in` on UI, no `scale(0)` anywhere (Emil Kowalski rules).
+- **Added:** link preview (`app/opengraph-image.tsx`, 1200×630, opening-animation palette), Open Graph and Twitter card metadata, `robots.txt` (blocks `/api/`), `sitemap.xml` for the four pages. The site address comes from `NEXT_PUBLIC_SITE_URL`; set it to the real domain at deploy or the previews will name `localhost`.
