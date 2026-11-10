@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
@@ -16,7 +18,8 @@ const DOORS = [
  * The link preview shown when the site is shared (LinkedIn, WhatsApp, X). Same palette as the
  * opening animation: warm near-black, one orange accent, one pill per door.
  */
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const badge = `data:image/png;base64,${(await readFile(join(process.cwd(), "public/images/logo-badge.png"))).toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -32,7 +35,7 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 30, color: "#a39a91" }}>
-          <div style={{ width: 14, height: 14, borderRadius: 14, background: "#ff7a1a" }} />
+          <img src={badge} width={84} height={84} alt="" />
           {site.username}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>

@@ -539,3 +539,10 @@ Request from Mahesh: use the Management page's card animation (cards stack as yo
 - **Every door page, fixed bottom-left:** a compact "CV" pill next to "Back to the doors", so the CV is one click away from Tech, Teaching and Management while reading cards.
 - **Footer, every page:** a "Master CV" entry under the email, for visitors who scroll to the end.
 - **Not in the top navigation:** the nav island is already full and its centre is for page links. One setting (`cv` in `lib/site.ts`) holds the file and label, so a change is made in one place.
+
+## 44. Logo: portrait badge, 10 Nov 2026
+Mahesh chose his face as the logo, head to shoulders, over a door-arch monogram and the wordmark.
+- **The badge:** a head-and-shoulders crop of the existing background-free portrait (`public/images/mahesh-cutout.png`), unaltered, on a warm light tile in a circle with a thin orange ring (the one accent colour). The light tile is needed because the black hoodie disappears on a dark one. Made once with Pillow; the output carries no metadata.
+- **Where it is used:** the header, left of the wordmark (36 px, decorative `alt=""` because the wordmark names the link); the browser tab icon (`app/icon.png`, 192 px, replacing the old flower-like `icon.svg`); the iOS home-screen icon (`app/apple-icon.png`, 180 px, square); the share preview image (`app/opengraph-image.tsx`, 84 px next to the username, read from `public/images/logo-badge.png`); the top of the README.
+- **Trade-off, noted when choosing:** a face is soft at tab-icon size (16 to 32 px); the ring and the light tile keep it readable as a round portrait. For a sharper small mark a simple monogram would still be better.
+- README screenshots were retaken with the new header (the two home pictures come from the real browser, because headless Chrome sometimes captures the home page before its entrance animation finishes).

@@ -1,4 +1,8 @@
-# Mahesh Namdev Khandebharad: Portfolio
+<p align="center">
+  <img src="public/images/logo-badge.png" alt="Portrait badge of Mahesh Namdev Khandebharad" width="120" height="120">
+</p>
+
+<h1 align="center">Mahesh Namdev Khandebharad: Portfolio</h1>
 
 A personal portfolio for a Computer Science and Engineering student who works across **tech**, **teaching** and **management**. Every visitor walks through one of three doors, each leading to a page of real projects, roles and certificates. A fourth door, Digital Creator, is locked for now.
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LocalDate, LocalTime } from "@/components/site/local-time";
 import { MobileMenu } from "@/components/site/mobile-menu";
@@ -20,7 +21,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-bg/90 backdrop-blur-sm">
       <div className="wrap flex h-[4.5rem] items-center justify-between gap-6">
-        <Link href="/" translate="no" className="inline-flex min-h-11 items-center font-display text-xl font-bold tracking-tight">
+        <Link href="/" translate="no" className="inline-flex min-h-11 items-center gap-3 font-display text-xl font-bold tracking-tight">
+          <Image src="/images/logo-badge.webp" alt="" width={36} height={36} className="size-9 shrink-0 rounded-full" />
           {site.username}
         </Link>
 
