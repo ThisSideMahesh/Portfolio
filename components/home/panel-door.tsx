@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 
 export type DoorVariant = "tech" | "teaching" | "management" | "creator";
 
@@ -12,6 +12,7 @@ export type DoorVariant = "tech" | "teaching" | "management" | "creator";
  * soft contact shadow on the floor. The locked Creator door wears two strips of caution tape.
  */
 export function PanelDoor({ variant, name, locked = false }: { variant: DoorVariant; name: string; locked?: boolean }) {
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   return (
     <span className={`pdoor relative block aspect-[10/21] ${locked ? "is-locked" : ""}`} data-variant={variant}>
       <span aria-hidden="true" className="pdoor-casing" />
@@ -19,7 +20,7 @@ export function PanelDoor({ variant, name, locked = false }: { variant: DoorVari
         <span className="pdoor-doorway" />
         <span className="pdoor-leaf">
           <span className="pdoor-moulding" />
-          <span className="pdoor-panel">{MOTIFS[variant]}</span>
+          <span className="pdoor-panel">{motifs(uid)[variant]}</span>
           <span className="pdoor-plate">{name}</span>
           <span className="pdoor-handle">
             <span className="pdoor-rose" />
@@ -72,20 +73,24 @@ function Brass({ id }: { id: string }) {
 
 const svgProps = { viewBox: "0 0 100 220", preserveAspectRatio: "xMidYMid meet", className: "h-full w-full" } as const;
 
-const MOTIFS: Record<DoorVariant, ReactNode> = {
+/** Gradient ids carry a per-instance suffix (u): the opening and the tab walk draw the same door as the page, and duplicate ids would let a hidden copy break the visible one. */
+const motifs = (u: string): Record<DoorVariant, ReactNode> => ({
   // Tech: brass inlay traced like a circuit board, with solder nodes and a chip.
   tech: (
     <svg {...svgProps}>
-      <Brass id="b-tech" />
-      <g fill="none" stroke="url(#b-tech)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <Brass id={`b-tech-${u}`} />
+      <g fill="none" stroke={`url(#b-tech-${u})`} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
         <rect x="6" y="6" width="88" height="208" rx="1" />
         <path d="M6 58 H32 V96 H58" />
         <path d="M94 128 H70 V160 H44 V188" />
         <path d="M50 6 V34 H72" />
         <rect x="56" y="88" width="22" height="16" rx="1.5" />
         <path d="M60 88 V82 M67 88 V82 M74 88 V82 M60 104 V110 M67 104 V110 M74 104 V110" />
+        {/* Code mark </> (lower left) and a terminal prompt >_ (top right), for the developer side. */}
+        <path d="M20 140 L12 148 L20 156 M31 138 L27 158 M36 140 L44 148 L36 156" />
+        <path d="M76 14 L83 20 L76 26 M86 26 H92" />
       </g>
-      <g fill="url(#b-tech)">
+      <g fill={`url(#b-tech-${u})`}>
         <circle cx="72" cy="34" r="2.6" />
         <circle cx="44" cy="188" r="2.6" />
         <circle cx="32" cy="58" r="2" />
@@ -96,8 +101,8 @@ const MOTIFS: Record<DoorVariant, ReactNode> = {
   // Teaching: the panel is a blackboard with chalk lines, on a wooden chalk ledge.
   teaching: (
     <svg {...svgProps}>
-      <Brass id="b-teach" />
-      <rect x="6" y="6" width="88" height="196" rx="1.5" fill="#1d2a24" stroke="url(#b-teach)" strokeWidth="1.6" />
+      <Brass id={`b-teach-${u}`} />
+      <rect x="6" y="6" width="88" height="196" rx="1.5" fill="#1d2a24" stroke={`url(#b-teach-${u})`} strokeWidth="1.6" />
       <g fill="none" stroke="#e8eee9" strokeOpacity="0.72" strokeLinecap="round" strokeWidth="1.3">
         <path d="M18 40 C28 34 36 46 46 40 S62 34 70 40" />
         <path d="M18 62 H76" />
@@ -114,14 +119,14 @@ const MOTIFS: Record<DoorVariant, ReactNode> = {
   // Management: two stacked panels; the top one carries a brass org chart.
   management: (
     <svg {...svgProps}>
-      <Brass id="b-mgmt" />
-      <g fill="none" stroke="url(#b-mgmt)" strokeWidth="1.6" strokeLinejoin="round">
+      <Brass id={`b-mgmt-${u}`} />
+      <g fill="none" stroke={`url(#b-mgmt-${u})`} strokeWidth="1.6" strokeLinejoin="round">
         <rect x="6" y="6" width="88" height="84" rx="1" />
         <rect x="6" y="100" width="88" height="114" rx="1" />
         <rect x="14" y="108" width="72" height="98" rx="1" strokeOpacity="0.55" />
         <path d="M50 34 V48 M24 48 H76 M24 48 V58 M50 48 V58 M76 48 V58" />
       </g>
-      <g fill="url(#b-mgmt)">
+      <g fill={`url(#b-mgmt-${u})`}>
         <rect x="42" y="22" width="16" height="12" rx="2" />
         <rect x="16" y="58" width="16" height="12" rx="2" />
         <rect x="42" y="58" width="16" height="12" rx="2" />
@@ -132,11 +137,11 @@ const MOTIFS: Record<DoorVariant, ReactNode> = {
   // Creator: a brass ring with a play mark, for the channel still behind a locked door.
   creator: (
     <svg {...svgProps}>
-      <Brass id="b-creator" />
-      <rect x="6" y="6" width="88" height="208" rx="1" fill="none" stroke="url(#b-creator)" strokeWidth="1.6" />
-      <circle cx="50" cy="96" r="24" fill="none" stroke="url(#b-creator)" strokeWidth="1.8" />
-      <path d="M44 84 L62 96 L44 108 Z" fill="url(#b-creator)" />
-      <path d="M26 150 H74 M32 162 H68" stroke="url(#b-creator)" strokeWidth="1.2" strokeOpacity="0.6" />
+      <Brass id={`b-creator-${u}`} />
+      <rect x="6" y="6" width="88" height="208" rx="1" fill="none" stroke={`url(#b-creator-${u})`} strokeWidth="1.6" />
+      <circle cx="50" cy="96" r="24" fill="none" stroke={`url(#b-creator-${u})`} strokeWidth="1.8" />
+      <path d="M44 84 L62 96 L44 108 Z" fill={`url(#b-creator-${u})`} />
+      <path d="M26 150 H74 M32 162 H68" stroke={`url(#b-creator-${u})`} strokeWidth="1.2" strokeOpacity="0.6" />
       <defs>
         <linearGradient id="pd-brass" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#f0d488" />
@@ -146,4 +151,4 @@ const MOTIFS: Record<DoorVariant, ReactNode> = {
       </defs>
     </svg>
   ),
-};
+});
