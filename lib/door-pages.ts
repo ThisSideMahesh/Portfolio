@@ -146,7 +146,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
             visual: { kind: "screens", images: [{ src: "/images/work/logo-canteengo.webp", width: 1000, height: 750, alt: "CanteenGo logo: an orange fork and spoon inside a rounded square, on black" }] },
           },
           {
-            kicker: "Project",
+            kicker: "MDM minor project",
             title: "AgriSenseAI: Crop Recommendation System",
             when: "Python · Streamlit · scikit-learn",
             summary: "Recommends the best crop for a field from soil and climate data.",
@@ -248,6 +248,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Developed an industrial project under the guidance of Kiran Academy's expert technical team",
               "Technology: Python Full Stack",
             ],
+            links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7502727475312046080/" }],
             visual: { kind: "logo", image: { src: "/images/work/logos/kiran-academy.webp", width: 640, height: 137, alt: "Kiran Academy, IT Training Institute" } },
           },
           {
@@ -399,6 +400,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Foundational C# with Microsoft (freeCodeCamp); Introduction to Data Science and Introduction to IoT (Cisco Networking Academy)",
               "Programming in C and C++ (Disha Computer Institute)",
             ],
+            links: [{ label: "LinkedIn: NPTEL AI course", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393898753541300224/" }],
             visual: { kind: "logo", image: { src: "/images/work/logos/cisco-networking-academy.webp", width: 640, height: 148, alt: "Cisco Networking Academy" } },
           },
           {
@@ -412,6 +414,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "MS-CIT (Maharashtra State Certificate in Information Technology)",
               "Basics of Social Media and Digital Marketing (NIELIT)",
             ],
+            links: [{ label: "LinkedIn: Ethical Hacking workshop", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393899396809093120/" }],
             visual: {
               kind: "logos",
               logos: [
@@ -433,7 +436,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Google Cloud Study Jam, Google Developer Student Clubs MIT (Dec 2023)",
               "6-day Student Workshop on Universal Human Values (AICTE, Mar – Apr 2026)",
             ],
-            links: [{ label: "LinkedIn: Build With AI", href: "https://www.linkedin.com/feed/update/urn:li:activity:7493147076915298304/" }, { label: "LinkedIn: LaunchLab", href: "https://www.linkedin.com/feed/update/urn:li:activity:7494234000975388673/" }],
+            links: [{ label: "LinkedIn: Build With AI", href: "https://www.linkedin.com/feed/update/urn:li:activity:7493147076915298304/" }, { label: "LinkedIn: LaunchLab", href: "https://www.linkedin.com/feed/update/urn:li:activity:7494234000975388673/" }, { label: "LinkedIn: CNCF meetup", href: "https://www.linkedin.com/feed/update/urn:li:activity:7503293918873182208/" }],
             visual: { kind: "screens", images: [{ src: "/images/work/cert-gdg-build-with-ai.webp", width: 800, height: 565, alt: "Google Developer Groups certificate of participation for Mahesh Namdev Khandebharad: Build With AI, Hands-On Workshop" }] },
           },
         ],
