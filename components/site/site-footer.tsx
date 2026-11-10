@@ -24,7 +24,7 @@ export function SiteFooter() {
             <ul className="mt-3 space-y-1">
               {socials.map((social) => (
                 <li key={social.href}>
-                  <a href={social.href} rel="me noopener noreferrer" target="_blank" className="inline-flex min-h-11 items-center hover:underline underline-offset-4">
+                  <a href={social.href} rel="me noopener noreferrer" target="_blank" className="inline-flex min-h-11 min-w-11 items-center hover:underline underline-offset-4">
                     {social.label}
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>

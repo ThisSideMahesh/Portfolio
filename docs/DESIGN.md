@@ -483,3 +483,34 @@ Rule from Mahesh: every card needs an image or a logo; where none exists, draw o
 - **Light:** a soft radial amber glow (screen blend) around each flame that spills onto the wall, and a faint amber wash on the frame's two lower corners. The flame is a teardrop SVG with a pale core and a small drop shadow of light.
 - **Motion:** a slow flicker (3.7 s left, 4.3 s right with an offset, so they are never in step) on the flame, and a barely visible breathing of the glow. The animations are paused in light mode (play-state follows the dark blocks) and removed under `prefers-reduced-motion`; the light stays, only the flicker stops.
 - **Layout:** two columns (heading left, shrine right) from 1024 px; below that the shrine sits centred under the heading. Checked at 375 px (frame 168 px, diyas 58 px, row 299 px, no sideways scroll), 820 px and desktop. Light and dark mode checked on desktop (flame opacity 0 and 1).
+
+## 41. Full audit: security, design and accessibility, animation, 10 Nov 2026
+Skills used: security-review, design-review, accessibility, animation-performance (plus the earlier motion and design skills). Checked on the production build (`next start`), not the dev server.
+
+### Security
+| Finding | Severity | Result |
+|---|---|---|
+| The old public `main` of github.com/ThisSideMahesh/Portfolio still contains Mahesh's phone number (`config/social.ts`, `his phone number`) and his Gmail in 12 commits | High, outside this branch | **Not fixed here; needs Mahesh** (see the report). `portfolio-2026` and the local branch contain neither. |
+| No security headers or CSP | Medium | **Fixed** in `next.config.ts`: CSP (self only, `object-src 'none'`, `frame-ancestors 'none'`, `base-uri`, `form-action`, upgrade-insecure-requests), HSTS 2 years, nosniff, Referrer-Policy, Permissions-Policy (camera, microphone, location, payment, USB off), COOP, X-Frame-Options. CSP and HSTS are production only. Zero CSP violations on all four pages. |
+| CSP keeps `'unsafe-inline'` for scripts and styles | Low, accepted | Next.js writes inline scripts; a nonce would make every page render per request. There is no user input anywhere, so nothing can be injected. Move to a nonce in `proxy.ts` if a form is ever added. |
+| Dev-only review widget and `/api/feedback` | Checked | The widget renders only when `NODE_ENV === "development"`; in production GET and POST return 404. |
+| Secrets | Checked | None in the tree or in the history of the new branch (pattern scan: 0 hits); `.env*` and `content/source` are ignored; `.env.example` has empty placeholders. |
+| Dependencies | Checked | `pnpm audit --prod`: no known vulnerabilities. |
+| Private data in pages | Checked | Rendered HTML of all pages scanned: no phone number, date of birth, score or percentage; the only personal detail is the public contact email (mailto). All images: no EXIF or other metadata. |
+| External links | Checked | 83 outside links, all `target="_blank" rel="noopener noreferrer"`; no http:// references; no inline event handlers. |
+| Contact email is plain text in the page (spam harvesting) | Info | A contact form (planned) would hide it. |
+
+### Design and accessibility
+- Lighthouse (production, mobile): home 99 / 100 / 100 / 100 (performance, accessibility, best practices, SEO), Tech, Teaching and Management 100 / 100 / 100 / 100; home on desktop 98 / 100 / 100 / 100. LCP 0.9 s, CLS 0 to 0.003.
+- **Fixed:** the calendar page counter had text contrast 3.4:1 (needs 4.5:1), now #5c554e on the paper; the footer "X" link was 10 px wide (WCAG 2.5.8 needs 24 px), now at least 44 px.
+- **Fixed (WCAG 2.2.2):** the role calendar cycled forever with no way to stop it. It now has a 28 px pause and play button in its corner (aria-pressed, keyboard reachable, hidden under reduced motion). Hover and click on the calendar still do not pause it.
+- Checked and fine: one h1 per page and no skipped heading levels; landmarks (main, nav, header, footer) and a skip link; every image has a non-redundant alt; no horizontal overflow at 375, 820 or desktop; `lang="en"`; carousel works with the keyboard.
+
+### Animation
+- Code audit: no `transition: all`, no animated layout property (width, height, top, left, margin, padding), no animated blur, two `will-change` (both small), the only scroll listener is passive and runs through one requestAnimationFrame to write `transform`. Every animation outside the reduced-motion blocks is opacity or transform only, and each is switched off or skipped under `prefers-reduced-motion` (loader and door walks are skipped in code, the calendar does not run, the diyas stop flickering).
+- Measured on the production build (desktop): home page idle with the diyas lit 16.7 ms per frame (p95 17.2, worst 17.6, no frame over 20 ms), diyas unlit the same, and scrolling the whole home page in dark mode the same (worst 17.7). Not verified: a mid-range phone, which needs a recording on a real device.
+
+### Polish added
+- Tech page: a row of jump links under the title (Projects 11, Experience 2, Hackathons 6, Campus roles 2, Certificates 4) that scroll to each row.
+- Link pills show a GitHub or LinkedIn mark and drop the repeated "LinkedIn:" text (kept for screen readers).
+- Card pictures rise 3.5% on mouse hover (transform only, off for touch and reduced motion).

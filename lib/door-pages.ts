@@ -46,6 +46,8 @@ export type CaseStudy = {
 export type CaseSection = {
   id: string;
   title: string;
+  /** Short name for the jump links at the top of the page. */
+  label?: string;
   cases: readonly CaseStudy[];
 };
 
@@ -66,6 +68,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
     sections: [
       {
         id: "projects",
+        label: "Projects",
         title: "Projects",
         cases: [
           {
@@ -236,6 +239,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       },
       {
         id: "experience",
+        label: "Experience",
         title: "Professional experience",
         cases: [
           {
@@ -266,6 +270,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       },
       {
         id: "competitions",
+        label: "Hackathons",
         title: "Hackathons and competitions",
         cases: [
           {
@@ -345,6 +350,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       },
       {
         id: "campus",
+        label: "Campus roles",
         title: "Positions of responsibility and campus experience",
         cases: [
           {
@@ -375,6 +381,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       },
       {
         id: "certificates",
+        label: "Certificates",
         title: "Certificates and learning",
         cases: [
           {

@@ -1,18 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 const HOLD_MS = 2600;
 const FLIP_MS = 760;
+
+const REDUCED = "(prefers-reduced-motion: reduce)";
+function subscribeReduced(onChange: () => void) {
+  const query = window.matchMedia(REDUCED);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+}
 
 /**
  * Spiral-bound flip calendar that cycles the roles continuously. The top page lifts on its
  * ring hinge, darkens as it turns away and flips up over the rings; the page underneath
  * settles in. It waits while the tab is hidden and does not run under reduced motion.
  *
- * Known exception (Mahesh's choice, 2026-11-10): there is no pause control, so this does not
- * meet WCAG 2.2.2 (Pause, Stop, Hide). Hover/click pauses and a three-round stop were tried
- * and read as "broken", so they were removed. Revisit before launch (PLAN §8).
+ * Pause control (WCAG 2.2.2): the calendar starts on its own and never stops, so there is a small
+ * pause/play button in its corner (a real button, 28 px, keyboard reachable). Hover and click on the
+ * calendar itself do not pause it (that read as "broken" earlier); only the button does. The button is
+ * not shown when the visitor prefers reduced motion, because then nothing moves.
  * Screen readers get the whole list once, as text, in the heading.
  */
 export function FlipCalendar({ roles }: { roles: readonly string[] }) {
@@ -20,9 +28,17 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
   const [leaving, setLeaving] = useState<number | null>(null);
   const [flips, setFlips] = useState(0);
   const [tick, setTick] = useState(0); // re-arms the timer while the tab is hidden
+  const [paused, setPaused] = useState(false);
+  // True on the server and until the browser says otherwise, so the button never flashes for visitors who prefer reduced motion.
+  const reduced = useSyncExternalStore(
+    subscribeReduced,
+    () => window.matchMedia(REDUCED).matches,
+    () => true,
+  );
+  const canMove = roles.length > 1 && !reduced;
 
   useEffect(() => {
-    if (roles.length < 2) return;
+    if (roles.length < 2 || paused) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setTimeout(() => {
       if (document.hidden) return setTick((t) => t + 1);
@@ -31,7 +47,7 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
       setFlips((f) => f + 1);
     }, HOLD_MS);
     return () => window.clearTimeout(timer);
-  }, [index, roles.length, tick]);
+  }, [index, roles.length, tick, paused]);
 
   useEffect(() => {
     if (leaving === null) return;
@@ -42,6 +58,7 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
   const counter = `${String(index + 1).padStart(2, "0")} / ${String(roles.length).padStart(2, "0")}`;
 
   return (
+    <div className="relative w-full max-w-[30rem]">
     <div aria-hidden="true" className="calendar relative w-full max-w-[30rem]">
       {/* Rings */}
       <div className="absolute inset-x-6 -top-3 z-30 flex justify-between">
@@ -66,6 +83,26 @@ export function FlipCalendar({ roles }: { roles: readonly string[] }) {
           <span className="calendar-word">{roles[leaving]}</span>
         </div>
       ) : null}
+    </div>
+    {canMove ? (
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        aria-label="Pause the role calendar"
+        className="calendar-pause"
+      >
+        {paused ? (
+          <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+            <path d="M5 3.2v9.6L12.6 8z" />
+          </svg>
+        ) : (
+          <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+            <path d="M4.5 3h2.6v10H4.5zM8.9 3h2.6v10H8.9z" />
+          </svg>
+        )}
+      </button>
+    ) : null}
     </div>
   );
 }

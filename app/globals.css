@@ -267,6 +267,38 @@ html.is-loading .rise {
   min-width: 0;
   text-wrap: balance;
 }
+/* Card pictures lift a little when the card is hovered (mouse only; transform only, so it stays on the compositor). */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .case-visual img {
+    transition: transform 700ms var(--ease-out);
+  }
+  .case-core:hover .case-visual img {
+    transform: scale(1.035);
+  }
+}
+
+.calendar-pause {
+  position: absolute;
+  left: 0.55rem;
+  bottom: 0.3rem;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  color: #5c554e;
+  opacity: 0.8;
+  transition: opacity var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.calendar-pause:hover,
+.calendar-pause:focus-visible {
+  opacity: 1;
+  background: rgb(0 0 0 / 0.07);
+}
+.calendar-pause:active {
+  transform: scale(0.94);
+}
 .calendar-counter {
   position: absolute;
   right: 0.8rem;
@@ -274,7 +306,7 @@ html.is-loading .rise {
   white-space: nowrap;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
-  color: #8a8279;
+  color: #5c554e;
   font-variant-numeric: tabular-nums;
 }
 .calendar-ring {

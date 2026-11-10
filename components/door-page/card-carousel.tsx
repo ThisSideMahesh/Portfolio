@@ -11,7 +11,7 @@ import { RevealHeading } from "@/components/ui/reveal-heading";
  */
 const DRAG_THRESHOLD = 5; // pixels the mouse must move before a press becomes a drag
 
-export function CardCarousel({ title, children }: { title: string; children: ReactNode }) {
+export function CardCarousel({ id, title, children }: { id?: string; title: string; children: ReactNode }) {
   const slides = Children.toArray(children);
   const total = slides.length;
   const scroller = useRef<HTMLDivElement>(null);
@@ -90,7 +90,7 @@ export function CardCarousel({ title, children }: { title: string; children: Rea
   };
 
   return (
-    <section aria-roledescription="carousel" aria-label={title} className="wrap py-10 md:py-14">
+    <section id={id} aria-roledescription="carousel" aria-label={title} className="wrap scroll-mt-16 py-10 md:py-14">
       <div className="mb-6 flex items-end justify-between gap-4 md:mb-8">
         <RevealHeading className="text-[clamp(1.75rem,4vw,3rem)]" lines={[{ text: title }]} />
         {total > 1 ? (
