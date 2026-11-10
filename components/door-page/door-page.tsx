@@ -110,16 +110,18 @@ function Visual({ visual }: { visual: CaseVisual }) {
     case "screens": {
       const [main, second] = visual.images;
       // The main screenshot fills the panel (cropped to fit, anchored top left so the app's navigation
-      // stays visible); a second screenshot sits in the corner like a second window.
+      // stays visible); a second screenshot sits in the corner like a second window. A lone, very wide
+      // picture (a 16:9 slide) is shown whole instead, so cropping never cuts its text.
+      const wide = !second && main.width / main.height > 1.5;
       return (
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-band ring-1 ring-line">
+        <div className={`relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-band ring-1 ring-line ${wide ? "p-3 md:p-4" : ""}`}>
           <Image
             src={main.src}
             width={main.width}
             height={main.height}
             alt={main.alt}
             sizes={imageSizes}
-            className={`absolute inset-0 h-full w-full object-cover ${second ? "object-left-top" : "object-center"}`}
+            className={wide ? "h-full w-full rounded-md object-contain" : `absolute inset-0 h-full w-full object-cover ${second ? "object-left-top" : "object-center"}`}
           />
           {second ? (
             <Image
