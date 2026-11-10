@@ -6,7 +6,7 @@
 
 A personal portfolio for a Computer Science and Engineering student who works across **tech**, **teaching** and **management**. Every visitor walks through one of three doors, each leading to a page of real projects, roles and certificates. A fourth door, Digital Creator, is locked for now.
 
-**Live site:** [thissidemaheshdev.vercel.app](https://thissidemaheshdev.vercel.app)
+**Live site:** [thissidemahesh.vercel.app](https://thissidemahesh.vercel.app)
 
 | Home (dark) | Home (light) |
 | --- | --- |
@@ -111,7 +111,7 @@ Measured on a production build (Lighthouse, mobile):
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com) from the `main` branch. Set `NEXT_PUBLIC_SITE_URL` to the final address in the project settings.
+Deployed on [Vercel](https://vercel.com) from the `main` branch. The site reads its own address from Vercel at build time; once a custom domain is added, set `NEXT_PUBLIC_SITE_URL` to it in the project settings.
 
 ## Documentation
 
