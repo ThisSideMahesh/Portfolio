@@ -104,8 +104,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
             links: [
               { label: "Live site", href: "https://mediindex.vercel.app/" },
               { label: "GitHub", href: "https://github.com/ThisSideMahesh/MediIndex" },
-              { label: "PharmaManage Pro (HackSphere winner)", href: "https://github.com/ThisSideMahesh/PharmaManagePro" },
-            ],
+              { label: "PharmaManage Pro (HackSphere winner)", href: "https://github.com/ThisSideMahesh/PharmaManagePro" }, { label: "LinkedIn: project completed", href: "https://www.linkedin.com/feed/update/urn:li:activity:7524689624791896064/" }],
           },
           {
             kicker: "Project",
@@ -146,7 +145,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
             visual: { kind: "screens", images: [{ src: "/images/work/logo-canteengo.webp", width: 1000, height: 750, alt: "CanteenGo logo: an orange fork and spoon inside a rounded square, on black" }] },
           },
           {
-            kicker: "MDM minor project",
+            kicker: "Multi-disciplinary minor (MDM) project",
             title: "AgriSenseAI: Crop Recommendation System",
             when: "Python · Streamlit · scikit-learn",
             summary: "Recommends the best crop for a field from soil and climate data.",
@@ -156,7 +155,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Pulls live weather through the Open-Meteo and Nominatim APIs",
               "Shows the recommended crop, a confidence score and the top alternative crops",
             ],
-            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/AgriSenseAI" }],
+            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/AgriSenseAI" }, { label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7376488104909709312/" }],
             visual: {
               kind: "screens",
               images: [
@@ -230,7 +229,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Lets anyone publish and read posts without a central platform",
               "Written as a first Clarity smart contract, with a roadmap for editing, voting and IPFS storage",
             ],
-            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Decentralized-Blog" }],
+            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Decentralized-Blog" }, { label: "LinkedIn: Stacks bootcamp", href: "https://www.linkedin.com/feed/update/urn:li:activity:7366537489152417792/" }],
             visual: { kind: "screens", images: [{ src: "/images/work/logo-decentralized-blog.webp", width: 1000, height: 750, alt: "Logo for the Decentralized Blog: three stacked layers with a chain link on the top one, in orange on black" }] },
           },
         ],
@@ -278,7 +277,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "A full-stack pharmacy management system with automated expiry alerts and 2D inventory mapping",
               "Secure role-based access, billing automation and inter-pharmacy collaboration tools",
             ],
-            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/PharmaManagePro" }, { label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7384430395137773570/" }],
+            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/PharmaManagePro" }, { label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7384430395137773570/" }, { label: "LinkedIn: certificate", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393900152329121792/" }],
             visual: { kind: "screens", images: [{ src: "/images/work/cert-hacksphere-first-rank.webp", width: 1200, height: 848, alt: "Certificate of achievement: Mahesh Khandebharad secured first rank in Cogni-Sphere 2025, HackSphere, organised by the IETE Student Forum at MIT CSN, 13 and 14 October 2025" }] },
           },
           {
@@ -291,8 +290,20 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Led Team Future as the builder and pitcher",
               "SwasthyaSetu brings fragmented hospital records into one consent-driven view, with limited emergency access",
             ],
-            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Team_Future_3.8_SDG3" }, { label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7423292719600603136/" }],
+            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Team_Future_3.8_SDG3" }, { label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7423292719600603136/" }, { label: "LinkedIn: Top 100", href: "https://www.linkedin.com/feed/update/urn:li:activity:7422990640726114304/" }, { label: "LinkedIn: Round 2", href: "https://www.linkedin.com/feed/update/urn:li:activity:7423231014233079808/" }, { label: "LinkedIn: system flow", href: "https://www.linkedin.com/feed/update/urn:li:share:7423234754956787712/" }],
             visual: { kind: "screens", images: [{ src: "/images/work/cih-title-slide.webp", width: 817, height: 457, alt: "Title slide of Central India Hackathon, Chapter 3, a UN Sustainable Development Goals initiative, with the SDG colour wheel in the lettering" }] },
+          },
+          {
+            kicker: "Hackathon",
+            title: "IDEATHON 9.0",
+            when: "ANKURGECA Incubation Centre, Government College of Engineering, Chhatrapati Sambhajinagar · Apr 2026",
+            summary: "Presented the medicine inventory and expiry system with demand prediction at an incubation centre's ideathon.",
+            points: [
+              "Aimed at reducing medicine wastage and improving pharmacy efficiency through smart tracking and alerts",
+              "Team Future: Mahesh as builder and pitcher, Aarpita Kalyankar as UI/UX designer and co-pitcher",
+            ],
+            links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7447486015205990400/" }],
+            visual: { kind: "screens", images: [{ src: "/images/work/ideathon-9-incubation-centre.webp", width: 480, height: 270, alt: "Mahesh and his teammate Aarpita Kalyankar standing beside the Ankurgeca Incubation Centre Foundation plaque at Government College of Engineering, Chhatrapati Sambhajinagar" }] },
           },
           {
             kicker: "Hackathon",
@@ -339,9 +350,13 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           {
             kicker: "Technical Coordinator",
             title: "Kalavihangam 2K23",
-            when: "MIT CSN · 24 – 28 Feb 2024",
+            when: "MIT CSN · 24 – 28 Feb 2025",
             summary: "Ran the technical arrangements for a campus event.",
-            points: ["Technical Coordinator for an event with 1,000+ attendees"],
+            points: [
+              "Technical Coordinator for the CSE department at the annual cultural fest, an event with 1,000+ attendees",
+              "Recorded sound, edited video and gave backstage technical support for the department's Maharashtra-theme night performance",
+            ],
+            links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7363049512858222592/" }],
             visual: emblem("kalavihangam", "Emblem for Kalavihangam 2K23: a stage light with three beams. 1,000+ event attendees"),
           },
           {
@@ -376,7 +391,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "AWS Cloud Practitioner Essentials, AWS IoT Foundations and AWS SimuLearn: Cloud Practitioner",
               "AWS Solutions Architecture job simulation (Forage, Jul 2025)",
             ],
-            links: [{ label: "LinkedIn: Linux Silver certificate", href: "https://www.linkedin.com/feed/update/urn:li:activity:7493149134330368001/" }],
+            links: [{ label: "LinkedIn: Linux Silver certificate", href: "https://www.linkedin.com/feed/update/urn:li:activity:7493149134330368001/" }, { label: "LinkedIn: Docker training", href: "https://www.linkedin.com/feed/update/urn:li:activity:7425484087295000577/" }, { label: "LinkedIn: Google Cloud Arcade", href: "https://www.linkedin.com/feed/update/urn:li:activity:7363774325046300673/" }],
             visual: {
               kind: "logos",
               logos: [
@@ -400,7 +415,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Foundational C# with Microsoft (freeCodeCamp); Introduction to Data Science and Introduction to IoT (Cisco Networking Academy)",
               "Programming in C and C++ (Disha Computer Institute)",
             ],
-            links: [{ label: "LinkedIn: NPTEL AI course", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393898753541300224/" }],
+            links: [{ label: "LinkedIn: NPTEL AI course", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393898753541300224/" }, { label: "LinkedIn: C and C++", href: "https://www.linkedin.com/feed/update/urn:li:activity:7362687135843303424/" }, { label: "LinkedIn: vibe coding badge", href: "https://www.linkedin.com/feed/update/urn:li:activity:7427720909651591168/" }],
             visual: { kind: "logo", image: { src: "/images/work/logos/cisco-networking-academy.webp", width: 640, height: 148, alt: "Cisco Networking Academy" } },
           },
           {
@@ -414,7 +429,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "MS-CIT (Maharashtra State Certificate in Information Technology)",
               "Basics of Social Media and Digital Marketing (NIELIT)",
             ],
-            links: [{ label: "LinkedIn: Ethical Hacking workshop", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393899396809093120/" }],
+            links: [{ label: "LinkedIn: Ethical Hacking workshop", href: "https://www.linkedin.com/feed/update/urn:li:activity:7393899396809093120/" }, { label: "LinkedIn: digital forensics", href: "https://www.linkedin.com/feed/update/urn:li:activity:7362324845570744320/" }, { label: "LinkedIn: digital marketing", href: "https://www.linkedin.com/feed/update/urn:li:activity:7363411900581228544/" }],
             visual: {
               kind: "logos",
               logos: [
@@ -436,7 +451,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Google Cloud Study Jam, Google Developer Student Clubs MIT (Dec 2023)",
               "6-day Student Workshop on Universal Human Values (AICTE, Mar – Apr 2026)",
             ],
-            links: [{ label: "LinkedIn: Build With AI", href: "https://www.linkedin.com/feed/update/urn:li:activity:7493147076915298304/" }, { label: "LinkedIn: LaunchLab", href: "https://www.linkedin.com/feed/update/urn:li:activity:7494234000975388673/" }, { label: "LinkedIn: CNCF meetup", href: "https://www.linkedin.com/feed/update/urn:li:activity:7503293918873182208/" }],
+            links: [{ label: "LinkedIn: Build With AI", href: "https://www.linkedin.com/feed/update/urn:li:activity:7493147076915298304/" }, { label: "LinkedIn: LaunchLab", href: "https://www.linkedin.com/feed/update/urn:li:activity:7494234000975388673/" }, { label: "LinkedIn: CNCF meetup", href: "https://www.linkedin.com/feed/update/urn:li:activity:7503293918873182208/" }, { label: "LinkedIn: Universal Human Values", href: "https://www.linkedin.com/feed/update/urn:li:activity:7488845918646083584/" }, { label: "LinkedIn: RGSTC lecture", href: "https://www.linkedin.com/feed/update/urn:li:activity:7488850857489391616/" }, { label: "LinkedIn: AWS User Group", href: "https://www.linkedin.com/feed/update/urn:li:activity:7397649566369689600/" }],
             visual: { kind: "screens", images: [{ src: "/images/work/cert-gdg-build-with-ai.webp", width: 800, height: 565, alt: "Google Developer Groups certificate of participation for Mahesh Namdev Khandebharad: Build With AI, Hands-On Workshop" }] },
           },
         ],
@@ -504,8 +519,21 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Ran resume screening, shortlisting, interview scheduling and onboarding documentation",
           "Liaised with company HR, placement officers and institute leadership",
         ],
-        links: [{ label: "LinkedIn: Micron campus drive", href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7423799283335905280/" }, { label: "LinkedIn: HireReady 2.0", href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7373400163253415936/" }],
+        links: [{ label: "LinkedIn: Micron campus drive", href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7423799283335905280/" }, { label: "LinkedIn: HireReady 2.0", href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7373400163253415936/" }, { label: "LinkedIn: student coordinator", href: "https://www.linkedin.com/feed/update/urn:li:activity:7364136691143475200/" }, { label: "LinkedIn: Inside TIP series", href: "https://www.linkedin.com/feed/update/urn:li:activity:7367987043173355522/" }, { label: "LinkedIn: soft skills workshop", href: "https://www.linkedin.com/feed/update/urn:li:activity:7381475755274317825/" }, { label: "LinkedIn: HireReady 3.0", href: "https://www.linkedin.com/feed/update/urn:li:activity:7519408585181958144/" }, { label: "LinkedIn: team and tenure", href: "https://www.linkedin.com/feed/update/urn:li:activity:7524678417598922752/" }],
         visual: { kind: "logo", image: { src: "/images/work/logos/tnp-cell.webp", width: 600, height: 512, alt: "Logo of the Training, Placement and Entrepreneurship Cell, MIT CSN: a graduation cap on a briefcase" } },
+      },
+      {
+        kicker: "Bridge Captain",
+        title: "AlumniOS: the CSE department's alumni cell",
+        when: "MIT CSN · Jul 2025 – Nov 2026",
+        summary: "Connected current students with alumni for mentorship and placements.",
+        points: [
+          "Serving since the launch of AlumniOS on 26 July 2025: \"Alumni United. MIT Ignited.\"",
+          "Facilitated communication between students, alumni and the department",
+          "Helped organise alumni interactions, mentorship sessions and networking events",
+        ],
+        links: [{ label: "LinkedIn: AlumniOS launch", href: "https://www.linkedin.com/feed/update/urn:li:activity:7365586236259921921/" }, { label: "LinkedIn: alumni session", href: "https://www.linkedin.com/feed/update/urn:li:activity:7505830332731101184/" }, { label: "LinkedIn: Code to Cloud", href: "https://www.linkedin.com/feed/update/urn:li:activity:7504018579009368065/" }, { label: "LinkedIn: AI and productivity", href: "https://www.linkedin.com/feed/update/urn:li:activity:7505105864232546305/" }],
+        visual: { kind: "logo", image: { src: "/images/work/logos/alumnios.webp", width: 800, height: 323, alt: "AlumniOS logo: a graduate figure inside an arch, with the words Alumni United. MIT Ignited. Powered by CSE" } },
       },
       {
         kicker: "Sales and Marketing Intern",
@@ -517,7 +545,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Counselled students and parents about programmes",
           "Coordinated with centre heads on admissions and examinations",
         ],
-        links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7477926494892351488/" }],
+        links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7477926494892351488/" }, { label: "LinkedIn: June month", href: "https://www.linkedin.com/feed/update/urn:li:activity:7477699965528637440/" }],
         visual: { kind: "logo", image: { src: "/images/work/logos/dfc.webp", width: 530, height: 344, alt: "Dnyandeep Foundation Centre (DFC) logo: a blue oval around the letters DFC, House of Competitive Examination Studies" } },
       },
       {
@@ -530,18 +558,20 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Managed LinkedIn, Instagram and YouTube for Athlete Meets Explorer, with 15,000+ engagements",
           "Planned content calendars and tracked analytics",
         ],
+        links: [{ label: "LinkedIn: joined Athlete Meets Explorer", href: "https://www.linkedin.com/feed/update/urn:li:activity:7369308380072443910/" }, { label: "LinkedIn: 30 days of growth", href: "https://www.linkedin.com/feed/update/urn:li:activity:7370659684363460608/" }],
         visual: emblem("social", "Emblem for social media work: a speech bubble with a chart. 25,000+ monthly reach"),
       },
       {
         kicker: "Events",
         title: "Kalavihangam 2K23 and first-year induction",
-        when: "MIT CSN · 24 – 28 Feb 2024; induction 2023 – 2024",
+        when: "MIT CSN · 24 – 28 Feb 2025; induction 2023 – 2024",
         summary: "Technical coordination and onboarding at scale.",
         points: [
           "Technical Coordinator for an event with 1,000+ attendees",
           "Helped induct 250+ first-year students",
           "Food Committee member: quality checks and vendor coordination",
         ],
+        links: [{ label: "LinkedIn: Kalavihangam", href: "https://www.linkedin.com/feed/update/urn:li:activity:7363049512858222592/" }, { label: "LinkedIn: induction 2023", href: "https://www.linkedin.com/feed/update/urn:li:activity:7360875218174689280/" }, { label: "LinkedIn: induction 2024", href: "https://www.linkedin.com/feed/update/urn:li:activity:7361962358354726913/" }, { label: "LinkedIn: JIDNYASA 2024", href: "https://www.linkedin.com/feed/update/urn:li:activity:7361237618342182912/" }],
         visual: emblem("induction", "Emblem for Kalavihangam 2K23 and first-year induction: a group of people. 250+ first-year students inducted"),
       },
     ],

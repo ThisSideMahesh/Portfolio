@@ -140,6 +140,12 @@ export const story: readonly StoryYear[] = [
         when: "Jun 2025; Nov – Dec 2025",
         detail: "Diagnosed desktop, laptop, printer and network faults and installed Windows systems.",
       },
+      {
+        title: "Technical Coordinator, Kalavihangam 2K23",
+        place: "MIT Chhatrapati Sambhajinagar",
+        when: "24 – 28 Feb 2025",
+        detail: "Ran technical arrangements for the annual cultural fest (1,000+ attendees): sound recording, video editing and backstage support.",
+      },
     ],
   },
   {
@@ -150,12 +156,6 @@ export const story: readonly StoryYear[] = [
         place: "Vighnaharta E-Payment Data Centre",
         when: "Nov 2024 – Jan 2025",
         detail: "Trained 25+ students in computer fundamentals, MS Office and digital literacy.",
-      },
-      {
-        title: "Technical Coordinator, Kalavihangam 2K23",
-        place: "MIT Chhatrapati Sambhajinagar",
-        when: "24 – 28 Feb 2024",
-        detail: "Ran technical arrangements for an event with 1,000+ attendees.",
       },
     ],
   },
