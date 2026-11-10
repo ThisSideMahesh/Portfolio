@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site, socials } from "@/lib/site";
+import { DownloadIcon } from "@/components/ui/download-icon";
+import { cv, site, socials } from "@/lib/site";
 
 /** Continues the dark contact band; the name and the dedication line sit at the very bottom of every page. */
 export function SiteFooter() {
@@ -36,6 +37,13 @@ export function SiteFooter() {
             <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Email</h2>
             <a href={`mailto:${site.email}`} className="mt-3 inline-flex min-h-11 items-center underline underline-offset-4">
               {site.email}
+            </a>
+            <h2 className="mt-6 font-sans text-sm font-medium tracking-wide text-band-muted">Master CV</h2>
+            <a href={cv.href} download={cv.filename} className="mt-3 inline-flex min-h-11 items-center gap-2 underline underline-offset-4">
+              <DownloadIcon />
+              <span>
+                Download CV<span className="sr-only"> ({cv.note})</span>
+              </span>
             </a>
           </div>
         </div>

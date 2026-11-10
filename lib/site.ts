@@ -16,6 +16,13 @@ export const site = {
     "Mahesh Namdev Khandebharad: a final-year B.Tech CSE student at MIT Chhatrapati Sambhajinagar, working across tech, teaching and management.",
 } as const;
 
+/** The Master CV in public/, served as it was supplied. Used by the hero button, the door pages and the footer. */
+export const cv = {
+  href: "/Mahesh-Namdev-Khandebharad-Master-CV.pdf",
+  filename: "Mahesh-Namdev-Khandebharad-Master-CV.pdf",
+  note: "PDF, 5 pages, 200 KB",
+} as const;
+
 export type SocialLink = { label: string; href: string };
 
 export const socials: readonly SocialLink[] = [

@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { StackItem } from "@/components/door-page/stack-item";
 import { WalkIn } from "@/components/door-page/walk-in";
+import { DownloadIcon } from "@/components/ui/download-icon";
 import { RevealHeading } from "@/components/ui/reveal-heading";
+import { cv } from "@/lib/site";
 import type {
   CaseLink,
   CaseStudy,
@@ -58,12 +60,18 @@ export function DoorPage({ page }: { page: DoorPageData }) {
         </div>
       )}
 
-      <Link
-        href="/#doors"
-        className="pill pill-ghost fixed bottom-4 left-4 z-30 bg-bg/95 text-sm backdrop-blur-sm"
-      >
-        <span aria-hidden="true">←</span> Back to the doors
-      </Link>
+      {/* Bottom left, on every door page: back to the doors, and the CV one click away. */}
+      <div className="fixed bottom-4 left-4 z-30 flex flex-wrap gap-2">
+        <Link href="/#doors" className="pill pill-ghost bg-bg/95 text-sm backdrop-blur-sm">
+          <span aria-hidden="true">←</span> Back to the doors
+        </Link>
+        <a href={cv.href} download={cv.filename} className="pill pill-ghost gap-2 bg-bg/95 text-sm backdrop-blur-sm">
+          <DownloadIcon size={14} />
+          <span>
+            CV<span className="sr-only"> download ({cv.note})</span>
+          </span>
+        </a>
+      </div>
     </div>
   );
 }

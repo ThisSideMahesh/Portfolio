@@ -533,3 +533,9 @@ Request from Mahesh: use the Management page's card animation (cards stack as yo
 - **Button:** "Download CV" with a download icon, a third pill in the hero's left column after "Hire me" and "See my work" (`components/home/hero.tsx`). It has the `download` attribute, a 44 px target and a screen-reader note (PDF, 5 pages, 200 KB).
 - **Search engines:** the file is served with `X-Robots-Tag: noindex, nofollow, noarchive` (next.config.ts), so Google should not list the PDF and its phone number, while the button still works.
 - **Risk to remember:** once pushed, the PDF sits in the public GitHub repository, where anyone can read it. Replacing the file with a redacted copy later means replacing `public/Mahesh-...-Master-CV.pdf`; the old version would still be in the git history.
+
+### Where the CV button lives (decided 10 Nov 2026, on Mahesh's request to choose)
+- **Home hero, left column:** "Download CV", third pill after "Hire me" and "See my work". The first thing a recruiter sees.
+- **Every door page, fixed bottom-left:** a compact "CV" pill next to "Back to the doors", so the CV is one click away from Tech, Teaching and Management while reading cards.
+- **Footer, every page:** a "Master CV" entry under the email, for visitors who scroll to the end.
+- **Not in the top navigation:** the nav island is already full and its centre is for page links. One setting (`cv` in `lib/site.ts`) holds the file and label, so a change is made in one place.
