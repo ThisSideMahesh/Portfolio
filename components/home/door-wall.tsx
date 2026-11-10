@@ -16,13 +16,13 @@ import { doors, type Door, type OpenDoorData } from "@/lib/data";
 export function DoorWall() {
   return (
     <section id="doors" aria-labelledby="doors-title" className="door-room relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-0">
-      <div className="wrap grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:gap-12">
+      <div className="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12">
         <RevealHeading
           id="doors-title"
           className="text-[clamp(2.25rem,5.5vw,4.5rem)]"
           lines={[{ text: "Step inside." }, { text: "Discover the work behind it.", className: "text-muted" }]}
         />
-        <div className="mx-auto md:mx-0 md:justify-self-end md:pr-[2vw]">
+        <div className="mx-auto lg:mx-0 lg:justify-self-end lg:pr-[2vw]">
           <WallPortrait />
         </div>
       </div>

@@ -25,10 +25,12 @@
   --light: #f7ecd9; /* the warm light inside an open doorway: walks end in it and the new page fades in from it */
   --success: #1f6b3a;
   --danger: #b42318;
+  --diya-lit: 0; /* the two brass diyas by the portrait: unlit in light mode, lit in dark mode */
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --diya-lit: 1;
     color-scheme: dark;
     --bg: #121110;
     --surface: #1b1917;
@@ -48,6 +50,7 @@
 }
 
 :root[data-theme="dark"] {
+  --diya-lit: 1;
   color-scheme: dark;
   --bg: #121110;
   --surface: #1b1917;
@@ -1002,6 +1005,172 @@ html.is-loading .site-loader[data-done] {
     linear-gradient(180deg, var(--floor), var(--floor-dark));
   mask-image: linear-gradient(180deg, #000 70%, transparent);
   box-shadow: inset 0 0.6rem 0 var(--skirting), inset 0 calc(0.6rem + 1px) 0 rgb(0 0 0 / 0.12);
+}
+
+/*
+ * The portrait shrine: a shelf with the framed portrait between two brass diyas and a tagline under it.
+ * --diya-lit (0 in light mode, 1 in dark mode, set with the theme tokens above) drives the whole effect:
+ * flame, glow and the light spilling on the frame fade in with it, so the theme toggle needs no extra code.
+ */
+.wall-shrine {
+  --diya-size: clamp(3.6rem, 6.2vw, 5.6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wall-shrine-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: end;
+  gap: clamp(0.5rem, 1.4vw, 1rem);
+  padding-bottom: 0.55rem;
+}
+.wall-ledge {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  bottom: 0;
+  height: 0.55rem;
+  border-radius: 0.15rem;
+  background: linear-gradient(180deg, #7a5532, #3b2614);
+  box-shadow: 0 10px 14px -8px rgb(0 0 0 / 0.55), inset 0 1px 0 rgb(255 255 255 / 0.16);
+}
+.wall-tagline {
+  position: relative;
+  margin-top: 1.5rem;
+  max-width: 30ch;
+  text-align: center;
+  text-wrap: balance;
+  font-family: var(--font-anek), system-ui, sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+.wall-tagline::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  margin: 0 auto 0.85rem;
+  background: var(--accent);
+  opacity: 0.7;
+}
+
+.diya {
+  position: relative;
+  width: var(--diya-size);
+  aspect-ratio: 100 / 80;
+  pointer-events: none;
+}
+.diya-left {
+  scale: -1 1; /* the same diya mirrored, so the pair is symmetrical and both spouts point outwards */
+}
+.diya-body {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.35));
+}
+.diya-flame,
+.diya-glow {
+  position: absolute;
+  opacity: var(--diya-lit);
+  transition: opacity 1.1s var(--ease-out);
+}
+.diya-flame {
+  left: 97%;
+  bottom: 73%;
+  width: 17%;
+  height: auto;
+  translate: -50% 0;
+  transform-origin: 50% 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 5px rgb(255 160 60 / 0.8));
+  animation: diya-flicker 3.7s ease-in-out infinite paused;
+}
+.diya-right .diya-flame {
+  animation-duration: 4.3s;
+  animation-delay: -1.4s;
+}
+.diya-glow {
+  left: 97%;
+  top: 4%;
+  width: 430%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 190 95 / 0.5) 0, rgb(255 150 55 / 0.22) 18%, rgb(255 120 30 / 0.07) 40%, transparent 64%);
+  mix-blend-mode: screen;
+  animation: diya-breathe 3.7s ease-in-out infinite paused;
+}
+.diya-right .diya-glow {
+  animation-duration: 4.3s;
+  animation-delay: -1.4s;
+}
+/* Run the flicker only while the diyas are lit (dark mode), and not at all for reduced motion. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .diya-flame,
+  :root:not([data-theme="light"]) .diya-glow {
+    animation-play-state: running;
+  }
+}
+:root[data-theme="dark"] .diya-flame,
+:root[data-theme="dark"] .diya-glow {
+  animation-play-state: running;
+}
+@keyframes diya-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(-1deg);
+  }
+  23% {
+    transform: scale(0.96, 1.05) rotate(1.4deg);
+  }
+  48% {
+    transform: scale(1.03, 0.96) rotate(-0.7deg);
+  }
+  72% {
+    transform: scale(0.98, 1.04) rotate(0.9deg);
+  }
+}
+@keyframes diya-breathe {
+  0%,
+  100% {
+    scale: 1;
+  }
+  35% {
+    scale: 0.95;
+  }
+  70% {
+    scale: 1.04;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .diya-flame,
+  .diya-glow {
+    animation: none;
+  }
+  .diya-flame,
+  .diya-glow,
+  .wall-art-spill {
+    transition: none;
+  }
+}
+/* Light from the two flames falling on the frame's lower corners. */
+.wall-art-spill {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 38% at -6% 94%, rgb(255 176 80 / 0.34), transparent 72%),
+    radial-gradient(70% 38% at 106% 94%, rgb(255 176 80 / 0.34), transparent 72%);
+  mix-blend-mode: screen;
+  opacity: var(--diya-lit);
+  transition: opacity 1.1s var(--ease-out);
 }
 
 /* Framed portrait on the hallway wall: nail and wire, wood frame, cream mat, brass picture light. */
