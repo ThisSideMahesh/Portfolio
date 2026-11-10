@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Private source files (CV, certificates, other people's and old code): never checked or built.
+    "content/**",
   ]),
 ]);
 

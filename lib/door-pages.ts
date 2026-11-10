@@ -11,12 +11,16 @@ export type CaseVisual =
   | { kind: "stack"; layers: readonly { name: string; detail: string }[] }
   | { kind: "tags"; items: readonly string[] };
 
+/** An outside link on a card (live site, GitHub). Always opens in a new tab. */
+export type CaseLink = { label: string; href: string };
+
 export type CaseStudy = {
   kicker: string;
   title: string;
   when: string;
   summary: string;
   points: readonly string[];
+  links?: readonly CaseLink[];
   visual: CaseVisual;
 };
 
@@ -66,6 +70,11 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
                 { name: "Database", detail: "PostgreSQL on Neon (SQLite locally)" },
               ],
             },
+            links: [
+              { label: "Live site", href: "https://mediindex.vercel.app/" },
+              { label: "GitHub", href: "https://github.com/ThisSideMahesh/MediIndex" },
+              { label: "PharmaManage Pro (HackSphere winner)", href: "https://github.com/ThisSideMahesh/PharmaManagePro" },
+            ],
           },
           {
             kicker: "Project",
@@ -77,6 +86,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Implemented the backend for video handling and streaming workflows",
               "Built with an AI-assisted development workflow for rapid prototyping",
             ],
+            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/TERAPLAY" }],
             visual: { kind: "tags", items: ["Node.js", "Express.js", "JavaScript", "Video streaming", "Downloads", "AI-assisted"] },
           },
           {
@@ -89,6 +99,20 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Supports core shop operations and business workflows",
             ],
             visual: { kind: "tags", items: ["Full-stack web", "Freelance", "Client requirements", "Business workflows"] },
+          },
+          {
+            kicker: "Personal project",
+            title: "This portfolio",
+            when: "Next.js · TypeScript · Tailwind CSS",
+            summary: "The site you are on: one door for each side of my work, designed and built end to end.",
+            points: [
+              "Built with Next.js (App Router), React and TypeScript, styled with Tailwind CSS",
+              "Doors drawn in CSS and SVG, with animated walks between pages and light and dark themes",
+              "Scores 98 to 100 on Lighthouse for performance, accessibility, best practices and SEO on mobile",
+              "Checks its own content at build time, so private details never reach the site",
+            ],
+            links: [{ label: "GitHub", href: "https://github.com/ThisSideMahesh/Portfolio" }],
+            visual: { kind: "tags", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "CSS and SVG art", "Accessible"] },
           },
         ],
       },

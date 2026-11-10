@@ -84,6 +84,17 @@ function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; headin
               </li>
             ))}
           </ul>
+          {study.links?.length ? (
+            <p className="mt-7 flex flex-wrap gap-2">
+              {study.links.map((link) => (
+                <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="pill pill-ghost min-h-11 text-sm">
+                  {link.label}
+                  <span className="sr-only"> (opens in a new tab)</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </p>
+          ) : null}
         </div>
         <Visual visual={study.visual} />
       </article>
