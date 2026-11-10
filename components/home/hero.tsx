@@ -56,13 +56,13 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hidden grid-cols-3 items-center border-t border-line py-1 text-sm text-muted md:grid">
+      <div className="flex items-center border-t border-line py-3 text-sm text-muted md:grid md:grid-cols-3 md:py-1">
         <span className="inline-flex items-center gap-2 font-medium text-ink">
           <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
           Available for work from 10 December 2026
         </span>
-        <span className="text-center">Onsite-first</span>
-        <a href="#doors" className="inline-flex min-h-11 items-center justify-self-end hover:text-ink">
+        <span className="hidden text-center md:block">Onsite-first</span>
+        <a href="#doors" className="hidden min-h-11 items-center justify-self-end hover:text-ink md:inline-flex">
           Scroll to explore
         </a>
       </div>

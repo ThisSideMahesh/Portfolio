@@ -709,11 +709,12 @@ html.is-loading .site-loader[data-done] {
   justify-content: center;
   gap: 0.5rem;
   border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--band-ink) 14%, transparent);
-  background: color-mix(in srgb, var(--band-ink) calc(6% + var(--i) * 3%), var(--band));
-  padding: 0.7rem 1.25rem;
-  font-size: 0.9rem;
-  color: var(--band-ink);
+  background: var(--pc);
+  box-shadow: 0 0.6rem 1.2rem rgb(0 0 0 / 0.35);
+  padding: 0.8rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--pt);
   opacity: 0;
   transform: translateY(18px) scale(0.96);
   transition:
