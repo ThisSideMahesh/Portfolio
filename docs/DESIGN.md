@@ -291,6 +291,6 @@ Never "coming soon". Never branded "Institutelevel-boy" on this site.
 
 ## 11. Audit pass, 10 Nov 2026 (opening animation, recruiter proof)
 - **Opening:** the pills now wear their door's colour (name in paper white, Tech navy, Teaching green, Management burgundy, Digital Creator orange), and a top-right caption names the three doors, after the reference's structure. Fail-safe: a timer finishes the opening at 2.4 s even if the browser pauses `requestAnimationFrame`, so the cover can never stick.
-- **Proof strip** (`components/home/proof-strip.tsx`) sits under the hero: 95+ recruitment drives, 125+ admission leads, 25,000+ monthly reach, 1st place HackSphere 2025. Numbers only from the approved fact sheet. Plain type and hairlines, no cards. Reason: recruiters give the page under a minute, and the numbers are the strongest evidence for the TPO and recruitment roles.
+- **Proof strip: tried and removed** (comment #11): four numbers under the hero duplicated what the doors already say in their hover panels, so the strip went. The numbers stay in each door's panel and on the role pages.
 - **Phones** now see the availability line ("Available for work from 10 December 2026"), which was hidden below md.
 - No skeleton screens: every page is static, so there is nothing to wait for.
