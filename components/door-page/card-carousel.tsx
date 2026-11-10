@@ -9,11 +9,14 @@ import { RevealHeading } from "@/components/ui/reveal-heading";
  * the row; the arrow buttons, the dots and the Left and Right keys move one card. The active card is
  * found with an IntersectionObserver (no scroll listener). A single card shows no controls.
  */
+const DRAG_THRESHOLD = 5; // pixels the mouse must move before a press becomes a drag
+
 export function CardCarousel({ title, children }: { title: string; children: ReactNode }) {
   const slides = Children.toArray(children);
   const total = slides.length;
   const scroller = useRef<HTMLDivElement>(null);
-  const drag = useRef<{ x: number; left: number } | null>(null);
+  const drag = useRef<{ x: number; left: number; moved: boolean } | null>(null);
+  const suppressClick = useRef(false);
   const [active, setActive] = useState(0);
   const [dragging, setDragging] = useState(false);
 
@@ -52,20 +55,32 @@ export function CardCarousel({ title, children }: { title: string; children: Rea
   };
 
   // Mouse drag (touch and trackpad already scroll natively).
+  // The pointer is captured only once it has really moved. Capturing on press (the first version)
+  // re-targeted the click to the scroller, so the GitHub and LinkedIn links on the cards never opened.
   const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== "mouse" || event.button !== 0 || !scroller.current) return;
-    drag.current = { x: event.clientX, left: scroller.current.scrollLeft };
-    scroller.current.setPointerCapture(event.pointerId);
-    setDragging(true);
+    drag.current = { x: event.clientX, left: scroller.current.scrollLeft, moved: false };
+    suppressClick.current = false;
   };
   const onPointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (!drag.current || !scroller.current) return;
-    scroller.current.scrollLeft = drag.current.left - (event.clientX - drag.current.x);
+    const d = drag.current;
+    const root = scroller.current;
+    if (!d || !root) return;
+    if (!d.moved) {
+      if (Math.abs(event.clientX - d.x) < DRAG_THRESHOLD) return;
+      d.moved = true;
+      root.setPointerCapture(event.pointerId);
+      setDragging(true);
+    }
+    root.scrollLeft = d.left - (event.clientX - d.x);
   };
   const endDrag = (event: PointerEvent<HTMLDivElement>) => {
     const root = scroller.current;
-    if (!drag.current || !root) return;
+    const d = drag.current;
     drag.current = null;
+    if (!d || !root || !d.moved) return; // a plain click: leave it to the link or button under the pointer
+    suppressClick.current = true; // the click that ends a drag must not open a link
+    window.setTimeout(() => (suppressClick.current = false), 0);
     root.releasePointerCapture(event.pointerId);
     setDragging(false);
     // Settle on the nearest card.
@@ -106,6 +121,12 @@ export function CardCarousel({ title, children }: { title: string; children: Rea
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
+        onClickCapture={(event) => {
+          if (suppressClick.current) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }}
         data-dragging={dragging || undefined}
         className="carousel"
       >
