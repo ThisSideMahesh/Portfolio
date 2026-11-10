@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CardCarousel } from "@/components/door-page/card-carousel";
 import { WalkIn } from "@/components/door-page/walk-in";
 import type {
   CaseStudy,
@@ -7,8 +8,9 @@ import type {
 } from "@/lib/door-pages";
 
 /**
- * A door's page: a huge title, then case cards that stack as you scroll (CSS sticky, each card
- * slightly lower than the one before), and a "Back to the doors" pill fixed bottom-left.
+ * A door's page: a huge title, then either case cards that stack as you scroll (CSS sticky, each card
+ * slightly lower than the one before) or, for pages with sections (Tech), one swipeable row of
+ * cards per section, and a "Back to the doors" pill fixed bottom-left.
  */
 export function DoorPage({ page }: { page: DoorPageData }) {
   // One wrapper on purpose: on navigation Next measures the page's top-level elements to decide
@@ -25,17 +27,26 @@ export function DoorPage({ page }: { page: DoorPageData }) {
         </p>
       </section>
 
-      <ol className="wrap pb-32">
-        {page.cases.map((study, index) => (
-          <li
-            key={study.title}
-            className="sticky mb-8 md:mb-16"
-            style={{ top: `calc(5rem + ${index * 1.25}rem)` }}
-          >
-            <CaseCard study={study} />
-          </li>
-        ))}
-      </ol>
+      {page.sections ? (
+        // Swipeable rows, one titled row per section: each card is one item, side by side.
+        <div className="pb-32">
+          {page.sections.map((section) => (
+            <CardCarousel key={section.id} title={section.title}>
+              {section.cases.map((study) => (
+                <CaseCard key={study.title} study={study} heading="h3" />
+              ))}
+            </CardCarousel>
+          ))}
+        </div>
+      ) : (
+        <ol className="wrap pb-32">
+          {(page.cases ?? []).map((study, index) => (
+            <li key={study.title} className="sticky mb-8 md:mb-16" style={{ top: `calc(5rem + ${index * 1.25}rem)` }}>
+              <CaseCard study={study} />
+            </li>
+          ))}
+        </ol>
+      )}
 
       <Link
         href="/#doors"
@@ -47,7 +58,7 @@ export function DoorPage({ page }: { page: DoorPageData }) {
   );
 }
 
-function CaseCard({ study }: { study: CaseStudy }) {
+function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; heading?: "h2" | "h3" }) {
   return (
     <div className="case-shell">
       <article className="case-core grid grid-cols-[minmax(0,1fr)] gap-10 p-6 md:min-h-[520px] md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center md:gap-14 md:p-12">
@@ -55,9 +66,9 @@ function CaseCard({ study }: { study: CaseStudy }) {
           <p className="text-sm font-semibold text-accent-text">
             {study.kicker}
           </p>
-          <h2 className="mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)]">
+          <Heading className="mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)]">
             {study.title}
-          </h2>
+          </Heading>
           <p className="mt-2 text-sm font-medium text-muted tabular-nums">
             {study.when}
           </p>

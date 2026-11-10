@@ -20,11 +20,20 @@ export type CaseStudy = {
   visual: CaseVisual;
 };
 
+/** A titled group of cases that the page shows as one swipeable row of cards. */
+export type CaseSection = {
+  id: string;
+  title: string;
+  cases: readonly CaseStudy[];
+};
+
+/** A door page is either a plain stack of cases or a list of swipeable sections. */
 export type DoorPage = {
   id: DoorId;
   title: string;
   intro: string;
-  cases: readonly CaseStudy[];
+  cases?: readonly CaseStudy[];
+  sections?: readonly CaseSection[];
 };
 
 export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
@@ -32,52 +41,126 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
     id: "tech",
     title: "Tech",
     intro: "Full-stack apps, Linux systems and the hardware they run on.",
-    cases: [
+    sections: [
       {
-        kicker: "B.Tech major project",
-        title: "MediIndex",
-        when: "Grew out of PharmaManage Pro, which won 1st place at Cogni-Sphere 2025 HackSphere",
-        summary:
-          "A pharmacy platform for inventory, billing and expiry tracking, with an Android app that keeps working offline.",
-        points: [
-          "REST API in Node.js; SQLite for local development, PostgreSQL on Neon in production",
-          "Batch-wise stock, FEFO billing, expiry alerts, demand forecasting and QR identification",
-          "Role-based access, audited stock movements and idempotent stock operations",
-          "React Native and Expo app with QR scanning, an offline queue and automatic sync; deployed on Vercel",
+        id: "projects",
+        title: "Projects",
+        cases: [
+          {
+            kicker: "B.Tech major project",
+            title: "MediIndex",
+            when: "Grew out of PharmaManage Pro, which won 1st place at Cogni-Sphere 2025 HackSphere",
+            summary:
+              "A pharmacy platform for inventory, billing and expiry tracking, with an Android app that keeps working offline.",
+            points: [
+              "REST API in Node.js; SQLite for local development, PostgreSQL on Neon in production",
+              "Batch-wise stock, FEFO billing, expiry alerts, demand forecasting and QR identification",
+              "Role-based access, audited stock movements and idempotent stock operations",
+              "React Native and Expo app with QR scanning, an offline queue and automatic sync; deployed on Vercel",
+            ],
+            visual: {
+              kind: "stack",
+              layers: [
+                { name: "Android app", detail: "React Native, Expo, TypeScript" },
+                { name: "REST API", detail: "Node.js on Vercel" },
+                { name: "Database", detail: "PostgreSQL on Neon (SQLite locally)" },
+              ],
+            },
+          },
+          {
+            kicker: "Project",
+            title: "TeraPlay: Video Streaming and Downloader",
+            when: "Node.js · Express.js · JavaScript",
+            summary: "A web application for streaming and downloading video.",
+            points: [
+              "Developed the web application with Node.js and Express.js",
+              "Implemented the backend for video handling and streaming workflows",
+              "Built with an AI-assisted development workflow for rapid prototyping",
+            ],
+            visual: { kind: "tags", items: ["Node.js", "Express.js", "JavaScript", "Video streaming", "Downloads", "AI-assisted"] },
+          },
+          {
+            kicker: "Freelance project",
+            title: "Shop Management System",
+            when: "Full-stack web development",
+            summary: "A management system for a client's core shop operations and business workflows.",
+            points: [
+              "Developed the full-stack web application to the client's requirements",
+              "Supports core shop operations and business workflows",
+            ],
+            visual: { kind: "tags", items: ["Full-stack web", "Freelance", "Client requirements", "Business workflows"] },
+          },
         ],
-        visual: {
-          kind: "stack",
-          layers: [
-            { name: "Android app", detail: "React Native, Expo, TypeScript" },
-            { name: "REST API", detail: "Node.js on Vercel" },
-            { name: "Database", detail: "PostgreSQL on Neon (SQLite locally)" },
-          ],
-        },
       },
       {
-        kicker: "Internship",
-        title: "Hardware and Software Technician Intern",
-        when: "New Technical World, Jalna · Jun 2025; Nov – Dec 2025",
-        summary: "Hands-on servicing for customers' machines, from diagnosis to repair.",
-        points: [
-          "Diagnosed and fixed desktop, laptop, printer and networking faults",
-          "Installed, configured and maintained Windows and essential software",
-          "Performed preventive maintenance and hardware replacement",
+        id: "experience",
+        title: "Professional experience",
+        cases: [
+          {
+            kicker: "Internship",
+            title: "Hardware and Software Technician Intern",
+            when: "New Technical World, Jalna · Jun 2025; Nov – Dec 2025",
+            summary: "Hands-on servicing for customers' machines, from diagnosis to repair.",
+            points: [
+              "Diagnosed and fixed desktop, laptop, printer and networking faults",
+              "Installed, configured and maintained Windows and essential software",
+              "Performed preventive maintenance and hardware replacement",
+            ],
+            visual: { kind: "tags", items: ["Desktops", "Laptops", "Printers", "Networks", "Windows", "Assembly"] },
+          },
         ],
-        visual: { kind: "tags", items: ["Desktops", "Laptops", "Printers", "Networks", "Windows", "Assembly"] },
       },
       {
-        kicker: "Cloud and systems",
-        title: "Certificates and badges",
-        when: "Ongoing",
-        summary: "Linux administration, cloud foundations and AI tooling.",
-        points: [
-          "Red Hat System Administration training, completed; RHCSA exam pending",
-          "Linux Administrator for Datacenter, Silver (NASSCOM)",
-          "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
-          "AWS Cloud Practitioner Essentials; Programming in Java (NPTEL, IIT Kharagpur)",
+        id: "campus",
+        title: "Positions of responsibility and campus experience",
+        cases: [
+          {
+            kicker: "Technical Coordinator",
+            title: "Kalavihangam 2K23",
+            when: "MIT CSN · 24 – 28 Feb 2025",
+            summary: "Ran the technical arrangements for a campus event.",
+            points: ["Technical Coordinator for an event with 1,000+ attendees"],
+            visual: { kind: "stat", value: "1,000+", label: "event attendees" },
+          },
+          {
+            kicker: "Hackathon",
+            title: "Central India Hackathon 3.0",
+            when: "SwasthyaSetu, a healthcare interoperability platform",
+            summary: "Reached the finals of a large inter-college hackathon.",
+            points: ["Finalist among 800+ teams", "Built SwasthyaSetu, a healthcare interoperability platform"],
+            visual: { kind: "stat", value: "800+", label: "teams, with SwasthyaSetu a finalist" },
+          },
+          {
+            kicker: "Workshop speaker",
+            title: "Engineering Toolkit: Skills Beyond the Syllabus",
+            when: "AlumniOS CSE Cell, MIT CSN · Aug 2026",
+            summary: "Co-delivered a workshop on the tools engineers use beyond the syllabus.",
+            points: [
+              "Covered Git and GitHub, projects and AI tools",
+              "Explained LLMs, prompting, hallucinations, context engineering and responsible AI",
+            ],
+            visual: { kind: "flow", steps: ["Learn", "Build", "Show", "Connect", "Execute"] },
+          },
         ],
-        visual: { kind: "stat", value: "64+", label: "Google Cloud skill badges" },
+      },
+      {
+        id: "certificates",
+        title: "Certificates and learning",
+        cases: [
+          {
+            kicker: "Cloud and systems",
+            title: "Certificates and badges",
+            when: "Ongoing",
+            summary: "Linux administration, cloud foundations and AI tooling.",
+            points: [
+              "Red Hat System Administration training, completed; RHCSA exam pending",
+              "Linux Administrator for Datacenter, Silver (NASSCOM)",
+              "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
+              "AWS Cloud Practitioner Essentials; Programming in Java (NPTEL, IIT Kharagpur)",
+            ],
+            visual: { kind: "stat", value: "64+", label: "Google Cloud skill badges" },
+          },
+        ],
       },
     ],
   },

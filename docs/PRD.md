@@ -98,8 +98,8 @@ The site is a personal brand under the username **thissidemahesh**. It is **not*
 | Project | Facts |
 |---|---|
 | **MediIndex: Pharmacy Insights and Analytics** (B.Tech major project; grew out of PharmaManage Pro, which **won 1st place at Cogni-Sphere 2025 HackSphere**) | Node.js REST API; SQLite locally, PostgreSQL/Neon in production; inventory with batch tracking, expiry alerts, billing/POS, FEFO billing, demand forecasting, QR identification, inter-pharmacy stock; RBAC; idempotent stock operations; React Native / Expo / TypeScript Android app with QR scanning, offline queue and auto-sync; deployed on Vercel; backend, integration, regression and APK validation |
-| TeraPlay | Node.js / Express video streaming web app; AI-assisted workflow. Not featured |
-| Shop Management System (freelance) | Built from client requirements. Not featured |
+| **TeraPlay: Video Streaming and Downloader** (featured on /tech from 2026-11-10) | Web application for video streaming and downloading; Node.js and Express.js (JavaScript); backend for video handling and streaming workflows; AI-assisted development workflow for rapid prototyping |
+| **Shop Management System** (freelance; featured on /tech from 2026-11-10) | Full-stack web development; management system for core shop operations and business workflows, built to client requirements |
 
 ### Achievements
 - 1st place, Cogni-Sphere 2025 HackSphere (PharmaManage Pro)
