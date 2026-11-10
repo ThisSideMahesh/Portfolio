@@ -1164,3 +1164,75 @@ html.is-loading .site-loader[data-done] {
 .door-swap[data-veil="off"] .door-swap-veil {
   opacity: 0;
 }
+
+/* ── Recruiter-facing polish: door info card, floating tab island, buttons ──────────────────── */
+/* Door info card: a double bezel (outer tray + inner core) so it reads as one machined piece. */
+.door-panel-shell {
+  border-radius: 1.75rem;
+  padding: 0.4rem;
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 9%, transparent);
+}
+.door-panel-core {
+  border-radius: calc(1.75rem - 0.4rem);
+  background: var(--bg);
+  padding: 1.35rem 1.6rem 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.55),
+    0 24px 48px -28px rgb(0 0 0 / 0.35);
+}
+.door-eyebrow {
+  display: inline-flex;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 0.3rem 0.8rem;
+  color: var(--accent-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Header tabs: one floating pill; the current page is a filled tab. */
+.nav-island {
+  border: 1px solid var(--line);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  padding: 0.25rem;
+}
+.nav-tab {
+  transition:
+    background-color var(--dur-ui) var(--ease-out),
+    color var(--dur-ui) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.nav-tab:active {
+  transform: scale(0.97);
+}
+
+/* Buttons: a soft lift and inner highlight on the solid pill; the arrow travels diagonally. */
+.pill-solid {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    0 10px 22px -12px rgb(0 0 0 / 0.55);
+}
+@media (hover: hover) and (pointer: fine) {
+  .pill-solid:hover .pill-arrow {
+    transform: translate(2px, -1px) scale(1.06);
+  }
+  .pill-ghost:hover {
+    border-color: var(--ink);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-tab {
+    transition-property: color, background-color;
+  }
+}
+
+/* The info card may overlap the floor, so the stage sits above it. */
+.door-stage {
+  z-index: 2;
+}

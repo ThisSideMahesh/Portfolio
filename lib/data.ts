@@ -10,11 +10,14 @@ export type OpenDoorData = {
   tagline: string;
   href: `/${DoorId}`;
   locked: false;
-  /** Shown on hover/focus: what is behind the door. */
-  behind: readonly string[];
+  /** Shown on hover/focus under the door name: what Mahesh can add to an organization (max 5 short points, CV facts only). */
+  offer: readonly string[];
 };
 
 export type Door = OpenDoorData | { id: "creator"; name: string; tagline: string; locked: true };
+
+/** Subheading above each door's points. */
+export const offerHeading = "What I can add to your organization";
 
 export const doors: readonly Door[] = [
   {
@@ -23,7 +26,13 @@ export const doors: readonly Door[] = [
     tagline: taglines.tech,
     href: "/tech",
     locked: false,
-    behind: ["MediIndex: a full-stack web and Android app", "1st place, HackSphere 2025", "Linux administration, cloud and hardware repair"],
+    offer: [
+      "Builds full-stack web and Android apps (MediIndex)",
+      "Designs REST APIs with role-based access and audit trails",
+      "Administers Linux systems and cloud foundations",
+      "Diagnoses and repairs desktops, laptops and networks",
+      "Ships under pressure: 1st place, HackSphere 2025",
+    ],
   },
   {
     id: "teaching",
@@ -31,7 +40,13 @@ export const doors: readonly Door[] = [
     tagline: taglines.teaching,
     href: "/teaching",
     locked: false,
-    behind: ["MS-CIT: 25+ students trained", "Engineering Toolkit workshop", "Hackathon Hacked session"],
+    offer: [
+      "Teaches computer fundamentals and MS Office (25+ students)",
+      "Teaches Git, GitHub and AI tools for projects and careers",
+      "Runs workshops and sessions for engineering students",
+      "Explains LLMs, prompting and responsible AI",
+      "Teaches in Marathi, Hindi and English",
+    ],
   },
   {
     id: "management",
@@ -39,7 +54,13 @@ export const doors: readonly Door[] = [
     tagline: taglines.management,
     href: "/management",
     locked: false,
-    behind: ["95+ campus recruitment drives", "125+ admission leads, 5 centres", "25,000+ monthly reach"],
+    offer: [
+      "Runs campus recruitment drives: 95+ coordinated",
+      "Screens resumes, shortlists and schedules interviews",
+      "Links company HR, placement officers and leadership",
+      "Generates admission leads: 125+ across 5 centres",
+      "Grows reach on social media: 25,000+ a month",
+    ],
   },
   {
     id: "creator",

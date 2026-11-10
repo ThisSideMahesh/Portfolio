@@ -80,10 +80,6 @@ export function DoorCard({ door }: { door: OpenDoorData }) {
         </span>
         <span className="sr-only">{door.name}: {door.tagline}</span>
       </Link>
-      {/* Phones have no hover: the name and tagline sit under the door instead of the panel. */}
-      <p aria-hidden="true" className="mt-4 text-muted md:hidden">
-        {door.tagline}
-      </p>
 
       {/* A cover in the page colour comes up as the visitor steps through (no black screen). */}
       <span

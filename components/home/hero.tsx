@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { FlipCalendar } from "@/components/home/flip-calendar";
+import { HireMenu } from "@/components/home/hire-menu";
 import cutoutColour from "@/public/images/mahesh-cutout-colour.png";
 import cutout from "@/public/images/mahesh-cutout.png";
 import { heroRoles, site } from "@/lib/site";
@@ -26,12 +27,7 @@ export function Hero() {
             <FlipCalendar roles={heroRoles} />
           </div>
           <div style={{ "--d": 3 } as CSSProperties} className="rise mt-10 flex flex-wrap gap-3">
-            <a href="#contact" className="pill pill-solid">
-              Hire me
-              <span className="pill-arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
+            <HireMenu tone="page" />
             <a href="#doors" className="pill pill-ghost">
               See my work
             </a>
@@ -56,15 +52,15 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="flex items-center border-t border-line py-3 text-sm text-muted md:grid md:grid-cols-3 md:py-1">
-        <span className="inline-flex items-center gap-2 font-medium text-ink">
+      <div className="flex items-center border-t border-line py-3 text-xs font-bold tracking-[0.12em] text-muted uppercase md:grid md:grid-cols-3 md:py-2">
+        <span className="inline-flex items-center gap-2 text-ink">
           <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
           Available for work from 10 December 2026
         </span>
         <span className="hidden text-center md:block">Onsite-first</span>
-        <a href="#doors" className="hidden min-h-11 items-center justify-self-end hover:text-ink md:inline-flex">
-          Scroll to explore
-        </a>
+        <span translate="no" className="hidden min-h-11 items-center justify-self-end text-ink md:inline-flex">
+          Mahesh Namdev Khandebharad
+        </span>
       </div>
     </section>
   );

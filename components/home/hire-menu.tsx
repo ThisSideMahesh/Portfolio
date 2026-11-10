@@ -14,7 +14,7 @@ function mailto(subject: string, body: string) {
  * (ease-out, 200 ms), closes on Esc, on a click outside, or after a choice, and gives focus back
  * to the button.
  */
-export function HireMenu() {
+export function HireMenu({ tone = "band" }: { tone?: "band" | "page" }) {
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,7 @@ export function HireMenu() {
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((v) => !v)}
-        className="pill bg-band-ink pr-1.5 text-lg text-band"
+        className={`pill pr-1.5 ${tone === "page" ? "pill-solid" : "bg-band-ink text-lg text-band"}`}
       >
         Hire me
         <span className="pill-arrow" aria-hidden="true">
