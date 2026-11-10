@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { WALK_KEY } from "@/components/home/door-card";
 import { PanelDoor } from "@/components/home/panel-door";
 import { doors } from "@/lib/data";
@@ -32,14 +32,27 @@ const FROM_HOME = {
   goIn: 550,
   navigate: 1150,
 } as const;
+// From a door page back to the home page: step back out of the doorway, close the door, then the
+// overlay fades to reveal the home page (which is the hallway itself).
+const TO_HOME = {
+  unfreeze: 40,
+  stepBack: 60, // the light shrinks from the whole screen to the current doorway (520 ms)
+  hideLight: 640, // the doorway shows its own light again (120 ms)
+  close: 680, // the door swings shut (400 ms)
+  navigate: 1150,
+  fade: 1450, // the home page is mounted underneath; the hallway fades away (350 ms)
+  done: 1850,
+} as const;
 const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
 const FALLBACK_MS = 7000; // if the page still has not changed this long after navigating, load it directly (a cold route in development can take several seconds)
 
-type Swap = { from: string; to: string };
+type Swap = { from: string; to: string; hash: string };
 
 /**
- * Door-to-door walk: on the home page or a door page, following a link to a door page (top nav,
- * phone menu, footer) does not just swap the page. The hallway appears zoomed into the doorway you are
+ * Door walks: on the home page or a door page, following a link to a door page (top nav,
+ * phone menu, footer) does not just swap the page. Going back to the home page from a door page
+ * (Home, the logo, My story, Contact, Back to the doors) walks out: step back, the door closes,
+ * the hallway fades to the home page. The hallway appears zoomed into the doorway you are
  * standing in, the view steps back, that door closes, the next one opens and the view walks
  * into it; then the new page fades in (WalkIn). Reduced motion and modified clicks navigate
  * normally.
@@ -53,13 +66,16 @@ export function DoorSwap() {
   const pathname = usePathname();
   const [swap, setSwap] = useState<Swap | null>(null);
   const [seenPath, setSeenPath] = useState(pathname);
-  const active = swap !== null && swap.from === pathname;
+  const walkingOut = swap !== null && swap.to === "/";
+  // A walk to a door ends when the page changes (the overlay hands over to the new page's WalkIn).
+  // A walk out to the home page stays up over the new page until its own fade has finished.
+  const active = swap !== null && (swap.from === pathname || (walkingOut && pathname === "/"));
   const activeRef = useRef(active);
+  const clear = useCallback(() => setSwap(null), []);
 
-  // Any page change ends the walk (the overlay hands over to the new page's WalkIn).
   if (seenPath !== pathname) {
     setSeenPath(pathname);
-    setSwap(null);
+    if (!walkingOut) setSwap(null);
   }
 
   useEffect(() => {
@@ -76,32 +92,36 @@ export function DoorSwap() {
       const from = window.location.pathname;
       // A walk is in progress: a second door link (reachable by keyboard) must not cut it off.
       if (activeRef.current) {
-        if (DOOR_PATHS.includes(url.pathname) && url.origin === window.location.origin) event.preventDefault();
+        if ((DOOR_PATHS.includes(url.pathname) || url.pathname === "/") && url.origin === window.location.origin) event.preventDefault();
         return;
       }
-      if (url.origin !== window.location.origin || url.hash) return;
+      if (url.origin !== window.location.origin) return;
       if (anchor.classList.contains("door")) return; // the home doors have their own walk-through (DoorCard)
-      if ((from !== "/" && !DOOR_PATHS.includes(from)) || !DOOR_PATHS.includes(url.pathname) || url.pathname === from) return;
+      const fromDoor = DOOR_PATHS.includes(from);
+      const out = fromDoor && url.pathname === "/"; // back to the home page, optionally to a section (#doors, #story, #contact)
+      const toDoor = DOOR_PATHS.includes(url.pathname) && !url.hash && (from === "/" || fromDoor) && url.pathname !== from;
+      if (!out && !toDoor) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       event.preventDefault();
       router.prefetch(url.pathname);
-      setSwap({ from, to: url.pathname });
+      setSwap({ from, to: url.pathname, hash: out ? url.hash : "" });
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
   }, [router]);
 
-  return active ? <SwapOverlay key={`${swap.from}>${swap.to}`} from={swap.from} to={swap.to} /> : null;
+  return active ? <SwapOverlay key={`${swap.from}>${swap.to}`} from={swap.from} to={swap.to} hash={swap.hash} clear={clear} /> : null;
 }
 
-function SwapOverlay({ from, to }: Swap) {
+function SwapOverlay({ from, to, hash, clear }: Swap & { clear: () => void }) {
   const router = useRouter();
   const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const lightRef = useRef<HTMLDivElement>(null);
   const fromHome = from === "/";
   const fromId = fromHome ? "" : idOf(from);
-  const toId = idOf(to);
+  const out = to === "/";
+  const toId = out ? "" : idOf(to);
   const T = fromHome ? FROM_HOME : FROM_DOOR;
 
   useLayoutEffect(() => {
@@ -143,35 +163,61 @@ function SwapOverlay({ from, to }: Swap) {
     // Measure with nothing transformed (in development React runs effects twice).
     stage.style.transform = "none";
     const fromBox = fromHome ? undefined : box(fromId);
-    const toBox = box(toId);
+    const toBox = out ? undefined : box(toId);
     if (fromBox) place(fromBox, coverScale(fromBox), 1); // first frame: standing in the doorway you came through
     else place(toBox, 1, 0);
 
-    const timers = [
-      window.setTimeout(() => root.classList.remove("is-instant"), T.unfreeze),
-      window.setTimeout(() => fromBox && animate("transform", "scale(1)", 520), T.stepBack),
-      window.setTimeout(() => fromBox && animate("opacity", "0", 120), T.hideLight),
-      window.setTimeout(() => leaf(fromId, "shut"), T.close),
-      window.setTimeout(() => leaf(toId, "open"), T.open),
-      window.setTimeout(() => {
-        if (!toBox) return;
-        place(toBox, 1, 1);
-        animate("transform", `scale(${coverScale(toBox)})`, 550);
-      }, T.goIn),
-      window.setTimeout(() => {
+    const dest = out ? `/${hash}` : to;
+    const go = () => {
+      if (!out) {
         try {
           sessionStorage.setItem(WALK_KEY, "1");
         } catch {
           // Without storage the next page simply appears without the fade.
         }
-        router.push(to);
-      }, T.navigate),
+      }
+      router.push(dest);
+      // The home page stays mounted and remembers where it was scrolled; Home and the logo mean the top.
+      if (out && !hash) {
+        window.setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 120);
+        window.setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 400);
+      }
+    };
+    const fallback = (ms: number) =>
       window.setTimeout(() => {
-        if (window.location.pathname !== to) window.location.assign(to);
-      }, T.navigate + FALLBACK_MS),
-    ];
+        if (window.location.pathname !== (out ? "/" : to)) window.location.assign(dest);
+      }, ms + FALLBACK_MS);
+
+    const timers = out
+      ? [
+          window.setTimeout(() => root.classList.remove("is-instant"), TO_HOME.unfreeze),
+          window.setTimeout(() => fromBox && animate("transform", "scale(1)", 520), TO_HOME.stepBack),
+          window.setTimeout(() => fromBox && animate("opacity", "0", 120), TO_HOME.hideLight),
+          window.setTimeout(() => leaf(fromId, "shut"), TO_HOME.close),
+          window.setTimeout(go, TO_HOME.navigate),
+          window.setTimeout(() => {
+            root.style.transition = "opacity 350ms ease-out";
+            root.style.opacity = "0";
+          }, TO_HOME.fade),
+          window.setTimeout(clear, TO_HOME.done),
+          fallback(TO_HOME.navigate),
+        ]
+      : [
+          window.setTimeout(() => root.classList.remove("is-instant"), T.unfreeze),
+          window.setTimeout(() => fromBox && animate("transform", "scale(1)", 520), T.stepBack),
+          window.setTimeout(() => fromBox && animate("opacity", "0", 120), T.hideLight),
+          window.setTimeout(() => leaf(fromId, "shut"), T.close),
+          window.setTimeout(() => leaf(toId, "open"), T.open),
+          window.setTimeout(() => {
+            if (!toBox) return;
+            place(toBox, 1, 1);
+            animate("transform", `scale(${coverScale(toBox)})`, 550);
+          }, T.goIn),
+          window.setTimeout(go, T.navigate),
+          fallback(T.navigate),
+        ];
     return () => timers.forEach((t) => window.clearTimeout(t));
-  }, [fromHome, fromId, toId, to, router, T]);
+  }, [fromHome, fromId, toId, to, hash, out, router, clear, T]);
 
   return (
     <div ref={rootRef} aria-hidden="true" className="door-swap door-room is-instant fixed inset-0 z-[95] flex items-center overflow-hidden">
