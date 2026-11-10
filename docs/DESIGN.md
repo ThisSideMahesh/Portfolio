@@ -222,10 +222,12 @@ Mobile first, a 4-column grid on phones, 12 columns from 1024 px up, 16 px side 
 ```
 (The name is shown in capitals in the sketch only for legibility. It is set in sentence case.)
 
-### The doors
-- Each door is a tall `--surface` panel with a 1 px `--line` frame and a small **handle** (a short vertical bar) in `--muted`. On hover and focus the panel lifts 2 px, the handle turns `--accent`, and the door name's underline draws in. No 3D rotation (too theatrical for this style). Under reduced motion only the colours change.
-- The **Creator door** is visibly bolted: a drawn hasp and padlock (inline SVG, ink colour, not an emoji), the panel slightly darker, and the cursor stays default. It is a `<div>` with `aria-disabled="true"`, not a link, so it has no destination. Its one line explains what it will become.
-- Phones: the doors sit in a horizontal `scroll-snap` row at 80% viewport width each, with the next door peeking in. Desktop: all four are visible in one row.
+### The doors (updated 10 Nov 2026)
+- **The section is a lit hallway.** A warm plaster wall with a ceiling shadow, a small black spotlight above each door casting a warm cone (brighter on hover and focus, opacity only), and a wooden plank floor with a skirting board under the row (md and up). Wall, floor and light have their own light and dark tokens (`--wall`, `--floor`, `--light-glow`, …).
+- **Each door is a drawn panel door** (CSS + inline SVG, `components/home/panel-door.tsx`): casing with crown moulding, a lacquered leaf in the door's own colour (tech navy, teaching green, management burgundy, creator charcoal), stepped moulding, a gold motif for the role, a brass name plate, lever handle, hinges, brass kick plate and threshold, and a soft floor shadow.
+- Hover or focus: the other doors fade, the handle turns, the leaf eases 16° ajar and a panel says what is behind the door. Click: the leaf swings wide, the view zooms into the doorway, a page-colour cover comes up and the page fades in. Reduced motion and modified clicks navigate normally.
+- **The Creator door** stays locked: padlock, a dimmed leaf, a short jiggle on hover, and two strips of yellow-and-black **caution tape** reading "UNDER CONSTRUCTION • DO NOT ENTER". The tape is decorative (`aria-hidden`); screen readers hear "Creator: Locked, for now (under construction)". The words were changed from the requested "under investigation", which on a person's portfolio reads as if *he* is being investigated; caution tape conventionally means a building site.
+- Phones: the doors sit in a horizontal `scroll-snap` row with the next door peeking in, and the tagline sits under each door instead of the hover panel. Desktop: all four in one row.
 
 ### Role pages (`/tech`, `/teaching`, `/management`)
 Door colour band at the top, tagline, then: the proof first (featured case), then roles with dates, then skills or subjects, then a CTA with that door's prefilled email.

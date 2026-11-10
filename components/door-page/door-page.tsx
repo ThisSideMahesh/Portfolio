@@ -7,8 +7,12 @@ import type { CaseStudy, CaseVisual, DoorPage as DoorPageData } from "@/lib/door
  * slightly lower than the one before), and a "Back to the doors" pill fixed bottom-left.
  */
 export function DoorPage({ page }: { page: DoorPageData }) {
+  // One wrapper on purpose: on navigation Next measures the page's top-level elements to decide
+  // whether to scroll to the top. Loose fixed children (the walk-in cover, the back pill) always
+  // look "on screen", so the new page kept the home page's scroll position. The wrapper's box is
+  // the real content, so Next scrolls to the top as it should.
   return (
-    <>
+    <div>
       <WalkIn />
       <section className="wrap pt-16 pb-12 md:pt-24">
         <h1 className="text-[clamp(3rem,10vw,8rem)]">{page.title}</h1>
@@ -33,7 +37,7 @@ export function DoorPage({ page }: { page: DoorPageData }) {
       >
         <span aria-hidden="true">←</span> Back to the doors
       </Link>
-    </>
+    </div>
   );
 }
 

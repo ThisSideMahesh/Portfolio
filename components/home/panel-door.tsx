@@ -8,6 +8,8 @@ export type DoorVariant = "tech" | "teaching" | "management" | "creator";
  * thin brass inlay, a brass lever handle on the left and brass hinges on the right.
  * Each profession gets its own colour and its own panel design (see MOTIFS).
  * The leaf hinges on its right edge over a dark doorway (CSS: .pdoor / .pdoor-leaf).
+ * Details: crown moulding on the casing, lacquer sheen, brass kick plate and threshold, and a
+ * soft contact shadow on the floor. The locked Creator door wears two strips of caution tape.
  */
 export function PanelDoor({ variant, name, locked = false }: { variant: DoorVariant; name: string; locked?: boolean }) {
   return (
@@ -27,7 +29,9 @@ export function PanelDoor({ variant, name, locked = false }: { variant: DoorVari
           <span className="pdoor-hinge" style={{ top: "9%" }} />
           <span className="pdoor-hinge" style={{ top: "47%" }} />
           <span className="pdoor-hinge" style={{ top: "86%" }} />
+          <span className="pdoor-kickplate" />
         </span>
+        <span className="pdoor-threshold" />
       </span>
       {locked ? (
         <svg viewBox="0 0 24 30" aria-hidden="true" className="pdoor-padlock">
@@ -37,7 +41,18 @@ export function PanelDoor({ variant, name, locked = false }: { variant: DoorVari
           <rect x="11.2" y="19.5" width="1.6" height="4" rx="0.8" fill="#3a2a12" />
         </svg>
       ) : null}
+      {locked ? (
+        <>
+          <span aria-hidden="true" className="pdoor-tape" style={{ top: "30%", rotate: "-17deg" }}>
+            <span>UNDER CONSTRUCTION • DO NOT ENTER • UNDER CONSTRUCTION • DO NOT ENTER •</span>
+          </span>
+          <span aria-hidden="true" className="pdoor-tape" style={{ top: "58%", rotate: "13deg" }}>
+            <span>DO NOT ENTER • UNDER CONSTRUCTION • DO NOT ENTER • UNDER CONSTRUCTION •</span>
+          </span>
+        </>
+      ) : null}
       <span aria-hidden="true" className="pdoor-skirting" />
+      <span aria-hidden="true" className="pdoor-shadow" />
     </span>
   );
 }
