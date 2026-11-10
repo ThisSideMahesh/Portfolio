@@ -1,12 +1,20 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { WALK_KEY } from "@/components/home/door-card";
 import { PanelDoor } from "@/components/home/panel-door";
 import { doors } from "@/lib/data";
 
-const DOOR_PATHS: readonly string[] = doors.flatMap((door) => (door.locked ? [] : [door.href]));
+const DOOR_PATHS: readonly string[] = doors.flatMap((door) =>
+  door.locked ? [] : [door.href],
+);
 const idOf = (path: string) => path.slice(1);
 
 /**
@@ -40,9 +48,9 @@ const TO_HOME = {
   hideLight: 640, // the doorway shows its own light again (120 ms)
   close: 680, // the door swings shut (400 ms)
   navigate: 1150,
-  fade: 1450, // the home page is mounted underneath; the hallway fades away (350 ms)
-  done: 1850,
+  fade: 1350, // earliest the hallway may fade away (350 ms); it also waits until the home hero is on screen
 } as const;
+const FADE_MS = 350;
 const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
 const FALLBACK_MS = 7000; // if the page still has not changed this long after navigating, load it directly (a cold route in development can take several seconds)
 
@@ -69,7 +77,9 @@ export function DoorSwap() {
   const walkingOut = swap !== null && swap.to === "/";
   // A walk to a door ends when the page changes (the overlay hands over to the new page's WalkIn).
   // A walk out to the home page stays up over the new page until its own fade has finished.
-  const active = swap !== null && (swap.from === pathname || (walkingOut && pathname === "/"));
+  const active =
+    swap !== null &&
+    (swap.from === pathname || (walkingOut && pathname === "/"));
   const activeRef = useRef(active);
   const clear = useCallback(() => setSwap(null), []);
 
@@ -85,21 +95,35 @@ export function DoorSwap() {
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0) return;
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+        return;
       const anchor = (event.target as Element | null)?.closest?.("a[href]");
-      if (!(anchor instanceof HTMLAnchorElement) || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+      if (
+        !(anchor instanceof HTMLAnchorElement) ||
+        anchor.target === "_blank" ||
+        anchor.hasAttribute("download")
+      )
+        return;
       const url = new URL(anchor.href);
       const from = window.location.pathname;
       // A walk is in progress: a second door link (reachable by keyboard) must not cut it off.
       if (activeRef.current) {
-        if ((DOOR_PATHS.includes(url.pathname) || url.pathname === "/") && url.origin === window.location.origin) event.preventDefault();
+        if (
+          (DOOR_PATHS.includes(url.pathname) || url.pathname === "/") &&
+          url.origin === window.location.origin
+        )
+          event.preventDefault();
         return;
       }
       if (url.origin !== window.location.origin) return;
       if (anchor.classList.contains("door")) return; // the home doors have their own walk-through (DoorCard)
       const fromDoor = DOOR_PATHS.includes(from);
       const out = fromDoor && url.pathname === "/"; // back to the home page, optionally to a section (#doors, #story, #contact)
-      const toDoor = DOOR_PATHS.includes(url.pathname) && !url.hash && (from === "/" || fromDoor) && url.pathname !== from;
+      const toDoor =
+        DOOR_PATHS.includes(url.pathname) &&
+        !url.hash &&
+        (from === "/" || fromDoor) &&
+        url.pathname !== from;
       if (!out && !toDoor) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       event.preventDefault();
@@ -110,7 +134,15 @@ export function DoorSwap() {
     return () => document.removeEventListener("click", onClick, true);
   }, [router]);
 
-  return active ? <SwapOverlay key={`${swap.from}>${swap.to}`} from={swap.from} to={swap.to} hash={swap.hash} clear={clear} /> : null;
+  return active ? (
+    <SwapOverlay
+      key={`${swap.from}>${swap.to}`}
+      from={swap.from}
+      to={swap.to}
+      hash={swap.hash}
+      clear={clear}
+    />
+  ) : null;
 }
 
 function SwapOverlay({ from, to, hash, clear }: Swap & { clear: () => void }) {
@@ -135,13 +167,23 @@ function SwapOverlay({ from, to, hash, clear }: Swap & { clear: () => void }) {
     // doors, seen in a recording). A flat colour scaled on the GPU has nothing to tile: the patch sits
     // exactly over a doorway and grows to cover the screen (or shrinks back from it), and it is a pure
     // scale about the doorway's own centre, so the view goes straight in and never pans.
-    const box = (id: string) => root.querySelector(`[data-swap-door="${id}"] .pdoor-opening`)?.getBoundingClientRect();
+    const box = (id: string) =>
+      root
+        .querySelector(`[data-swap-door="${id}"] .pdoor-opening`)
+        ?.getBoundingClientRect();
     const coverScale = (b: DOMRect) => {
       const cx = b.left + b.width / 2;
       const cy = b.top + b.height / 2;
       const W = window.innerWidth;
       const H = window.innerHeight;
-      return Math.max((2 * cx) / b.width, (2 * (W - cx)) / b.width, (2 * cy) / b.height, (2 * (H - cy)) / b.height) * 1.06;
+      return (
+        Math.max(
+          (2 * cx) / b.width,
+          (2 * (W - cx)) / b.width,
+          (2 * cy) / b.height,
+          (2 * (H - cy)) / b.height,
+        ) * 1.06
+      );
     };
     const place = (b: DOMRect | undefined, scale: number, opacity: number) => {
       if (!b) return;
@@ -154,17 +196,25 @@ function SwapOverlay({ from, to, hash, clear }: Swap & { clear: () => void }) {
       light.style.opacity = String(opacity);
       void light.offsetWidth; // commit this state before the next transition starts
     };
-    const animate = (prop: "transform" | "opacity", value: string, ms: number) => {
+    const animate = (
+      prop: "transform" | "opacity",
+      value: string,
+      ms: number,
+    ) => {
       light.style.transition = `${prop} ${ms}ms ${prop === "transform" ? EASE : "ease-out"}`;
       light.style[prop] = value;
     };
-    const leaf = (id: string, state: "open" | "shut") => root.querySelector(`[data-swap-door="${id}"]`)?.setAttribute("data-leaf", state);
+    const leaf = (id: string, state: "open" | "shut") =>
+      root
+        .querySelector(`[data-swap-door="${id}"]`)
+        ?.setAttribute("data-leaf", state);
 
     // Measure with nothing transformed (in development React runs effects twice).
     stage.style.transform = "none";
     const fromBox = fromHome ? undefined : box(fromId);
     const toBox = out ? undefined : box(toId);
-    if (fromBox) place(fromBox, coverScale(fromBox), 1); // first frame: standing in the doorway you came through
+    if (fromBox)
+      place(fromBox, coverScale(fromBox), 1); // first frame: standing in the doorway you came through
     else place(toBox, 1, 0);
 
     const dest = out ? `/${hash}` : to;
@@ -179,48 +229,103 @@ function SwapOverlay({ from, to, hash, clear }: Swap & { clear: () => void }) {
       router.push(dest);
       // The home page stays mounted and remembers where it was scrolled; Home and the logo mean the top.
       if (out && !hash) {
-        window.setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 120);
-        window.setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 400);
+        window.setTimeout(
+          () => window.scrollTo({ top: 0, behavior: "instant" }),
+          120,
+        );
+        window.setTimeout(
+          () => window.scrollTo({ top: 0, behavior: "instant" }),
+          400,
+        );
       }
     };
     const fallback = (ms: number) =>
       window.setTimeout(() => {
-        if (window.location.pathname !== (out ? "/" : to)) window.location.assign(dest);
+        if (window.location.pathname !== (out ? "/" : to))
+          window.location.assign(dest);
       }, ms + FALLBACK_MS);
 
-    const timers = out
-      ? [
-          window.setTimeout(() => root.classList.remove("is-instant"), TO_HOME.unfreeze),
-          window.setTimeout(() => fromBox && animate("transform", "scale(1)", 520), TO_HOME.stepBack),
-          window.setTimeout(() => fromBox && animate("opacity", "0", 120), TO_HOME.hideLight),
-          window.setTimeout(() => leaf(fromId, "shut"), TO_HOME.close),
-          window.setTimeout(go, TO_HOME.navigate),
-          window.setTimeout(() => {
-            root.style.transition = "opacity 350ms ease-out";
-            root.style.opacity = "0";
-          }, TO_HOME.fade),
-          window.setTimeout(clear, TO_HOME.done),
-          fallback(TO_HOME.navigate),
-        ]
-      : [
-          window.setTimeout(() => root.classList.remove("is-instant"), T.unfreeze),
-          window.setTimeout(() => fromBox && animate("transform", "scale(1)", 520), T.stepBack),
-          window.setTimeout(() => fromBox && animate("opacity", "0", 120), T.hideLight),
-          window.setTimeout(() => leaf(fromId, "shut"), T.close),
-          window.setTimeout(() => leaf(toId, "open"), T.open),
-          window.setTimeout(() => {
-            if (!toBox) return;
-            place(toBox, 1, 1);
-            animate("transform", `scale(${coverScale(toBox)})`, 550);
-          }, T.goIn),
-          window.setTimeout(go, T.navigate),
-          fallback(T.navigate),
-        ];
-    return () => timers.forEach((t) => window.clearTimeout(t));
+    const startedAt = performance.now();
+    let poll = 0;
+    let fading = false;
+    // The hallway fades only once the home page is really showing: its hero entrance (a rise) starts
+    // when the page is shown, so a fixed timer could fade the hallway first and leave an empty page.
+    const fade = () => {
+      if (fading) return;
+      fading = true;
+      window.clearInterval(poll);
+      root.style.transition = `opacity ${FADE_MS}ms ease-out`;
+      root.style.opacity = "0";
+      timers.push(window.setTimeout(clear, FADE_MS + 100));
+    };
+    const timers: number[] = [];
+    const startPolling = () => {
+      poll = window.setInterval(() => {
+        const heroShown =
+          window.location.pathname === "/" &&
+          (document.querySelector(".hero-portrait")?.getClientRects().length ??
+            0) > 0;
+        if (heroShown && performance.now() - startedAt >= TO_HOME.fade) fade();
+      }, 50);
+    };
+
+    timers.push(
+      ...(out
+        ? [
+            window.setTimeout(
+              () => root.classList.remove("is-instant"),
+              TO_HOME.unfreeze,
+            ),
+            window.setTimeout(
+              () => fromBox && animate("transform", "scale(1)", 520),
+              TO_HOME.stepBack,
+            ),
+            window.setTimeout(
+              () => fromBox && animate("opacity", "0", 120),
+              TO_HOME.hideLight,
+            ),
+            window.setTimeout(() => leaf(fromId, "shut"), TO_HOME.close),
+            window.setTimeout(go, TO_HOME.navigate),
+            window.setTimeout(startPolling, TO_HOME.navigate),
+            window.setTimeout(fade, TO_HOME.navigate + 4000), // never leave the hallway up if something is slow
+            fallback(TO_HOME.navigate),
+          ]
+        : [
+            window.setTimeout(
+              () => root.classList.remove("is-instant"),
+              T.unfreeze,
+            ),
+            window.setTimeout(
+              () => fromBox && animate("transform", "scale(1)", 520),
+              T.stepBack,
+            ),
+            window.setTimeout(
+              () => fromBox && animate("opacity", "0", 120),
+              T.hideLight,
+            ),
+            window.setTimeout(() => leaf(fromId, "shut"), T.close),
+            window.setTimeout(() => leaf(toId, "open"), T.open),
+            window.setTimeout(() => {
+              if (!toBox) return;
+              place(toBox, 1, 1);
+              animate("transform", `scale(${coverScale(toBox)})`, 550);
+            }, T.goIn),
+            window.setTimeout(go, T.navigate),
+            fallback(T.navigate),
+          ]),
+    );
+    return () => {
+      timers.forEach((t) => window.clearTimeout(t));
+      window.clearInterval(poll);
+    };
   }, [fromHome, fromId, toId, to, hash, out, router, clear, T]);
 
   return (
-    <div ref={rootRef} aria-hidden="true" className="door-swap door-room is-instant fixed inset-0 z-[95] flex items-center overflow-hidden">
+    <div
+      ref={rootRef}
+      aria-hidden="true"
+      className="door-swap door-room is-instant fixed inset-0 z-[95] flex items-center overflow-hidden"
+    >
       <div ref={stageRef} className="door-swap-stage mx-auto w-full px-4">
         <ul className="grid grid-cols-4 gap-3 md:gap-8">
           {doors.map((door) => (
@@ -229,8 +334,17 @@ function SwapOverlay({ from, to, hash, clear }: Swap & { clear: () => void }) {
                 <span className="door-light-fixture" />
                 <span className="door-light-cone" />
               </span>
-              <span className="swap-door relative block" data-swap-door={door.id} data-leaf={door.id === fromId ? "open" : "shut"}>
-                <PanelDoor variant={door.id} name={door.name} locked={door.locked} tape={false} />
+              <span
+                className="swap-door relative block"
+                data-swap-door={door.id}
+                data-leaf={door.id === fromId ? "open" : "shut"}
+              >
+                <PanelDoor
+                  variant={door.id}
+                  name={door.name}
+                  locked={door.locked}
+                  tape={false}
+                />
               </span>
             </li>
           ))}
