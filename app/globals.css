@@ -1064,8 +1064,8 @@ html.is-loading .site-loader[data-done] {
   aspect-ratio: 100 / 80;
   pointer-events: none;
 }
-.diya-left {
-  scale: -1 1; /* the same diya mirrored, so the pair is symmetrical and both spouts point outwards */
+.diya-right {
+  scale: -1 1; /* the same diya mirrored: the pair is symmetrical and the two spouts and flames face each other, towards the portrait */
 }
 .diya-body {
   position: relative;

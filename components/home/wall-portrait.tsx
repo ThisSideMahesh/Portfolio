@@ -69,7 +69,7 @@ export function WallPortrait() {
   );
 }
 
-/** A traditional brass diya: shallow bowl, pinched spout with a wick, stem and foot. The left one is the right one mirrored. */
+/** A traditional brass diya: shallow bowl, pinched spout with a wick, stem and foot. The right one is the left one mirrored, so the two face each other. */
 function Diya({ side }: { side: "left" | "right" }) {
   return (
     <span aria-hidden="true" className={`diya diya-${side}`}>
