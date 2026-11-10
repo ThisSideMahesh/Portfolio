@@ -514,3 +514,8 @@ Skills used: security-review, design-review, accessibility, animation-performanc
 - Tech page: a row of jump links under the title (Projects 11, Experience 2, Hackathons 6, Campus roles 2, Certificates 4) that scroll to each row.
 - Link pills show a GitHub or LinkedIn mark and drop the repeated "LinkedIn:" text (kept for screen readers).
 - Card pictures rise 3.5% on mouse hover (transform only, off for touch and reduced motion).
+
+### Follow-up: phone number on the old public main (10 Nov 2026, approved by Mahesh)
+- Pushed commit `3348695` to `origin/main` (normal fast-forward, no force): the phone value in `config/social.ts` and `public/data/portfolio.json` is now an empty string (the old code still reads the field, so it stays in place). Verified on raw.githubusercontent.com.
+- **Still exposed:** two older commits on `main` still contain the number, and the commit authors there still show the Gmail address. A normal commit cannot remove history. Options for Mahesh: make the repo private, or rewrite `main` (a force-push that erases the old history; needs his explicit OK). The `release/v1.0.0-rc.1` branch has no phone number.
+- **Also in that file:** `public/data/portfolio.json` on `main` still has his CGPA (the "no scores" rule applies to the new site). Not touched: he only approved the phone number.
