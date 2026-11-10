@@ -437,8 +437,8 @@ html.is-loading .rise {
 .pdoor-opening {
   position: absolute;
   inset: 4.5% 8% 2.5% 8%;
-  perspective: 3200px; /* a long lens: the swinging leaf stays almost the same height, so nothing is cut */
-  overflow: hidden; /* and what little overshoots is cropped by the frame, as in the reference */
+  perspective: 1500px; /* the door swings INTO the room, so the leaf shrinks away from the viewer and can never poke out of its frame */
+  overflow: hidden;
 }
 .pdoor-doorway {
   position: absolute;
@@ -447,7 +447,7 @@ html.is-loading .rise {
 }
 .pdoor-leaf {
   position: absolute;
-  inset: 2.5% 0; /* a hair of clearance above and below, like a real door: the swing grows a little in height and must not touch the frame */
+  inset: 0;
   transform-origin: right center;
   background:
     linear-gradient(90deg, rgb(0 0 0 / 0.18), transparent 7%, transparent 93%, rgb(0 0 0 / 0.22)),
@@ -580,7 +580,7 @@ html.is-loading .rise {
   position: relative;
 }
 .door:focus-visible .pdoor-leaf {
-  transform: rotateY(56deg);
+  transform: rotateY(-58deg);
   transition-duration: 680ms;
 }
 .door:focus-visible .pdoor-doorway::after,
@@ -622,7 +622,7 @@ html.is-loading .rise {
 @media (hover: hover) and (pointer: fine) {
   /* :not([data-opening]) so hover never out-ranks the opening swing. */
   .door:not(.locked):not([data-opening]):hover .pdoor-leaf {
-    transform: rotateY(56deg);
+    transform: rotateY(-58deg);
     transition-duration: 680ms;
   }
   .door:not(.locked):hover .pdoor-doorway::after,
@@ -693,7 +693,7 @@ html.is-loading .rise {
   transition-duration: 160ms;
 }
 .door[data-opening] .pdoor-leaf {
-  transform: rotateY(100deg);
+  transform: rotateY(-84deg);
   transition: transform 640ms var(--ease-in-out) 120ms;
 }
 .door[data-opening] .pdoor {
@@ -1146,7 +1146,7 @@ html.is-loading .site-loader[data-done] {
   transition: transform 540ms var(--ease-in-out);
 }
 .door-swap .swap-door[data-leaf="open"] .pdoor-leaf {
-  transform: rotateY(100deg);
+  transform: rotateY(-84deg);
 }
 .door-swap .swap-door[data-leaf="open"] .pdoor-lever {
   transform: rotate(28deg);
@@ -1330,31 +1330,28 @@ html.is-loading .site-loader[data-done] {
   }
 }
 
-/* Opening: four door-coloured panels lift away in turn, opening up the page. */
-html.is-loading .site-loader {
-  background: transparent;
-  padding: 0;
-  display: block;
-}
-html.is-loading .site-loader[data-done] {
-  opacity: 1;
-  transform: none;
-  transition: none;
-}
-.loader-panels {
+/* Opening: one door in the dark hallway cracks open as the count rises, then swings inward and
+   the view walks through it into the page (the same door the site's tabs use). */
+.loader-stage {
   position: absolute;
   inset: 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
 }
-.loader-panel {
-  background: var(--pc);
-  box-shadow: inset -1px 0 0 rgb(0 0 0 / 0.25);
-  transition: transform 780ms var(--ease-in-out);
+.loader-door {
+  width: clamp(8.5rem, 21vw, 13rem);
+  will-change: transform;
 }
-.site-loader[data-done] .loader-panel {
-  transform: translateY(-101%);
-  transition-delay: calc(var(--i) * 110ms);
+.site-loader .pdoor-leaf,
+.site-loader .pdoor-lever {
+  transition: none;
+}
+.site-loader .pdoor-doorway::after,
+.site-loader .pdoor-leaf::before {
+  opacity: var(--lit, 0);
+}
+.site-loader[data-done] .pdoor-doorway::after {
+  transition: opacity 500ms var(--ease-out);
 }
 .loader-ui {
   position: absolute;
@@ -1364,7 +1361,8 @@ html.is-loading .site-loader[data-done] {
   justify-content: space-between;
   padding: 1.5rem 1rem 2rem;
   color: var(--band-ink);
-  transition: opacity 260ms var(--ease-out);
+  pointer-events: none;
+  transition: opacity 240ms var(--ease-out);
 }
 .site-loader[data-done] .loader-ui {
   opacity: 0;
@@ -1373,6 +1371,20 @@ html.is-loading .site-loader[data-done] {
   .loader-ui {
     padding: 2rem 2rem 2.5rem;
   }
+}
+html.is-loading .site-loader[data-done] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+html.is-loading .site-loader[data-fade] {
+  opacity: 0;
+  transition: opacity 350ms var(--ease-out);
+}
+
+/* The hero starts rising as the opening fades into the page, so the page never sits empty. */
+html.is-loading:has(.site-loader[data-fade]) .rise {
+  animation-play-state: running;
 }
 
 /* Door info: plain text on the wall, no card behind it (as in the reference). */
@@ -1394,9 +1406,4 @@ html.is-loading .site-loader[data-done] {
   padding: 0;
   border-radius: 0;
   font-size: 0.95rem;
-}
-
-/* The hero starts rising as the opening panels begin to lift, so the page never sits empty. */
-html.is-loading:has(.site-loader[data-done]) .rise {
-  animation-play-state: running;
 }
