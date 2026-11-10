@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
  */
 export function StoryYearMarker({ years }: { years: readonly number[] }) {
   const [active, setActive] = useState(years[0] ?? 0);
+  const [month, setMonth] = useState(-1);
 
   useEffect(() => {
     const targets = document.querySelectorAll<HTMLElement>("[data-story-year]");
@@ -21,10 +22,23 @@ export function StoryYearMarker({ years }: { years: readonly number[] }) {
       { rootMargin: "-45% 0px -50% 0px" },
     );
     targets.forEach((target) => observer.observe(target));
-    return () => observer.disconnect();
-  }, []);
 
-  const position = Math.max(0, years.indexOf(active));
+    // The month follows the entry crossing the middle of the screen; entries without a month keep the last one.
+    const monthObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const value = Number(entry.target.getAttribute("data-story-month"));
+          if (entry.isIntersecting && value >= 0) setMonth(value);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    document.querySelectorAll<HTMLElement>("[data-story-month]").forEach((target) => monthObserver.observe(target));
+    return () => {
+      observer.disconnect();
+      monthObserver.disconnect();
+    };
+  }, []);
 
   return (
     <div aria-hidden="true" className="mt-10 hidden md:block">
@@ -47,16 +61,15 @@ export function StoryYearMarker({ years }: { years: readonly number[] }) {
             </span>
           ))}
       </p>
-      <div className="mt-5 flex items-center gap-4 text-sm text-muted tabular-nums">
-        <span>
-          {String(position + 1).padStart(2, "0")} / {String(years.length).padStart(2, "0")}
-        </span>
-        <span className="relative h-px w-28 bg-line">
-          <span
-            className="absolute inset-0 origin-left bg-accent transition-transform duration-500 ease-[var(--ease-out)]"
-            style={{ transform: `scaleX(${(position + 1) / years.length})` }}
-          />
-        </span>
+      {/* The month rolls like the year digits: a column of twelve names slides to the active one. */}
+      <div className="mt-4 h-[1.2em] overflow-hidden font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2] font-bold tracking-[0.18em] text-accent-text uppercase">
+        <div className="story-digit flex flex-col" style={{ transform: `translateY(-${Math.max(month, 0) * 1.2}em)` }}>
+          {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m) => (
+            <span key={m} className="h-[1.2em]">
+              {m}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

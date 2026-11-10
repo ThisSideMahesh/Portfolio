@@ -1334,3 +1334,28 @@ html.is-loading .site-loader[data-done] {
 .door-swap.is-instant .pdoor-leaf::before {
   transition: none;
 }
+
+/* Heading reveal (RevealHeading): words rise out of a mask, staggered 70 ms. */
+.rw-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.rw-word > span {
+  display: inline-block;
+  transition:
+    transform 800ms var(--ease-out),
+    opacity 800ms var(--ease-out);
+  transition-delay: calc(var(--w) * 70ms);
+}
+[data-armed]:not([data-in]) .rw-word > span {
+  transform: translateY(105%);
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-armed]:not([data-in]) .rw-word > span {
+    transform: none;
+  }
+}

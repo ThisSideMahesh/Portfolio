@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { RevealHeading } from "@/components/ui/reveal-heading";
 import { DoorCard } from "@/components/home/door-card";
 import { PanelDoor } from "@/components/home/panel-door";
 import { doors, type Door, type OpenDoorData } from "@/lib/data";
@@ -15,10 +16,11 @@ export function DoorWall() {
   return (
     <section id="doors" aria-labelledby="doors-title" className="door-room relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-0">
       <div className="wrap">
-        <h2 id="doors-title" className="text-[clamp(2.25rem,5.5vw,4.5rem)]">
-          <span className="block">Step inside.</span>
-          <span className="block text-muted">Discover the work behind it.</span>
-        </h2>
+        <RevealHeading
+          id="doors-title"
+          className="text-[clamp(2.25rem,5.5vw,4.5rem)]"
+          lines={[{ text: "Step inside." }, { text: "Discover the work behind it.", className: "text-muted" }]}
+        />
       </div>
 
       <div className="door-stage wrap relative mt-14">
