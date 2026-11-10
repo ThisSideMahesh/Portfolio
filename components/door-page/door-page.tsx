@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CardCarousel } from "@/components/door-page/card-carousel";
+import { StackItem } from "@/components/door-page/stack-item";
 import { WalkIn } from "@/components/door-page/walk-in";
+import { RevealHeading } from "@/components/ui/reveal-heading";
 import type {
   CaseLink,
   CaseStudy,
@@ -10,9 +11,9 @@ import type {
 } from "@/lib/door-pages";
 
 /**
- * A door's page: a huge title, then either case cards that stack as you scroll (CSS sticky, each card
- * slightly lower than the one before) or, for pages with sections (Tech), one swipeable row of
- * cards per section, and a "Back to the doors" pill fixed bottom-left.
+ * A door's page: a huge title, then case cards that stack as you scroll (CSS sticky, each card slightly
+ * lower than the one before). The same stacking is used on all three door pages; Tech, which has many
+ * cards, groups them under titled sections with jump links. A "Back to the doors" pill is fixed bottom-left.
  */
 export function DoorPage({ page }: { page: DoorPageData }) {
   // One wrapper on purpose: on navigation Next measures the page's top-level elements to decide
@@ -30,7 +31,7 @@ export function DoorPage({ page }: { page: DoorPageData }) {
       </section>
 
       {page.sections ? (
-        // Swipeable rows, one titled row per section: each card is one item, side by side.
+        // Pages with sections (Tech): a jump link row, then one titled stack of cards per section.
         <div className="pb-32">
           <nav aria-label="Sections on this page" className="wrap pb-2">
             <ul className="flex flex-wrap gap-2">
@@ -45,21 +46,16 @@ export function DoorPage({ page }: { page: DoorPageData }) {
             </ul>
           </nav>
           {page.sections.map((section) => (
-            <CardCarousel key={section.id} id={section.id} title={section.title}>
-              {section.cases.map((study) => (
-                <CaseCard key={study.title} study={study} heading="h3" />
-              ))}
-            </CardCarousel>
+            <section key={section.id} id={section.id} aria-labelledby={`${section.id}-title`} className="wrap scroll-mt-16 pt-12 md:pt-16">
+              <RevealHeading id={`${section.id}-title`} className="mb-8 text-[clamp(1.75rem,4vw,3rem)] md:mb-10" lines={[{ text: section.title }]} />
+              <CardStack cases={section.cases} heading="h3" />
+            </section>
           ))}
         </div>
       ) : (
-        <ol className="wrap pb-32">
-          {(page.cases ?? []).map((study, index) => (
-            <li key={study.title} className="sticky mb-8 md:mb-16" style={{ top: `calc(5rem + ${index * 1.25}rem)` }}>
-              <CaseCard study={study} />
-            </li>
-          ))}
-        </ol>
+        <div className="wrap pb-32">
+          <CardStack cases={page.cases ?? []} heading="h2" />
+        </div>
       )}
 
       <Link
@@ -69,6 +65,19 @@ export function DoorPage({ page }: { page: DoorPageData }) {
         <span aria-hidden="true">←</span> Back to the doors
       </Link>
     </div>
+  );
+}
+
+/** Cards that stack as you scroll (see .stack-card in globals.css). The first five sit a step lower than the one before. */
+function CardStack({ cases, heading }: { cases: readonly CaseStudy[]; heading: "h2" | "h3" }) {
+  return (
+    <ol>
+      {cases.map((study, index) => (
+        <StackItem key={study.title} depth={Math.min(index, 4)}>
+          <CaseCard study={study} heading={heading} />
+        </StackItem>
+      ))}
+    </ol>
   );
 }
 
