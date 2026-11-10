@@ -94,6 +94,12 @@ export const story: readonly StoryYear[] = [
         detail: "Co-delivered a workshop on Git, projects, AI tools and careers, built around Learn → Build → Show → Connect → Execute.",
       },
       {
+        title: "Trainee Developer, Python Full Stack",
+        place: "Kiran Academy",
+        when: "Completed Aug 2026",
+        detail: "Industrial training with internship: developed an industrial project under the guidance of the academy's expert technical team.",
+      },
+      {
         title: "Sales and Marketing Intern",
         place: "Dnyandeep Foundation Centre",
         when: "Jun 2026",
@@ -113,7 +119,7 @@ export const story: readonly StoryYear[] = [
       {
         title: "1st place, Cogni-Sphere 2025 HackSphere",
         place: "PharmaManage Pro, later MediIndex",
-        when: "2025",
+        when: "13 – 14 Oct 2025",
         detail: "A pharmacy platform with expiry alerts, role-based access and billing automation.",
       },
       {

@@ -147,3 +147,25 @@ AI chat, admin panel, CMS, search, command palette, blog comments, scroll-sequen
 - Lighthouse mobile ≥ 90 for Performance, Accessibility, Best Practices and SEO at the end of every phase.
 - WCAG AA contrast in both themes; the whole site works by keyboard alone.
 - Zero `TODO`s and zero banned patterns (phone, "certified" with Red Hat, "hackathons won", "coming soon") in a production build.
+
+## 7. Source-folder review, 2026-11-10 (what was read, what was added, what was left out)
+
+Read: `certificates/` (40 files, images read with on-device OCR), `Competition/`, `Workshop-Bootcamp/`, the master CV (identical to the earlier `cv.pdf`, so nothing new in it) and the three resumes, and the READMEs and git history of the 20+ folders in `projects/`. Everything below is a fact seen in a file.
+
+**Added to /tech**
+- Kiran Academy: Industrial Training with Internship, Trainee Developer, Python Full Stack; completion certificate dated 27 Aug 2026 (no start date in the certificate, so none is shown).
+- Cogni-Sphere 2025 HackSphere: first rank, IETE Student Forum, ECE department, MIT CSN, 13 and 14 Oct 2025 (certificate).
+- Central India Hackathon 3.0: finalist (Unstop finalist page names Mahesh as team leader of Team Future; script: "builder and pitcher"); SwasthyaSetu = repo `Team_Future_3.8_SDG3` (PS 3.8, consent-driven health record aggregator).
+- Hack For Impact: AI Hackathon, Technophilia 2K26, 11 Apr 2026 (certificate of participation). The clinical handoff tool (repo `02_TeamsFuture`, last pushed 11 Apr 2026, matches the Hack For Impact "Clinical Handoff Risk Intelligence" problem statement) is shown as a hackathon prototype; the repo README does not name the event, so this link is an inference to confirm with Mahesh.
+- Aavishkar 2026, District Level, 29 Sep 2026: presented "Medicine Inventory and Expiry Management System with Demand Prediction for Medical Stores (Model)" (certificate 2295; registration form: Engineering and Technology).
+- Projects with his own git history or public repo and a README: CanteenGo (repo canteengo), AgriSenseAI (repo AgriSenseAI), Cadriva (local repo, M0 foundation only, no remote; shown as "In early development" with no link).
+- Certificates seen as files and now listed: Cisco Introduction to IoT (19 Apr 2026), AWS SimuLearn Cloud Practitioner (2 Sep 2025), AWS Forage Solutions Architecture job simulation (Jul 2025), Microsoft and LinkedIn Learning Career Essentials in Generative AI (15 Jun 2024), Google Cloud Study Jam, GDSC MIT (8 Dec 2023), CNCF CSN May Meetup (24 May 2026), Cyber Sanskar Ethical Hacking workshop attendance, Disha Computer Institute programming course (no marks shown).
+- Engineering Toolkit workshop: held 21 Aug 2026 (speaker certificate); the workshop report (24 Aug 2026) records 62 student feedback responses, 57 of them 4 or 5 out of 5. Shown on /teaching.
+
+**Seen but not published**
+- A company offer letter for a business development internship: an offer only, with pay and target terms; no evidence it was taken up. Not used.
+- Smart India Hackathon 2026, BIS SmartGuide: a team nomination form with blank fields and a README; no evidence of selection. Not used.
+- KeySound: the README says it is a macOS development build that is not fully verified. Not featured. Sevakari: the README is an empty template. Not featured.
+- Marks of any kind (course marks, institute marks, CGPA, school results): never published.
+- Phone numbers (in the CV, the CIH documents and the offer letter) and the PRN number: never published.
+- Credentials in the CV that no file in the folder proves (Red Hat, Linux Academy, KuCL): left as they were; Red Hat stays "training completed, exam pending".

@@ -1416,6 +1416,9 @@ html.is-loading:has(.site-loader[data-fade]) .rise {
 
 /* ── Swipeable card rows (components/door-page/card-carousel.tsx) ──────────────────────────── */
 .carousel {
+  /* positioned, so the screen-reader-only text inside the cards (absolutely positioned) is clipped by
+     the row instead of stretching the whole page sideways */
+  position: relative;
   display: flex;
   gap: 1.25rem;
   overflow-x: auto;
