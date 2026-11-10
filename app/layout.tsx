@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { FeedbackLayer } from "@/components/dev/feedback-layer";
+import { DoorSwap } from "@/components/door-page/door-swap";
 import { Loader } from "@/components/site/loader";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <SiteHeader />
         <RopeLamp />
+        <DoorSwap />
         <main id="main" className="flex-1">
           {children}
         </main>

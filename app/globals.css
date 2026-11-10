@@ -240,7 +240,7 @@ html.is-loading .rise {
 }
 .calendar-page {
   display: flex;
-  min-height: clamp(4.75rem, 9vw, 6.5rem);
+  min-height: calc(2 * 1.08 * clamp(0.9rem, calc(7.1cqi - 0.3rem), 2.4rem) + 2.4rem);
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -253,13 +253,15 @@ html.is-loading .rise {
 }
 .calendar-word {
   font-family: var(--font-display);
-  /* Sized from the card's own width (container query units): the longest role,
-     "Placement Coordinator", is 9.5 em, and the card's side padding is 2.8 rem. */
-  font-size: clamp(0.95rem, calc(9.2cqi - 0.35rem), 3rem);
+  /* Sized from the card's own width (container query units). The longest role,
+     "Campus Recruitment & Placement Operations Lead", wraps onto two balanced lines of about
+     12.5 em; every page reserves two lines so the card never changes height as it flips. */
+  font-size: clamp(0.9rem, calc(7.1cqi - 0.3rem), 2.4rem);
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.08;
   letter-spacing: -0.03em;
-  white-space: nowrap;
+  min-width: 0;
+  text-wrap: balance;
 }
 .calendar-counter {
   position: absolute;
@@ -1123,4 +1125,41 @@ html.is-loading .site-loader[data-done] {
   font-weight: 800;
   letter-spacing: 0.06em;
   font-variation-settings: "wdth" 85;
+}
+
+/* ── Door-to-door walk between door pages (components/door-page/door-swap.tsx) ───────────── */
+.door-swap {
+  animation: door-swap-in 200ms var(--ease-out);
+}
+@keyframes door-swap-in {
+  from {
+    opacity: 0;
+  }
+}
+/* Four doors that always fit on screen: door height is about 2.1 × its width. */
+.door-swap-stage {
+  max-width: min(72rem, calc(118vh + 6rem));
+  transform-origin: 0 0;
+  transition: transform 700ms var(--ease-in-out);
+  will-change: transform;
+}
+.door-swap .swap-door .pdoor-leaf {
+  transition: transform 540ms var(--ease-in-out);
+}
+.door-swap .swap-door[data-leaf="open"] .pdoor-leaf {
+  transform: rotateY(100deg);
+}
+.door-swap .swap-door[data-leaf="open"] .pdoor-lever {
+  transform: rotate(28deg);
+}
+.door-swap.is-instant .door-swap-stage,
+.door-swap.is-instant .pdoor-leaf,
+.door-swap.is-instant .pdoor-lever {
+  transition: none !important;
+}
+.door-swap-veil {
+  transition: opacity 250ms var(--ease-out);
+}
+.door-swap[data-veil="off"] .door-swap-veil {
+  opacity: 0;
 }

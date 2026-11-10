@@ -37,12 +37,12 @@ export const taglines: Readonly<Record<DoorId, string>> = {
 /**
  * Roles on the hero flip calendar, one per door. Each is grounded in the CV:
  * MediIndex (full-stack), MS-CIT trainer and workshops, "led and coordinated 95+ campus
- * recruitment drives" as President of the Training & Placement Cell (Placement Coordinator: the
- * exact title TPO and campus-hiring roles search for), and video editing plus social media management
+ * recruitment drives" as President of the Training & Placement Cell (Campus Recruitment &
+ * Placement Operations Lead: Mahesh's chosen title for TPO and campus-hiring roles), and video editing plus social media management
  * (UHV Cell, Athlete Meets Explorer) for Digital Creator.
- * The longest ("Placement Coordinator", 9.5 em) sets the type size on phones (globals.css).
+ * The longest role wraps onto two lines; the card is always two lines tall (globals.css).
  */
-export const heroRoles = ["Full-Stack Developer", "Technical Trainer", "Placement Coordinator", "Digital Creator"] as const;
+export const heroRoles = ["Full-Stack Developer", "Technical Trainer", "Campus Recruitment & Placement Operations Lead", "Digital Creator"] as const;
 
 /** Feature flag for the Creator door. Anything other than the string "true" keeps it locked. */
 export const creatorOpen = process.env.CREATOR_OPEN === "true";

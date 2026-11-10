@@ -43,7 +43,7 @@ export const doors: readonly Door[] = [
   },
   {
     id: "creator",
-    name: "Creator",
+    name: "Digital Creator",
     tagline: "Lessons from what I've built, taught and run. It opens with the first episode.",
     locked: true,
   },

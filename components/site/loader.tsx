@@ -13,7 +13,7 @@ const PILLS = [
   { label: "Tech", at: 18, dx: "34vw", dy: "-24vh", rot: "12deg" },
   { label: "Teaching", at: 42, dx: "-30vw", dy: "18vh", rot: "-9deg" },
   { label: "Management", at: 66, dx: "36vw", dy: "26vh", rot: "15deg" },
-  { label: "Creator", at: 88, dx: "4vw", dy: "40vh", rot: "-6deg" },
+  { label: "Digital Creator", at: 88, dx: "4vw", dy: "40vh", rot: "-6deg" },
 ] as const;
 
 /**
