@@ -6,6 +6,9 @@ import cutoutColour from "@/public/images/mahesh-cutout-colour.png";
 import cutout from "@/public/images/mahesh-cutout.png";
 import { heroRoles, site } from "@/lib/site";
 
+/** The Master CV, exactly as Mahesh wrote it (public/). */
+const cvFile = "/Mahesh-Namdev-Khandebharad-Master-CV.pdf";
+
 const rolesSentence = `${heroRoles.slice(0, -1).join(", ")} and ${heroRoles.at(-1)}`;
 
 export function Hero() {
@@ -30,6 +33,14 @@ export function Hero() {
             <HireMenu tone="page" />
             <a href="#doors" className="pill pill-ghost">
               See my work
+            </a>
+            <a href={cvFile} download="Mahesh-Namdev-Khandebharad-Master-CV.pdf" className="pill pill-ghost gap-2">
+              <svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 2.5v8M4.5 7.5L8 11l3.5-3.5M3 13.5h10" />
+              </svg>
+              <span>
+                Download CV<span className="sr-only"> (PDF, 5 pages, 200 KB)</span>
+              </span>
             </a>
           </div>
         </div>

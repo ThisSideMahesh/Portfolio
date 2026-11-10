@@ -57,7 +57,11 @@ const nextConfig: NextConfig = {
             { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
           ]
         : [];
-    return [{ source: "/:path*", headers: [...common, ...production] }];
+    return [
+      { source: "/:path*", headers: [...common, ...production] },
+      // The CV carries a phone number: keep search engines from listing the file; the button still downloads it.
+      { source: "/Mahesh-Namdev-Khandebharad-Master-CV.pdf", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }] },
+    ];
   },
 };
 
