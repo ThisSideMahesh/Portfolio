@@ -29,7 +29,8 @@ export function SiteHeader() {
         <NavLinks links={links} />
 
         <div className="flex items-center gap-1">
-          <p className="hidden items-center gap-3 rounded-full border border-line px-4 py-2 text-[0.95rem] font-medium sm:inline-flex">
+          {/* The clock steps aside between 896px and 1024px, where the tabs need the room (a phone in desktop mode is about 980px wide). */}
+          <p className="hidden items-center gap-3 rounded-full border border-line px-4 py-2 text-[0.95rem] font-medium sm:inline-flex min-[56rem]:hidden min-[64rem]:inline-flex">
             <span className="text-muted">Local time</span>
             <LocalTime />
             <span aria-hidden="true" className="h-3 w-px bg-line" />
@@ -37,7 +38,7 @@ export function SiteHeader() {
           </p>
           {/* The rope lamp switches the theme from 1280px up (xl), so this button is only needed below that. */}
           <ThemeToggle className="xl:hidden" />
-          <div className="lg:hidden">
+          <div className="min-[56rem]:hidden">
             <MobileMenu links={links} />
           </div>
         </div>

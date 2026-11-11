@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import { FlipCalendar } from "@/components/home/flip-calendar";
 import { HireMenu } from "@/components/home/hire-menu";
+import { TapColour } from "@/components/home/tap-colour";
 import cutoutColour from "@/public/images/mahesh-cutout-colour.png";
 import cutout from "@/public/images/mahesh-cutout.png";
 import { DownloadIcon } from "@/components/ui/download-icon";
@@ -11,7 +12,7 @@ const rolesSentence = `${heroRoles.slice(0, -1).join(", ")} and ${heroRoles.at(-
 
 export function Hero() {
   return (
-    <section className="wrap relative flex min-h-[calc(100svh-4rem)] flex-col">
+    <section className="wrap relative flex min-h-[calc(100svh-4rem)] flex-col overflow-x-clip md:min-h-[min(calc(100svh-4rem),max(40rem,62vw))]">
       <div className="grid flex-1 grid-cols-[minmax(0,1fr)] items-end gap-6 pt-12 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-10">
         <div className="self-center pb-8 md:pb-16">
           <h1 className="rise text-[clamp(2.6rem,7vw,5.5rem)]">
@@ -54,8 +55,9 @@ export function Hero() {
             src={cutoutColour}
             alt=""
             sizes="(min-width: 768px) 40vw, 90vw"
-            className="absolute inset-0 w-full opacity-0 transition-opacity duration-700 ease-[var(--ease-out)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100"
+            className="portrait-colour absolute inset-0 w-full opacity-0 transition-opacity duration-700 ease-[var(--ease-out)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100"
           />
+          <TapColour />
         </div>
       </div>
 

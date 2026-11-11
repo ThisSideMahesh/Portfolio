@@ -32,7 +32,7 @@ export function MobileMenu({ links }: { links: readonly NavLink[] }) {
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div>
       <button
         ref={buttonRef}
         type="button"

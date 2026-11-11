@@ -8,7 +8,7 @@ import type { NavLink } from "@/components/site/site-header";
 export function NavLinks({ links }: { links: readonly NavLink[] }) {
   const pathname = usePathname();
   return (
-    <nav aria-label="Main" className="nav-island hidden items-center gap-0.5 lg:flex">
+    <nav aria-label="Main" className="nav-island hidden items-center gap-0.5 min-[56rem]:flex">
       {links.map((link) => {
         const current = !link.href.includes("#") && link.href === pathname;
         return (

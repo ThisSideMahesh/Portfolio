@@ -712,6 +712,50 @@ html.is-loading .rise {
   }
 }
 
+/* Touch: the first tap previews a door with the same look as hover (TouchPreview sets [data-preview]); the second tap goes in. */
+.door[data-preview]:not(.locked):not([data-opening]) .pdoor-leaf {
+  transform: rotateY(-58deg);
+  transition-duration: 680ms;
+}
+.door[data-preview]:not(.locked) .pdoor-doorway::after,
+.door[data-preview]:not(.locked) .pdoor-leaf::before {
+  opacity: 1;
+}
+.door[data-preview]:not(.locked):not([data-opening]) .pdoor-lever {
+  transform: rotate(18deg);
+}
+.door[data-preview]:not(.locked):not([data-opening]) .door-enter {
+  opacity: 1;
+}
+.door.locked[data-preview] .pdoor {
+  animation: locked-jiggle 420ms var(--ease-out);
+}
+.door-stage:has(li .door[data-preview]) li:not(:has(.door[data-preview])) {
+  opacity: 0.08;
+}
+.door-stage:has(li[data-door="tech"] .door[data-preview]) .door-panel[data-for="tech"],
+.door-stage:has(li[data-door="teaching"] .door[data-preview]) .door-panel[data-for="teaching"],
+.door-stage:has(li[data-door="management"] .door[data-preview]) .door-panel[data-for="management"],
+.door-stage:has(li[data-door="creator"] .door[data-preview]) .door-panel[data-for="creator"] {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: 160ms;
+}
+.door-stage:has(li[data-door="tech"] .door[data-preview]) .door-panel[data-for="tech"] .reveal,
+.door-stage:has(li[data-door="teaching"] .door[data-preview]) .door-panel[data-for="teaching"] .reveal,
+.door-stage:has(li[data-door="management"] .door[data-preview]) .door-panel[data-for="management"] .reveal {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: calc(240ms + var(--i) * 70ms);
+}
+.door-stage li:has(.door[data-preview]) .door-light-cone {
+  opacity: 1;
+}
+/* Touch: a tap on the hero portrait fades it to colour, like the pointer does on a laptop. */
+.hero-portrait[data-colour] .portrait-colour {
+  opacity: 1;
+}
+
 /* Walk-through: the others vanish, the handle turns, the leaf swings wide, then we zoom in. */
 .door-stage:has(.door[data-opening]) li:not(:has(.door[data-opening])),
 .door-stage:has(.door[data-opening]) .door-panel {

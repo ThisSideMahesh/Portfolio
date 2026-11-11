@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { RevealHeading } from "@/components/ui/reveal-heading";
 import { DoorCard } from "@/components/home/door-card";
 import { PanelDoor } from "@/components/home/panel-door";
+import { TouchPreview } from "@/components/home/touch-preview";
 import { WallPortrait } from "@/components/home/wall-portrait";
 import { doors, type Door, type OpenDoorData } from "@/lib/data";
 
@@ -28,6 +29,7 @@ export function DoorWall() {
       </div>
 
       <div className="door-stage wrap relative mt-14">
+        <TouchPreview />
         <ul className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-8 md:overflow-visible md:pb-0">
           {doors.map((door) => (
             <li key={door.id} data-door={door.id} className="relative w-[64vw] max-w-[280px] shrink-0 snap-start pt-14 md:w-auto md:max-w-none">
