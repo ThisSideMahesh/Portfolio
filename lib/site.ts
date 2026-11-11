@@ -25,7 +25,7 @@ export const site = {
 export const cv = {
   href: "/Mahesh-Namdev-Khandebharad-Master-CV.pdf",
   filename: "Mahesh-Namdev-Khandebharad-Master-CV.pdf",
-  note: "PDF, 5 pages, 200 KB",
+  note: "PDF, 5 pages, 356 KB",
 } as const;
 
 export type SocialLink = { label: string; href: string };

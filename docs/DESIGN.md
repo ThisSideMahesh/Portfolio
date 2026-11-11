@@ -566,3 +566,9 @@ Mahesh recorded his iPhone (Safari, "Request Desktop Website", a layout about 98
 - **`public/llms.txt`:** a plain-text summary in the llmstxt.org layout: who Mahesh is, the four doors, one line per page, the CV link, contact and profile links, and a note asking AI tools to quote the facts as written. It repeats only facts that are already on the site, with no phone number, date of birth, scores or percentages.
 - **Canonical tags:** each page now sets `alternates.canonical` to its own path (`/`, `/tech`, `/teaching`, `/management`). The base comes from `metadataBase` (`NEXT_PUBLIC_SITE_URL`), so on production they read `https://thissidemahesh.in/...`.
 - **Checked on a production build:** `/llms.txt` answers 200 as `text/plain`; every page has one canonical link; typecheck, lint of the site code and the content guard pass.
+
+## 48. Master CV replaced with the 11 Nov 2026 version
+- **Request:** Mahesh gave his updated Master CV and asked for it to replace the old one on the site.
+- **What changed:** `public/Mahesh-Namdev-Khandebharad-Master-CV.pdf` is now a byte-identical copy of the new file (5 pages, 364,229 bytes). The file name and address stay the same, so the hero button, the door pages, the footer, `llms.txt` and every shared link keep working. The size note in `lib/site.ts` now says 356 KB.
+- **New in this version:** it lists the site address (`thissidemahesh.in`) in the header. It still carries the same contact details as before, so the privacy note in the README applies unchanged: the CV is published as supplied.
+- **Header kept:** the `noindex, nofollow, noarchive` header on the PDF is unchanged.
