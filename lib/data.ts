@@ -141,7 +141,7 @@ export const story: readonly StoryYear[] = [
         detail: "Diagnosed desktop, laptop, printer and network faults and installed Windows systems.",
       },
       {
-        title: "Technical Coordinator, Kalavihangam 2K23",
+        title: "Technical Coordinator, Kalavihangam 2K25",
         place: "MIT Chhatrapati Sambhajinagar",
         when: "24 – 28 Feb 2025",
         detail: "Ran technical arrangements for the annual cultural fest (1,000+ attendees): sound recording, video editing and backstage support.",

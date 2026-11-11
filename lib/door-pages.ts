@@ -355,7 +355,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
         cases: [
           {
             kicker: "Technical Coordinator",
-            title: "Kalavihangam 2K23",
+            title: "Kalavihangam 2K25",
             when: "MIT CSN · 24 – 28 Feb 2025",
             summary: "Ran the technical arrangements for a campus event.",
             points: [
@@ -363,7 +363,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
               "Recorded sound, edited video and gave backstage technical support for the department's Maharashtra-theme night performance",
             ],
             links: [{ label: "LinkedIn post", href: "https://www.linkedin.com/feed/update/urn:li:activity:7363049512858222592/" }],
-            visual: emblem("kalavihangam", "Emblem for Kalavihangam 2K23: a stage light with three beams. 1,000+ event attendees"),
+            visual: emblem("kalavihangam", "Emblem for Kalavihangam 2K25: a stage light with three beams. 1,000+ event attendees"),
           },
           {
             kicker: "Workshop speaker",
@@ -570,7 +570,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
       },
       {
         kicker: "Events",
-        title: "Kalavihangam 2K23 and first-year induction",
+        title: "Kalavihangam 2K25 and first-year induction",
         when: "MIT CSN · 24 – 28 Feb 2025; induction 2023 – 2024",
         summary: "Technical coordination and onboarding at scale.",
         points: [
@@ -579,7 +579,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           "Food Committee member: quality checks and vendor coordination",
         ],
         links: [{ label: "LinkedIn: Kalavihangam", href: "https://www.linkedin.com/feed/update/urn:li:activity:7363049512858222592/" }, { label: "LinkedIn: induction 2023", href: "https://www.linkedin.com/feed/update/urn:li:activity:7360875218174689280/" }, { label: "LinkedIn: induction 2024", href: "https://www.linkedin.com/feed/update/urn:li:activity:7361962358354726913/" }, { label: "LinkedIn: JIDNYASA 2024", href: "https://www.linkedin.com/feed/update/urn:li:activity:7361237618342182912/" }],
-        visual: emblem("induction", "Emblem for Kalavihangam 2K23 and first-year induction: a group of people. 250+ first-year students inducted"),
+        visual: emblem("induction", "Emblem for Kalavihangam 2K25 and first-year induction: a group of people. 250+ first-year students inducted"),
       },
     ],
   },

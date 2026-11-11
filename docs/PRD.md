@@ -80,7 +80,7 @@ The site is a personal brand under the username **thissidemahesh**. It is **not*
 | President, Training, Placement and Entrepreneurship Student Cell | Nov 2025 – Nov 2026 | Led and coordinated 95+ campus recruitment drives (individual, pooled, mega); resume screening, shortlisting, interview scheduling, onboarding documentation; liaison with company HR and institute leadership |
 | AlumniOS Bridge Captain, CSE | Jul 2025 – Nov 2026 | Alumni outreach, mentorship and placement communication |
 | Student Coordinator, T&P Student Cell | Aug 2025 – Nov 2025 | Official social handle, 25,000+ monthly reach |
-| Technical Coordinator, Kalavihangam 2K23 (name and year confirmed by Mahesh) | 24 – 28 Feb 2025 (Mahesh said 2025, then 2023, then 2024; his own LinkedIn post of 28 Feb 2025 "Kalavihangam 2025" and the original certificate both say 2025, so 2025 is used) | Technical arrangements for an event with 1,000+ attendees |
+| Technical Coordinator, Kalavihangam 2K25 (name and year confirmed by Mahesh, 11 Nov 2026) | 24 – 28 Feb 2025 (Mahesh said 2025, then 2023, then 2024; his own LinkedIn post of 28 Feb 2025 "Kalavihangam 2025" and the original certificate both say 2025, so 2025 is used) | Technical arrangements for an event with 1,000+ attendees |
 | Volunteer, first-year induction | 2023–2024 | Supported induction of 250+ first-year students |
 | Member, Food Committee, MIT Boys Hostel | 2023–2024 | Quality checks, feedback, vendor coordination |
 | Member, UHV Cell (Students Wing) | until 2026 | Universal Human Values activities |

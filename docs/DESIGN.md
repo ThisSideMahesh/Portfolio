@@ -557,3 +557,6 @@ Mahesh recorded his iPhone (Safari, "Request Desktop Website", a layout about 98
 - **Rope lamp:** it still appears from 1280 px only, because its reserved margin does not exist on narrower screens; below that the theme button does the same job. A phone in desktop mode (about 980 px) therefore has the button, not the lamp.
 - **Checked on a production build:** 11 widths from 360 to 1440 px on Home and Tech (nav or Menu always present, no header overflow, no sideways scroll); 4 pages x 2 themes x 4 phone widths (360, 390, 430, 768) with no sideways scroll; a touch tap previews and a second tap enters (`/teaching`, `/tech`); a mouse click still enters at once; the portrait tap works; the door walk completes on a 980 x 1900 screen.
 - **Not tested:** a real iPhone (Safari). The checks used Chrome with touch emulation, so Safari-only quirks could still exist.
+
+## 46. Kalavihangam name corrected to 2K25, 11 Nov 2026
+- Mahesh gave the final wording: **Technical Coordinator, Kalavihangam 2K25, MIT CSN, 24 to 28 Feb 2025**. The dates were already right; the event name said "2K23" and now says **2K25** (Tech page timeline in `lib/data.ts`, Tech and Management cards and their emblem descriptions in `lib/door-pages.ts`, and the PRD). Earlier notes in this file that mention "2K23" record the history and are left as they were.
