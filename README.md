@@ -107,7 +107,7 @@ Measured on a production build (Lighthouse, mobile):
 - No forms, accounts or user input, and no secrets in the code. Contact is by email link only.
 - The development-only review tool and its API route do not exist in production (the route answers 404).
 - All outside links open with `rel="noopener noreferrer"`. Pictures carry no metadata.
-- `pnpm audit` reports no known vulnerabilities.
+- `pnpm audit --prod` reports no known vulnerabilities in what the deployed site ships. A full `pnpm audit` currently flags four advisories in development-only tools (`sharp`, used by the local photo script, and `minimatch`, pulled in by the linter); none of them are part of the deployed site.
 
 ## Deployment
 
