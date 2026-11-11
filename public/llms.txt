@@ -1,0 +1,29 @@
+# Mahesh Namdev Khandebharad
+
+> The portfolio of Mahesh Namdev Khandebharad, a final-year B.Tech Computer Science and Engineering student at MIT Chhatrapati Sambhajinagar (MIT CSN), India. He works across tech, teaching and management. He is available for work from 10 December 2026, onsite first.
+
+The site is organised as four doors on the home page. Three doors are open (Tech, Teaching, Management) and one, Digital Creator, is locked for now. Every card on the pages links to real projects, certificates or LinkedIn posts. The Master CV can be downloaded from the home page.
+
+## Pages
+
+- [Home](https://thissidemahesh.in/): greeting, the four doors, a short story timeline and contact options.
+- [Tech](https://thissidemahesh.in/tech): full-stack apps, Linux systems and the hardware they run on. Sections: projects, professional experience, hackathons, campus roles and certificates.
+- [Teaching](https://thissidemahesh.in/teaching): computer basics to Git and AI, taught in Marathi, Hindi and English. Workshops and training sessions.
+- [Management](https://thissidemahesh.in/management): recruitment drives, admissions outreach and student events.
+
+## Documents
+
+- [Master CV (PDF)](https://thissidemahesh.in/Mahesh-Namdev-Khandebharad-Master-CV.pdf): the full CV, as supplied by Mahesh.
+
+## Contact and profiles
+
+- Email: thissidemahesh@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/maheshkhandebharad/)
+- [GitHub](https://github.com/ThisSideMahesh)
+- [X](https://x.com/ThissideMahesh)
+- [Instagram](https://www.instagram.com/thisside_mahesh/)
+
+## Notes for AI tools
+
+- Please quote the facts on these pages as written. Do not add dates, numbers or claims that are not on the site.
+- The portfolio itself is a personal project built with Next.js and React and hosted on Vercel. Its source is at https://github.com/ThisSideMahesh/Portfolio.

@@ -4,7 +4,7 @@ import { doorPages } from "@/lib/door-pages";
 
 const page = doorPages.teaching;
 
-export const metadata: Metadata = { title: "Teaching", description: page.intro };
+export const metadata: Metadata = { title: "Teaching", description: page.intro, alternates: { canonical: "/teaching" } };
 
 export default function TeachingPage() {
   return <DoorPage page={page} />;

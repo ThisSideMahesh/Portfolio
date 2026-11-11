@@ -560,3 +560,9 @@ Mahesh recorded his iPhone (Safari, "Request Desktop Website", a layout about 98
 
 ## 46. Kalavihangam name corrected to 2K25, 11 Nov 2026
 - Mahesh gave the final wording: **Technical Coordinator, Kalavihangam 2K25, MIT CSN, 24 to 28 Feb 2025**. The dates were already right; the event name said "2K23" and now says **2K25** (Tech page timeline in `lib/data.ts`, Tech and Management cards and their emblem descriptions in `lib/door-pages.ts`, and the PRD). Earlier notes in this file that mention "2K23" record the history and are left as they were.
+
+## 47. llms.txt and canonical tags, 11 Nov 2026
+- **Why:** after the domain went live, a checklist of post-launch basics showed three gaps: no summary file for AI tools, no canonical tag (the site answers on `thissidemahesh.in`, and `www` redirects to it), and Bing Webmaster Tools not set up (done in the Bing dashboard, not in code).
+- **`public/llms.txt`:** a plain-text summary in the llmstxt.org layout: who Mahesh is, the four doors, one line per page, the CV link, contact and profile links, and a note asking AI tools to quote the facts as written. It repeats only facts that are already on the site, with no phone number, date of birth, scores or percentages.
+- **Canonical tags:** each page now sets `alternates.canonical` to its own path (`/`, `/tech`, `/teaching`, `/management`). The base comes from `metadataBase` (`NEXT_PUBLIC_SITE_URL`), so on production they read `https://thissidemahesh.in/...`.
+- **Checked on a production build:** `/llms.txt` answers 200 as `text/plain`; every page has one canonical link; typecheck, lint of the site code and the content guard pass.

@@ -6,6 +6,7 @@ import { Story } from "@/components/home/story";
 
 export const metadata: Metadata = {
   title: { absolute: "Mahesh Namdev Khandebharad | Tech, Teaching and Management" },
+  alternates: { canonical: "/" },
 };
 
 export default function HomePage() {
