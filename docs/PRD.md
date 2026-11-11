@@ -133,7 +133,7 @@ Linux Administrator for Datacenter, Silver (NASSCOM) · Certified Linux Administ
 
 ## 9. Domain and hosting
 
-- Domain: **thissidemahesh.`<TLD>`**. The name is fixed; the TLD is not bought yet. The canonical URL comes from `NEXT_PUBLIC_SITE_URL`.
+- Domain: **thissidemahesh.in**, bought at Hostinger on 2026-11-11 and live on Vercel from the same day. `www.thissidemahesh.in` redirects (308) to it. The canonical URL comes from `NEXT_PUBLIC_SITE_URL`, set to `https://thissidemahesh.in` for Production.
 - Hosting: a **new** Vercel project. The domain is registered at Hostinger (DNS only). The old site stays live until the new one serves on the custom domain.
 - The new GitHub repository starts **private**.
 

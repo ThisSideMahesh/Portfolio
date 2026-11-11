@@ -6,9 +6,9 @@
 const FALLBACK_URL = "http://localhost:3000";
 
 /**
- * Canonical origin, used for the sitemap, robots file and share preview. In order: NEXT_PUBLIC_SITE_URL (set it
- * once a custom domain exists), the production address Vercel provides at build time (its own *.vercel.app
- * address, or the custom domain once one is added), then localhost for local development.
+ * Canonical origin, used for the sitemap, robots file and share preview. In order: NEXT_PUBLIC_SITE_URL (set to
+ * https://thissidemahesh.in in Vercel for Production), the production address Vercel provides at build time,
+ * then localhost for local development.
  */
 const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
 export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? vercelProduction ?? FALLBACK_URL);

@@ -6,7 +6,7 @@
 
 A personal portfolio for a Computer Science and Engineering student who works across **tech**, **teaching** and **management**. Every visitor walks through one of three doors, each leading to a page of real projects, roles and certificates. A fourth door, Digital Creator, is locked for now.
 
-**Live site:** [thissidemahesh.vercel.app](https://thissidemahesh.vercel.app)
+**Live site:** [thissidemahesh.in](https://thissidemahesh.in)
 
 | Home (dark) | Home (light) |
 | --- | --- |
@@ -111,7 +111,7 @@ Measured on a production build (Lighthouse, mobile):
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com) from the `main` branch. The site reads its own address from Vercel at build time; once a custom domain is added, set `NEXT_PUBLIC_SITE_URL` to it in the project settings.
+Deployed on [Vercel](https://vercel.com) from the `main` branch. The site is served on [thissidemahesh.in](https://thissidemahesh.in), and `www.thissidemahesh.in` redirects to it. `NEXT_PUBLIC_SITE_URL` is set to `https://thissidemahesh.in` for the Production environment in the Vercel project settings, so the sitemap, robots file and share image use that address. A change to that setting needs a redeploy, because the value is fixed when the site is built.
 
 ## Documentation
 
