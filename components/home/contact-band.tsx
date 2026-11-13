@@ -8,7 +8,7 @@ export function ContactBand() {
       <div className="wrap">
         <p className="inline-flex items-center gap-2 text-sm text-band-muted">
           <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
-          Available for internships
+          Available for work from 10 December 2026
         </p>
         <h2 id="contact-title" className="mt-6 text-[clamp(2.5rem,7.5vw,6.5rem)]">
           <span className="block">Hiring?</span>
