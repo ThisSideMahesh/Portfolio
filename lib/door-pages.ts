@@ -40,6 +40,8 @@ export type CaseStudy = {
   points: readonly string[];
   links?: readonly CaseLink[];
   visual: CaseVisual;
+  /** The one flagship card: a larger title and picture, so the page has a focal point (checklist: variation with intention). */
+  featured?: boolean;
 };
 
 /** A titled group of cases that the page shows as one swipeable row of cards. */
@@ -88,6 +90,7 @@ export const doorPages: Readonly<Record<DoorId, DoorPage>> = {
           {
             kicker: "B.Tech major project",
             title: "MediIndex",
+            featured: true,
             when: "Grew out of PharmaManage Pro, which won 1st place at Cogni-Sphere 2025 HackSphere",
             summary:
               "A pharmacy platform for inventory, billing and expiry tracking, with an Android app that keeps working offline.",

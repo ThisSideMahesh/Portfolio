@@ -82,22 +82,28 @@ function CardStack({ cases, heading }: { cases: readonly CaseStudy[]; heading: "
     <ol className="stack-list">
       {cases.map((study, index) => (
         <StackItem key={study.title} depth={Math.min(index, 4)} index={index}>
-          <CaseCard study={study} heading={heading} />
+          <CaseCard study={study} heading={heading} flip={index % 2 === 1} />
         </StackItem>
       ))}
     </ol>
   );
 }
 
-function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; heading?: "h2" | "h3" }) {
+function CaseCard({ study, heading: Heading = "h2", flip = false }: { study: CaseStudy; heading?: "h2" | "h3"; flip?: boolean }) {
+  // Variation on purpose: every second card swaps sides, and the one flagship card is bigger (checklist item 5).
+  const columns = study.featured
+    ? "md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] md:min-h-[600px]"
+    : flip
+      ? "md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:min-h-[520px]"
+      : "md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:min-h-[520px]";
   return (
-    <div className="case-shell">
-      <article className="case-core grid grid-cols-[minmax(0,1fr)] gap-10 p-6 md:min-h-[520px] md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center md:gap-14 md:p-12">
+    <div className={`case-shell ${study.featured ? "case-featured" : ""}`}>
+      <article className={`case-core grid grid-cols-[minmax(0,1fr)] gap-10 p-6 md:items-center md:gap-14 md:p-12 ${columns}`}>
         <div>
-          <p className="font-mono text-[11px] font-medium tracking-[0.18em] text-brass uppercase">
+          <p className="font-mono text-[11px] font-medium tracking-[0.18em] text-tone uppercase">
             {study.kicker}
           </p>
-          <Heading className="mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)]">
+          <Heading className={`mt-3 ${study.featured ? "text-[clamp(2.25rem,4.6vw,3.75rem)]" : "text-[clamp(1.75rem,3.5vw,2.75rem)]"}`}>
             {study.title}
           </Heading>
           <p className="mt-2 font-mono text-xs text-muted tabular-nums">
@@ -109,7 +115,7 @@ function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; headin
               <li key={point} className="flex gap-3 text-muted">
                 <span
                   aria-hidden="true"
-                  className="mt-[0.85em] h-px w-3 shrink-0 bg-brass"
+                  className="mt-[0.85em] h-px w-3 shrink-0 bg-tone"
                 />
                 {point}
               </li>
@@ -123,7 +129,7 @@ function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; headin
             </p>
           ) : null}
         </div>
-        <div className="case-visual">
+        <div className={`case-visual ${flip && !study.featured ? "md:order-first" : "md:order-last"}`}>
           <Visual visual={study.visual} />
         </div>
       </article>
@@ -177,6 +183,15 @@ function Visual({ visual }: { visual: CaseVisual }) {
       // stays visible); a second screenshot sits in the corner like a second window. A lone, very wide
       // picture (a 16:9 slide) is shown whole instead, so cropping never cuts its text.
       const wide = !second && main.width / main.height > 1.5;
+      // A lone logo picture with a white background (most of the small projects): print it on the paper mat and let the
+      // white blend into it, instead of showing a bright white block on a dark page.
+      if (!second && /logo/i.test(main.src)) {
+        return (
+          <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[1rem] bg-mat p-6 shadow-[inset_0_0_0_1px_rgb(0_0_0/0.05),inset_0_-40px_70px_-50px_rgb(130_80_40/0.22)]">
+            <Image src={main.src} width={main.width} height={main.height} alt={main.alt} sizes={imageSizes} className="h-full w-full object-contain mix-blend-multiply brightness-105" />
+          </div>
+        );
+      }
       return (
         <div className={`relative aspect-[4/3] overflow-hidden rounded-[1rem] bg-band ring-1 ring-line ${wide ? "p-3 md:p-4" : ""}`}>
           <Image
@@ -202,20 +217,20 @@ function Visual({ visual }: { visual: CaseVisual }) {
     }
     case "logo":
       return (
-        <div className="flex aspect-[4/3] items-center justify-center rounded-[1rem] border border-line bg-[#f6f4f0] p-10">
+        <div className="flex aspect-[4/3] items-center justify-center rounded-[1rem] border border-line bg-mat p-10 shadow-[inset_0_0_0_1px_rgb(0_0_0/0.05),inset_0_-40px_70px_-50px_rgb(130_80_40/0.22)]">
           <Image
             src={visual.image.src}
             width={visual.image.width}
             height={visual.image.height}
             alt={visual.image.alt}
             sizes={imageSizes}
-            className="h-auto max-h-[68%] w-auto max-w-[78%] object-contain"
+            className="h-auto max-h-[68%] w-auto max-w-[78%] object-contain mix-blend-multiply brightness-105"
           />
         </div>
       );
     case "logos":
       return (
-        <div className="flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-[1rem] border border-line bg-[#f6f4f0] p-6">
+        <div className="flex aspect-[4/3] flex-col items-center justify-center gap-4 rounded-[1rem] border border-line bg-mat p-6 shadow-[inset_0_0_0_1px_rgb(0_0_0/0.05)]">
           <ul className="grid w-full max-w-[26rem] grid-cols-2 gap-3">
             {visual.logos.map((logo, i) => (
               <li key={logo.src} className={`flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-[0_1px_0_rgb(0_0_0/0.06)] ${i === visual.logos.length - 1 && visual.logos.length % 2 === 1 ? "col-span-2" : ""}`}>

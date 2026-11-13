@@ -6,21 +6,32 @@
  * Theme: system by default; data-theme="light"|"dark" on <html> overrides it.
  * --band* is the always-dark contact band and footer.
  */
+/*
+ * PALETTE: one colour, then its tones (the monochrome rule, docs/DESIGN.md section 52).
+ * Base colour: amber, hue 25 degrees. Every colour below is that hue at a different lightness and saturation,
+ * plus warm black (dark theme) or white (light theme). The only other colours on the site are the door set's own
+ * (navy, green, maroon, brass hardware), and navy is amber's complement, so it reads as a deliberate contrast.
+ *   Dark  : ground 6% / surface 9% / line 15% / muted 64% / tone 66% (40% sat) / accent 59% (86% sat) / ink 92%.
+ *   Light : paper 95% / white / line 86% / muted 34% / tone 33% / accent 38% (100% sat) / ink 8%.
+ * Proportions follow 60/30/10: ground and surface, then ink and muted, then the accent.
+ * Accent = anything you can press. Tone = small labels and hairlines only.
+ */
 :root {
   color-scheme: light;
-  --bg: #f4f2ee; /* 60: clean warm paper */
+  --bg: #f5f2ef; /* 60: warm white paper */
   --surface: #ffffff; /* 30: cards lift off the paper */
-  --line: #e2ded7;
-  --ink: #14120f;
-  --muted: #5a554e;
-  --accent: #c44d00; /* 10 */
+  --line: #e1dad6;
+  --ink: #191410;
+  --muted: #5e5650;
+  --accent: #c25100; /* 10 */
   --on-accent: #ffffff;
-  --accent-text: #a33f00;
-  --brass: #7d5f22; /* small labels and hairlines: the set's brass, never used for buttons or links */
-  --band: #1c1a19;
-  --band-ink: #ece7e1;
-  --band-muted: #8f877f;
-  --band-line: #34302c;
+  --accent-text: #a34400;
+  --mat: #efe8e1; /* the warm paper that logos are printed on: a pale tint of the accent hue */
+  --tone: #7a4e2e; /* small labels and hairlines: a muted step of the accent hue, never for buttons or links */
+  --band: #1a1614;
+  --band-ink: #f1eae4;
+  --band-muted: #a69d96;
+  --band-line: #322b27;
   --door: var(--surface);
   --door-line: var(--line);
   --light: #f7ecd9; /* the warm light inside an open doorway: walks end in it and the new page fades in from it */
@@ -33,17 +44,17 @@
   :root:not([data-theme="light"]) {
     --diya-lit: 1;
     color-scheme: dark;
-    --bg: #11100e;
-    --surface: #181614;
-    --line: #27231f;
-    --ink: #efeae3;
-    --muted: #a69d92;
-    --accent: #f08a3a;
-    --on-accent: #171514;
-    --accent-text: #f59a55;
-    --brass: #cfae6a;
-    --band: #0f0e0d;
-    --band-line: #2a2724;
+    --bg: #120f0d;
+    --surface: #1a1614;
+    --line: #2b2522;
+    --ink: #f1eae4;
+    --muted: #aba29b;
+    --accent: #f0873d;
+    --on-accent: #181410;
+    --accent-text: #f5a166;
+    --tone: #cba386;
+    --band: #0f0c0b;
+    --band-line: #2a2421;
     --door: #312d2a;
     --door-line: #4a443e;
     --success: #6fcf8e;
@@ -54,17 +65,17 @@
 :root[data-theme="dark"] {
   --diya-lit: 1;
   color-scheme: dark;
-  --bg: #11100e;
-  --surface: #181614;
-  --line: #27231f;
-  --ink: #efeae3;
-  --muted: #a69d92;
-  --accent: #f08a3a;
-  --on-accent: #171514;
-  --accent-text: #f59a55;
-    --brass: #cfae6a;
-  --band: #0f0e0d;
-  --band-line: #2a2724;
+  --bg: #120f0d;
+  --surface: #1a1614;
+  --line: #2b2522;
+  --ink: #f1eae4;
+  --muted: #aba29b;
+  --accent: #f0873d;
+  --on-accent: #181410;
+  --accent-text: #f5a166;
+    --tone: #cba386;
+  --band: #0f0c0b;
+  --band-line: #2a2421;
   --door: #312d2a;
   --door-line: #4a443e;
   --success: #6fcf8e;
@@ -90,7 +101,8 @@
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
   --color-accent-text: var(--accent-text);
-  --color-brass: var(--brass);
+  --color-tone: var(--tone);
+  --color-mat: var(--mat);
   --color-band: var(--band);
   --color-band-ink: var(--band-ink);
   --color-band-muted: var(--band-muted);
@@ -1647,6 +1659,11 @@ html.is-loading .site-loader[data-done] {
   padding: 0.4rem;
   background: color-mix(in srgb, var(--ink) 5%, transparent);
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.case-featured {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent),
+    0 30px 80px -50px color-mix(in srgb, var(--accent) 55%, transparent);
 }
 .case-core {
   border-radius: calc(2rem - 0.4rem);
