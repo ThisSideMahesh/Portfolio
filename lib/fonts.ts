@@ -1,6 +1,6 @@
-import { Anek_Devanagari, Anek_Latin, Hind } from "next/font/google";
+import { Anek_Devanagari, Anek_Latin, Geist, Geist_Mono } from "next/font/google";
 
-/** Display face. Variable weight plus the width axis used for the wide hero name and condensed door names. */
+/** The door set's own face: the brass plates, the caution tape, the door names and the portrait tagline keep it. */
 export const anek = Anek_Latin({
   subsets: ["latin"],
   axes: ["wdth"],
@@ -17,10 +17,17 @@ export const anekDeva = Anek_Devanagari({
   preload: false,
 });
 
-/** Text face for body, labels, buttons and forms. */
-export const hind = Hind({
+/** Headings and body text everywhere outside the door set. A variable font, so light weights are free. */
+export const geist = Geist({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-hind",
+  variable: "--font-geist",
   display: "swap",
+});
+
+/** Small labels, dates and figures: the engineer's touch. Not preloaded, because the first screen barely uses it. */
+export const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+  preload: false,
 });

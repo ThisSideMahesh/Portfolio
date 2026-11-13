@@ -132,12 +132,12 @@ export function Loader() {
       <span ref={lightRef} className="swap-light" style={{ position: "fixed", opacity: 0 }} />
 
       <div className="loader-ui">
-        <span translate="no" className="font-display text-lg font-semibold">
+        <span translate="no" className="font-head text-lg font-medium">
           {site.name}
         </span>
         <div>
           <p className="text-sm font-medium tracking-wide text-band-muted">Opening up the work</p>
-          <span ref={numberRef} className="font-display text-[clamp(3.5rem,10vw,7rem)] leading-none font-semibold tabular-nums">
+          <span ref={numberRef} className="font-head text-[clamp(3.5rem,10vw,7rem)] leading-none font-light tracking-[-0.05em] tabular-nums">
             000
           </span>
         </div>

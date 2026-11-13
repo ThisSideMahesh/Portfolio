@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { RopeLamp } from "@/components/theme/rope-lamp";
 import { ThemeScript } from "@/components/theme/theme-script";
-import { anek, anekDeva, hind } from "@/lib/fonts";
+import { anek, anekDeva, geist, geistMono } from "@/lib/fonts";
 import { site, siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // suppressHydrationWarning: the theme script sets data-theme before React hydrates.
-    <html lang="en" suppressHydrationWarning className={`${anek.variable} ${anekDeva.variable} ${hind.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${anek.variable} ${anekDeva.variable} ${geist.variable} ${geistMono.variable}`}>
       <head>
         <ThemeScript />
       </head>

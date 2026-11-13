@@ -63,7 +63,7 @@ export function MobileMenu({ links }: { links: readonly NavLink[] }) {
                       <Link
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className="block py-2 font-display text-5xl font-semibold tracking-tight"
+                        className="block py-2 font-head text-5xl font-medium tracking-[-0.04em]"
                       >
                         {link.label}
                       </Link>

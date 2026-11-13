@@ -40,14 +40,14 @@ export function Story() {
           <ol>
           {story.map((year) => (
             <li key={year.year} data-story-year={year.year} className="pb-6">
-              <p className="mb-6 pl-6 font-display text-xl font-semibold md:hidden">
+              <p className="mb-6 pl-6 font-head text-xl font-medium md:hidden">
                 {year.year}
               </p>
               <ul className="space-y-10">
                 {year.entries.map((entry) => (
                   <li key={entry.title} data-story-month={monthOf(entry.when, year.year)} className="relative pl-6 md:pl-10">
                     <span aria-hidden="true" data-story-dot className="story-dot absolute top-2 -left-[5px] size-[9px] rounded-full" />
-                    <p className="text-sm font-medium text-muted tabular-nums">{entry.when}</p>
+                    <p className="font-mono text-xs text-muted tabular-nums">{entry.when}</p>
                     <h3 className="mt-1 text-[clamp(1.35rem,2.4vw,1.85rem)] leading-tight">{entry.title}</h3>
                     <p className="mt-1 font-medium text-muted">{entry.place}</p>
                     <p className="mt-3 max-w-[60ch]">{entry.detail}</p>

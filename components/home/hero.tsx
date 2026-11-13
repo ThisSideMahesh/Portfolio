@@ -15,6 +15,10 @@ export function Hero() {
     <section className="wrap relative flex min-h-[calc(100svh-4rem)] flex-col overflow-x-clip md:min-h-[min(calc(100svh-4rem),max(40rem,62vw))]">
       <div className="grid flex-1 grid-cols-[minmax(0,1fr)] items-end gap-6 pt-12 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:gap-10">
         <div className="self-center pb-8 md:pb-16">
+          <p className="rise mb-7 inline-flex items-center gap-2.5 rounded-full border border-line px-3.5 py-1.5 font-mono text-[11px] font-medium tracking-[0.16em] text-muted uppercase">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+            Final-year B.Tech CSE &middot; MIT CSN
+          </p>
           <h1 className="rise text-[clamp(2.6rem,7vw,5.5rem)]">
             Hi, I&rsquo;m Mahesh.
             <span className="sr-only">
@@ -22,7 +26,7 @@ export function Hero() {
               {site.name}: {rolesSentence}.
             </span>
           </h1>
-          <p aria-hidden="true" style={{ "--d": 1 } as CSSProperties} className="rise mt-1 font-display text-[clamp(2.2rem,6vw,4.75rem)] leading-none font-semibold tracking-tight text-muted">
+          <p aria-hidden="true" style={{ "--d": 1 } as CSSProperties} className="rise mt-1 font-head text-[clamp(2.2rem,6vw,4.75rem)] leading-none font-normal tracking-[-0.045em] text-muted">
             I am a
           </p>
           <div style={{ "--d": 2 } as CSSProperties} className="rise mt-7">
@@ -61,7 +65,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="flex items-center border-t border-line py-3 text-xs font-bold tracking-[0.12em] text-muted uppercase md:grid md:grid-cols-3 md:py-2">
+      <div className="flex items-center border-t border-line py-3 font-mono text-[11px] font-medium tracking-[0.16em] text-muted uppercase md:grid md:grid-cols-3 md:py-2">
         <span className="inline-flex items-center gap-2 text-ink">
           <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
           Available for work from 10 December 2026

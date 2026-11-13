@@ -42,7 +42,7 @@ export function StoryYearMarker({ years }: { years: readonly number[] }) {
 
   return (
     <div aria-hidden="true" className="mt-10 hidden md:block">
-      <p className="flex font-display text-[clamp(5rem,11vw,9rem)] leading-none font-semibold tracking-tighter tabular-nums">
+      <p className="flex font-head text-[clamp(5rem,11vw,9rem)] leading-none font-light tracking-[-0.06em] tabular-nums">
         {String(active)
           .padStart(4, "0")
           .split("")
@@ -62,7 +62,7 @@ export function StoryYearMarker({ years }: { years: readonly number[] }) {
           ))}
       </p>
       {/* The month rolls like the year digits: a column of twelve names slides to the active one. */}
-      <div className="mt-4 h-[1.2em] overflow-hidden font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2] font-bold tracking-[0.18em] text-accent-text uppercase">
+      <div className="mt-4 h-[1.2em] overflow-hidden font-mono text-[clamp(1rem,1.6vw,1.25rem)] leading-[1.2] font-medium tracking-[0.22em] text-brass uppercase">
         <div className="story-digit flex flex-col" style={{ transform: `translateY(-${Math.max(month, 0) * 1.2}em)` }}>
           {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m) => (
             <span key={m} className="h-[1.2em]">

@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="wrap border-t border-band-line py-12">
         <div className="grid gap-10 sm:grid-cols-3">
           <div>
-            <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Hire me for</h2>
+            <h2 className="font-mono text-[11px] font-medium tracking-[0.18em] text-band-muted uppercase">Hire me for</h2>
             <ul className="mt-3 space-y-1">
               {(["tech", "teaching", "management"] as const).map((id) => (
                 <li key={id}>
@@ -21,7 +21,7 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Digital footprint</h2>
+            <h2 className="font-mono text-[11px] font-medium tracking-[0.18em] text-band-muted uppercase">Digital footprint</h2>
             <ul className="mt-3 space-y-1">
               {socials.map((social) => (
                 <li key={social.href}>
@@ -34,11 +34,11 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <h2 className="font-sans text-sm font-medium tracking-wide text-band-muted">Email</h2>
+            <h2 className="font-mono text-[11px] font-medium tracking-[0.18em] text-band-muted uppercase">Email</h2>
             <a href={`mailto:${site.email}`} className="mt-3 inline-flex min-h-11 items-center underline underline-offset-4">
               {site.email}
             </a>
-            <h2 className="mt-6 font-sans text-sm font-medium tracking-wide text-band-muted">Master CV</h2>
+            <h2 className="mt-6 font-mono text-[11px] font-medium tracking-[0.18em] text-band-muted uppercase">Master CV</h2>
             <a href={cv.href} download={cv.filename} className="mt-3 inline-flex min-h-11 items-center gap-2 underline underline-offset-4">
               <DownloadIcon />
               <span>

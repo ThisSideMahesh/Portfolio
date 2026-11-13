@@ -94,13 +94,13 @@ function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; headin
     <div className="case-shell">
       <article className="case-core grid grid-cols-[minmax(0,1fr)] gap-10 p-6 md:min-h-[520px] md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center md:gap-14 md:p-12">
         <div>
-          <p className="text-sm font-semibold text-accent-text">
+          <p className="font-mono text-[11px] font-medium tracking-[0.18em] text-brass uppercase">
             {study.kicker}
           </p>
           <Heading className="mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)]">
             {study.title}
           </Heading>
-          <p className="mt-2 text-sm font-medium text-muted tabular-nums">
+          <p className="mt-2 font-mono text-xs text-muted tabular-nums">
             {study.when}
           </p>
           <p className="mt-6 max-w-[52ch] text-lg">{study.summary}</p>
@@ -109,7 +109,7 @@ function CaseCard({ study, heading: Heading = "h2" }: { study: CaseStudy; headin
               <li key={point} className="flex gap-3 text-muted">
                 <span
                   aria-hidden="true"
-                  className="mt-[0.65em] size-1.5 shrink-0 rounded-full bg-accent"
+                  className="mt-[0.85em] h-px w-3 shrink-0 bg-brass"
                 />
                 {point}
               </li>
@@ -230,14 +230,14 @@ function Visual({ visual }: { visual: CaseVisual }) {
       return (
         <div aria-hidden="true" className="relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-[1rem] bg-band p-8 text-band-ink">
           <div className="absolute inset-0 opacity-70 [background-image:linear-gradient(var(--band-line)_1px,transparent_1px),linear-gradient(90deg,var(--band-line)_1px,transparent_1px)] [background-size:34px_34px]" />
-          <p className="relative font-display text-[clamp(4.5rem,11vw,8rem)] leading-none font-semibold tracking-tight text-accent">{visual.mark}</p>
+          <p className="relative font-head text-[clamp(4.5rem,11vw,8rem)] leading-none font-light tracking-[-0.05em] text-accent">{visual.mark}</p>
           <p className="relative max-w-[24ch] text-lg font-medium text-band-muted">{visual.caption}</p>
         </div>
       );
     case "stat":
       return (
         <div className="flex aspect-[4/3] flex-col justify-end rounded-[1rem] bg-band p-8 text-band-ink">
-          <p className="font-display text-[clamp(3.5rem,9vw,7rem)] leading-none font-semibold tracking-tight">
+          <p className="font-head text-[clamp(3.5rem,9vw,7rem)] leading-none font-light tracking-[-0.05em]">
             {visual.value}
           </p>
           <p className="mt-3 text-lg font-medium text-band-muted">
@@ -250,10 +250,10 @@ function Visual({ visual }: { visual: CaseVisual }) {
         <ol className="flex aspect-[4/3] flex-col justify-center gap-3 rounded-[1rem] bg-band p-8 text-band-ink">
           {visual.steps.map((step, i) => (
             <li key={step} className="flex items-center gap-4">
-              <span className="font-display text-sm text-band-muted tabular-nums">
+              <span className="font-mono text-xs text-band-muted tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-semibold">
+              <span className="font-head text-[clamp(1.5rem,3vw,2.25rem)] font-medium">
                 {step}
               </span>
               {i < visual.steps.length - 1 ? (
@@ -271,7 +271,7 @@ function Visual({ visual }: { visual: CaseVisual }) {
           {visual.layers.map((layer, i) => (
             <li key={layer.name}>
               <div className="rounded-[0.75rem] border border-band-line px-5 py-4">
-                <p className="font-display text-xl font-semibold">
+                <p className="font-head text-xl font-medium">
                   {layer.name}
                 </p>
                 <p className="text-sm text-band-muted">{layer.detail}</p>

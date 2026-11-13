@@ -38,7 +38,7 @@ A personal portfolio for a Computer Science and Engineering student who works ac
 | --- | --- |
 | Framework | [Next.js](https://nextjs.org) 16.4.5 (App Router, Cache Components, Turbopack) |
 | UI | React 19.3.1, TypeScript 5.9, Tailwind CSS 4.3 |
-| Fonts | `next/font`: Anek Latin, Anek Devanagari, Hind (self-hosted) |
+| Fonts | `next/font`: Geist and Geist Mono for the site; Anek Latin and Anek Devanagari for the door set and one line (all self-hosted) |
 | Images | `next/image`, WebP, fixed dimensions (no layout shift) |
 | Tooling | pnpm 12, ESLint 9, Node 22 or newer |
 

@@ -16,6 +16,7 @@
   --accent: #c44d00; /* 10 */
   --on-accent: #ffffff;
   --accent-text: #a33f00;
+  --brass: #7d5f22; /* small labels and hairlines: the set's brass, never used for buttons or links */
   --band: #1c1a19;
   --band-ink: #ece7e1;
   --band-muted: #8f877f;
@@ -32,14 +33,15 @@
   :root:not([data-theme="light"]) {
     --diya-lit: 1;
     color-scheme: dark;
-    --bg: #121110;
-    --surface: #1b1917;
-    --line: #2b2825;
-    --ink: #ece7e1;
-    --muted: #a39a91;
-    --accent: #ff7a1a;
+    --bg: #11100e;
+    --surface: #181614;
+    --line: #27231f;
+    --ink: #efeae3;
+    --muted: #a69d92;
+    --accent: #f08a3a;
     --on-accent: #171514;
-    --accent-text: #ff8f3f;
+    --accent-text: #f59a55;
+    --brass: #cfae6a;
     --band: #0f0e0d;
     --band-line: #2a2724;
     --door: #312d2a;
@@ -52,14 +54,15 @@
 :root[data-theme="dark"] {
   --diya-lit: 1;
   color-scheme: dark;
-  --bg: #121110;
-  --surface: #1b1917;
-  --line: #2b2825;
-  --ink: #ece7e1;
-  --muted: #a39a91;
-  --accent: #ff7a1a;
+  --bg: #11100e;
+  --surface: #181614;
+  --line: #27231f;
+  --ink: #efeae3;
+  --muted: #a69d92;
+  --accent: #f08a3a;
   --on-accent: #171514;
-  --accent-text: #ff8f3f;
+  --accent-text: #f59a55;
+    --brass: #cfae6a;
   --band: #0f0e0d;
   --band-line: #2a2724;
   --door: #312d2a;
@@ -87,6 +90,7 @@
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
   --color-accent-text: var(--accent-text);
+  --color-brass: var(--brass);
   --color-band: var(--band);
   --color-band-ink: var(--band-ink);
   --color-band-muted: var(--band-muted);
@@ -96,9 +100,11 @@
   --color-success: var(--success);
   --color-danger: var(--danger);
 
-  --font-display: var(--font-anek), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anek), ui-sans-serif, system-ui, sans-serif; /* the door set only */
   --font-deva: var(--font-anek-deva), var(--font-anek), sans-serif;
-  --font-sans: var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+  --font-head: var(--font-geist), ui-sans-serif, system-ui, sans-serif; /* headings */
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif; /* body */
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace; /* labels, dates, figures */
 
   --radius-control: 6px;
   --radius-card: 12px;
@@ -142,10 +148,10 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.025em;
+    font-family: var(--font-head);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
     text-wrap: balance;
   }
 
@@ -274,14 +280,14 @@ html.is-loading .rise {
   backface-visibility: hidden;
 }
 .calendar-word {
-  font-family: var(--font-display);
+  font-family: var(--font-head);
   /* Sized from the card's own width (container query units). The longest role,
      "Campus Recruitment & Placement Operations Lead", wraps onto two balanced lines of about
      12.5 em; every page reserves two lines so the card never changes height as it flips. */
   font-size: clamp(0.9rem, calc(7.1cqi - 0.3rem), 2.4rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.08;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   min-width: 0;
   text-wrap: balance;
 }
@@ -1512,10 +1518,19 @@ html.is-loading .site-loader[data-done] {
 
 /* Header tabs: one floating pill; the current page is a filled tab. */
 .nav-island {
-  border: 1px solid var(--line);
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
   padding: 0.25rem;
+}
+/* The header: one floating glass island, detached from the top edge. Blur is allowed here because the header is fixed in place. */
+.header-island {
+  border: 1px solid color-mix(in srgb, var(--ink) 11%, transparent);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  backdrop-filter: blur(16px) saturate(1.25);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--ink) 7%, transparent),
+    0 18px 40px -26px rgb(0 0 0 / 0.55);
 }
 .nav-tab {
   transition:
