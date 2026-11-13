@@ -76,12 +76,12 @@ export function DoorPage({ page }: { page: DoorPageData }) {
   );
 }
 
-/** Cards that stack as you scroll (see .stack-card in globals.css). The first five sit a step lower than the one before. */
+/** Cards that stack as you scroll (see .stack-card in globals.css). Every card sticks; the first five sit a step lower than the one before. */
 function CardStack({ cases, heading }: { cases: readonly CaseStudy[]; heading: "h2" | "h3" }) {
   return (
-    <ol>
+    <ol className="stack-list">
       {cases.map((study, index) => (
-        <StackItem key={study.title} depth={Math.min(index, 4)}>
+        <StackItem key={study.title} depth={Math.min(index, 4)} index={index}>
           <CaseCard study={study} heading={heading} />
         </StackItem>
       ))}
