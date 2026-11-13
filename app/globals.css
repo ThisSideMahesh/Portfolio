@@ -121,6 +121,24 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Fine film grain over the whole page. Flat colour and smooth gradients are what make a page look computer-made;
+     a small tiled speck picture breaks them up. Fixed, not interactive, hidden in print. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    background: url("/images/grain.png") 0 0 / 160px 160px;
+    opacity: 0.05;
+  }
+
+  @media print {
+    body::after {
+      display: none;
+    }
+  }
+
   h1,
   h2,
   h3 {

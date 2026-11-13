@@ -21,7 +21,7 @@ export function DoorWall() {
         <RevealHeading
           id="doors-title"
           className="text-[clamp(2.25rem,5.5vw,4.5rem)]"
-          lines={[{ text: "Step inside." }, { text: "Discover the work behind it.", className: "text-muted" }]}
+          lines={[{ text: "Step inside." }, { text: "Pick the side of my work you came for.", className: "text-muted" }]}
         />
         <div className="mx-auto lg:mx-0 lg:justify-self-end lg:pr-[2vw]">
           <WallPortrait />

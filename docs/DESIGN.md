@@ -572,3 +572,14 @@ Mahesh recorded his iPhone (Safari, "Request Desktop Website", a layout about 98
 - **What changed:** `public/Mahesh-Namdev-Khandebharad-Master-CV.pdf` is now a byte-identical copy of the new file (5 pages, 364,229 bytes). The file name and address stay the same, so the hero button, the door pages, the footer, `llms.txt` and every shared link keep working. The size note in `lib/site.ts` now says 356 KB.
 - **New in this version:** it lists the site address (`thissidemahesh.in`) in the header. It still carries the same contact details as before, so the privacy note in the README applies unchanged: the CV is published as supplied.
 - **Header kept:** the `noindex, nofollow, noarchive` header on the PDF is unchanged.
+
+## 49. "Looks AI-made" feedback: first realism pass, 13 Nov 2026
+- **Feedback:** people Mahesh showed the live site to said it looks fully AI-made and asked for it to feel more real.
+- **Audit** (six-point checklist: hierarchy, contrast, typography, spacing, variation, visuals; plus the redesign audit for generic patterns). What reads as generated, most to least:
+  1. The framed portrait on the home page: a shop's mockup/stock artwork with golden-hour glow and plastic skin (see section 39). Rights unchecked, and it breaks the "no AI-looking images" rule.
+  2. No real photographs anywhere: a studio cut-out, drawn doors and drawn emblems. `content/source/photos` and `linkedin-photos` are empty, so the site has no candid photo of Mahesh teaching, at events or working.
+  3. Drawn stat-tile emblems on cards without a real image (icon in a rounded square plus a big orange number): a template pattern.
+  4. One finish everywhere: near-black, orange and gold, glossy gradients and glows, perfectly symmetrical doors, several gimmicks at once (rope lamp, flip calendar, tape).
+  5. Slogan copy: "Discover the work behind it.", "Let's explore how I can contribute.", "Inspired by history. Driven to build."
+- **Done in this pass:** the two generic lines became plain ones ("Pick the side of my work you came for." and "Hiring? Tell me about the role."), and a fine film grain now sits over the whole page (`public/images/grain.png`, 16 KB, tiled 160 px, `body::after`, fixed, `pointer-events: none`, opacity 0.05, `z-index: 90`, hidden in print). No blend mode, so scrolling cost stays low. Checked in dark and light mode; lint, types and the content guard pass.
+- **Needs Mahesh:** a decision on the framed portrait (keep, remove, or replace with his own or a public-domain picture); real photos of him at work; a decision on the tagline under the portrait.
